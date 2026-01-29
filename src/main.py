@@ -6,7 +6,8 @@ from config import Config
 
 def main():
     # Create necessary directories
-    os.makedirs('reports', exist_ok=True)
+    os.makedirs('docs', exist_ok=True)
+    os.makedirs('docs/reports', exist_ok=True)
     os.makedirs(Config.get_current_year_report_dir(), exist_ok=True)
 
     # Initialize collector

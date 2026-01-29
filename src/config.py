@@ -23,8 +23,8 @@ class Config:
     LOOKBACK_DAYS = 1
 
     # Output settings
-    REPORT_HTML_PATH = "report.html"
-    REPORT_DIR = f"reports/{datetime.now().year}"
+    REPORT_HTML_PATH = "docs/report.html"
+    REPORT_DIR = f"docs/reports/{datetime.now().year}"
 
     # AI Enhancement (requires OPENAI_API_KEY in environment)
     ENABLE_AI_ENHANCEMENT = os.getenv('OPENAI_API_KEY') is not None
@@ -32,7 +32,7 @@ class Config:
     @staticmethod
     def get_current_year_report_dir():
         """Get the report directory for the current year"""
-        return f"reports/{datetime.now().year}"
+        return f"docs/reports/{datetime.now().year}"
 
     @staticmethod
     def get_markdown_report_path():
