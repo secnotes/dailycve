@@ -2,12 +2,18 @@ import os
 from datetime import datetime
 from jinja2 import Template
 import html
+import re
+
+def sanitize_vendor_id(vendor):
+    """Sanitize vendor names to create safe IDs for HTML elements"""
+    # Replace non-alphanumeric characters with underscores
+    return re.sub(r'[^a-zA-Z0-9]', '_', vendor)
 
 def generate_html_report(cves, output_path='report.html'):
     """Generate HTML report with CVE data"""
 
-    # HTML template
-    html_template = """
+    # Define the HTML template as a string
+    html_template_str = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,7 +138,7 @@ def generate_html_report(cves, output_path='report.html'):
         }
 
         .filter-item {
-            padding: 5px 0;
+            padding: 2px 0;
             cursor: pointer;
             color: var(--secondary-color);
         }
@@ -393,22 +399,13 @@ def generate_html_report(cves, output_path='report.html'):
             background-color: #1976d2;
         }
 
-        @media (max-width: 1200px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                position: static;
-                max-height: none;  /* 移除高度限制，允许完整显示 */
-                margin-bottom: 20px;
-            }
+        .filter-item.selected {
+            font-weight: bold;
+            background-color: #e3f2fd;
+            padding: 3px 0;
         }
 
-        @media (min-width: 1201px) and (max-height: 800px) {
-            /* 在较短的屏幕上增加侧边栏高度 */
-            .sidebar {
-                max-height: 75vh;
+        @media (max-width: 1200px) {
             }
         }
 
@@ -566,20 +563,13 @@ def generate_html_report(cves, output_path='report.html'):
         </div>
 
         <div class="sidebar">
-            <div class="filter-status">
-                <div class="current-filters">
-                    <strong>Applied Filters:</strong>
-                    <div id="active-filters">None</div>
-                </div>
-            </div>
-
             <div class="filter-section">
                 <div class="filter-title">🏷️ Filter by Status</div>
                 <ul class="filter-list">
-                    <li class="filter-item" onclick="toggleStatusFilter('cisa')">In CISA KEV ({{ cisa_kev_count }})</li>
-                    <li class="filter-item" onclick="toggleStatusFilter('epss')">High EPSS (>0.10) ({{ epss_high_count }})</li>
-                    <li class="filter-item" onclick="toggleStatusFilter('modified')">Recently Modified ({{ modified_count }})</li>
-                    <li class="filter-item" onclick="toggleStatusFilter('published')">Newly Published ({{ published_count }})</li>
+                    <li class="filter-item" id="filter-cisa" onclick="toggleStatusFilter('cisa')">In CISA KEV ({{ cisa_kev_count }})</li>
+                    <li class="filter-item" id="filter-epss" onclick="toggleStatusFilter('epss')">High EPSS (>0.10) ({{ epss_high_count }})</li>
+                    <li class="filter-item" id="filter-modified" onclick="toggleStatusFilter('modified')">Recently Modified ({{ modified_count }})</li>
+                    <li class="filter-item" id="filter-published" onclick="toggleStatusFilter('published')">Newly Published ({{ published_count }})</li>
                 </ul>
             </div>
 
@@ -588,19 +578,18 @@ def generate_html_report(cves, output_path='report.html'):
                 <div class="filter-title">🏢 Filter by Vendor/Product</div>
                 <ul class="filter-list" id="vendor-filter-list">
                     {% for vendor in initial_vendors|sort %}
-                    <li class="filter-item" onclick="toggleVendorFilter('{{ vendor }}')" style="display:block;">{{ vendor }} ({{ all_sorted_vendors[vendor] }})</li>
+                    <li class="filter-item" id="filter-vendor-{{ sanitize_vendor_id(vendor) }}" onclick="toggleVendorFilter('{{ vendor }}')" style="display:block;">{{ vendor }} ({{ all_sorted_vendors[vendor] }})</li>
                     {% endfor %}
                     {% for vendor in all_vendors_list|sort %}
-                    <li class="filter-item extra-vendor" onclick="toggleVendorFilter('{{ vendor }}')" style="display:none;">{{ vendor }} ({{ all_sorted_vendors[vendor] }})</li>
+                    <li class="filter-item extra-vendor" id="filter-vendor-{{ sanitize_vendor_id(vendor) }}" onclick="toggleVendorFilter('{{ vendor }}')" style="display:none;">{{ vendor }} ({{ all_sorted_vendors[vendor] }})</li>
                     {% endfor %}
                 </ul>
-                {% if all_vendors_list|length > 20 %}
-                <button class="show-more-btn" onclick="toggleMoreVendors()" id="show-more-btn">Show More Vendors ({{ all_vendors_list|length - 20 }} more)</button>
+                {% if all_vendors_list|length > 19 %}
+                <button class="show-more-btn" onclick="toggleMoreVendors()" id="show-more-btn">Show More Vendors ({{ all_vendors_list|length - 19 }} more)</button>
                 {% endif %}
             </div>
             {% endif %}
 
-            <button class="show-all-btn" onclick="clearAllFilters()">Clear All Filters</button>
         </div>
     </div>
 
@@ -648,6 +637,7 @@ def generate_html_report(cves, output_path='report.html'):
             }
 
             applyAllFilters();
+            updateSelectedFiltersHighlight();
         }
 
         // Toggle vendor filter (mutually exclusive)
@@ -662,6 +652,7 @@ def generate_html_report(cves, output_path='report.html'):
             }
 
             applyAllFilters();
+            updateSelectedFiltersHighlight();
         }
 
         // Apply single filter (for summary stats clicks)
@@ -802,6 +793,7 @@ def generate_html_report(cves, output_path='report.html'):
             });
 
             updateActiveFiltersDisplay();
+            updateSelectedFiltersHighlight();
         }
 
         // Update the display of active filters
@@ -851,6 +843,122 @@ def generate_html_report(cves, output_path='report.html'):
             }
         }
 
+        // Update the display of active filters
+        function updateActiveFiltersDisplay() {
+            const activeFiltersDiv = document.getElementById('active-filters');
+            let filterText = [];
+
+            // Add status filters
+            for (let status of window.activeFilters.status) {
+                switch(status) {
+                    case 'cisa':
+                        filterText.push('CISA KEV');
+                        break;
+                    case 'epss':
+                        filterText.push('High EPSS');
+                        break;
+                    case 'modified':
+                        filterText.push('Recently Modified');
+                        break;
+                    case 'published':
+                        filterText.push('Newly Published');
+                        break;
+                    case 'high-risk':
+                        filterText.push('High Risk (CVSS > 7.0)');
+                        break;
+                    default:
+                        if (status.startsWith('cvss-')) {
+                            const minCvss = parseFloat(status.split('-')[1]);
+                            filterText.push(`CVSS ≥ ${minCvss}`);
+                        } else if (status.startsWith('epss-')) {
+                            const minEpss = parseFloat(status.split('-')[1]);
+                            filterText.push(`EPSS ≥ ${minEpss}`);
+                        }
+                        break;
+                }
+            }
+
+            // Add vendor filters
+            for (let vendor of window.activeFilters.vendors) {
+                filterText.push(`Vendor: ${vendor}`);
+            }
+
+            if (filterText.length === 0) {
+                activeFiltersDiv.textContent = 'None';
+            } else {
+                activeFiltersDiv.innerHTML = filterText.join(', ');
+            }
+        }
+
+        // Update highlight for selected filters in sidebar
+        function updateSelectedFiltersHighlight() {
+            // Remove all selected classes
+            const allFilterItems = document.querySelectorAll('.filter-item');
+            allFilterItems.forEach(item => {
+                item.classList.remove('selected');
+            });
+
+            // Add selected class to active status filters
+            if (window.activeFilters.status.length > 0) {
+                window.activeFilters.status.forEach(status => {
+                    let elementId = null;
+                    switch(status) {
+                        case 'cisa':
+                            elementId = 'filter-cisa';
+                            break;
+                        case 'epss':
+                            elementId = 'filter-epss';
+                            break;
+                        case 'modified':
+                            elementId = 'filter-modified';
+                            break;
+                        case 'published':
+                            elementId = 'filter-published';
+                            break;
+                        default:
+                            // Skip specific CVSS and EPSS filters as they are not in the sidebar
+                            break;
+                    }
+
+                    if (elementId) {
+                        const element = document.getElementById(elementId);
+                        if (element) {
+                            element.classList.add('selected');
+                        }
+                    }
+                });
+            }
+
+            // Add selected class to active vendor filter
+            if (window.activeFilters.vendors.length > 0) {
+                const vendor = window.activeFilters.vendors[0]; // We only support single vendor filter
+                // Sanitize vendor name for use in ID - replace any non-alphanumeric characters with underscores
+                const sanitizedVendor = vendor.replace(/[^a-zA-Z0-9]/g, '_');
+                const vendorId = 'filter-vendor-' + sanitizedVendor;
+                const vendorElement = document.getElementById(vendorId);
+                if (vendorElement) {
+                    vendorElement.classList.add('selected');
+                }
+            }
+        }
+
+        // Clear all filters (still available via JavaScript API)
+        function clearAllFilters() {
+            window.activeFilters = {
+                status: [],
+                vendors: []
+            };
+
+            const allCards = document.querySelectorAll('.cve-card');
+            allCards.forEach(card => {
+                card.style.display = 'block';
+                card.classList.add('filtered-in');
+            });
+
+            updateActiveFiltersDisplay();
+            updateSelectedFiltersHighlight();
+        }
+
         // Toggle more vendors
         function toggleMoreVendors() {
             const extraVendors = document.querySelectorAll('.extra-vendor');
@@ -870,7 +978,7 @@ def generate_html_report(cves, output_path='report.html'):
                     item.style.display = 'none';
                 });
 
-                showMoreBtn.textContent = 'Show More Vendors ({{ all_vendors_list|length - 20 }} more)';
+                showMoreBtn.textContent = 'Show More Vendors ({{ all_vendors_list|length - 19 }} more)';
                 moreVendorsShown = false;
             }
         }
@@ -879,7 +987,9 @@ def generate_html_report(cves, output_path='report.html'):
 </html>
     """
 
-    template = Template(html_template)
+    # Create template and add our custom filter
+    template = Template(html_template_str)
+    template.globals['sanitize_vendor_id'] = sanitize_vendor_id
 
     # Calculate statistics
     high_risk_count = sum(1 for cve in cves if cve.get('cvss_score', 0) > 7.0)
@@ -896,9 +1006,9 @@ def generate_html_report(cves, output_path='report.html'):
             all_vendors.add(vendor)
             vendor_counts[vendor] = vendor_counts.get(vendor, 0) + 1
 
-    # Sort vendors by count and limit to top 20
+    # Sort vendors by count and limit to top 19
     sorted_vendors = sorted(vendor_counts.items(), key=lambda x: x[1], reverse=True)
-    top_vendors = dict(sorted_vendors[:20])  # Top 20 vendors
+    top_vendors = dict(sorted_vendors[:19])  # Top 19 vendors
     all_sorted_vendors = dict(sorted_vendors)  # All vendors sorted by count
 
     # Prepare data for template
