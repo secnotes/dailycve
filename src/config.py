@@ -33,8 +33,3 @@ class Config:
     def get_current_year_report_dir():
         """Get the report directory for the current year"""
         return f"docs/reports/{datetime.now().year}"
-
-    @staticmethod
-    def get_markdown_report_path():
-        """Get the path for the markdown report for today"""
-        return f"{Config.get_current_year_report_dir()}/daily_cve_{datetime.now().strftime('%Y%m%d')}.md"

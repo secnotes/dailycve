@@ -575,7 +575,7 @@ def generate_html_report(cves, output_path='report.html'):
 
             {% if all_vendors_list %}
             <div class="filter-section">
-                <div class="filter-title">🏢 Filter by Vendor/Product</div>
+                <div class="filter-title">🏢 Filter by Vendor</div>
                 <ul class="filter-list" id="vendor-filter-list">
                     {% for vendor in initial_vendors|sort %}
                     <li class="filter-item" id="filter-vendor-{{ sanitize_vendor_id(vendor) }}" onclick="toggleVendorFilter('{{ vendor }}')" style="display:block;">{{ vendor }} ({{ all_sorted_vendors[vendor] }})</li>
@@ -666,6 +666,7 @@ def generate_html_report(cves, output_path='report.html'):
                     vendors: []
                 };
                 applyAllFilters();
+                updateSelectedFiltersHighlight();
             }
         }
 
@@ -1047,7 +1048,7 @@ def generate_html_report(cves, output_path='report.html'):
             'entry_type': entry_type,
             'entry_label': entry_label,
             'vendors': cve.get('vendors', []),
-            'products': cve.get('products', [])
+            'products': []  # Remove products from UI
         })
 
     # Render the template
@@ -1071,80 +1072,3 @@ def generate_html_report(cves, output_path='report.html'):
         f.write(html_content)
 
     print(f"HTML report generated: {output_path}")
-
-
-def generate_markdown_report(cves, output_path):
-    """Generate Markdown report for archiving"""
-
-    # Count vendor occurrences for summary
-    vendor_counts = {}
-    for cve in cves:
-        for vendor in cve.get('vendors', []):
-            vendor_counts[vendor] = vendor_counts.get(vendor, 0) + 1
-
-    # Sort vendors by count (top 10)
-    sorted_vendors = sorted(vendor_counts.items(), key=lambda x: x[1], reverse=True)[:10]
-
-    md_content = f"""# Daily CVE Report - {datetime.now().strftime('%Y-%m-%d')}
-
-Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-Total High-Risk Vulnerabilities: {len(cves)}
-
-## Top Vendors by Vulnerability Count
-"""
-
-    # Add vendor summary table
-    if sorted_vendors:
-        md_content += "| Vendor | Count |\n|--------|-------|\n"
-        for vendor, count in sorted_vendors:
-            md_content += f"| {vendor} | {count} |\n"
-    else:
-        md_content += "No vendor information extracted.\n"
-
-    md_content += f"""
-
----
-
-"""
-
-    for cve in cves:
-        md_content += f"## {cve['id']}\n\n"
-
-        # Add metrics
-        metrics = []
-        if cve.get('cvss_score', 0) > 0:
-            metrics.append(f"**CVSS Score:** {cve['cvss_score']:.1f}")
-        if cve.get('epss_score', 0) > 0:
-            metrics.append(f"**EPSS Score:** {cve['epss_score']:.3f}")
-        if cve.get('in_cisa_kev', False):
-            metrics.append("**CISA KEV:** Listed")
-
-        # Add entry type
-        entry_type = cve.get('entry_type', 'published')
-        if entry_type == 'modified':
-            metrics.append("**Status:** Recently Updated")
-        else:
-            metrics.append("**Status:** Newly Published")
-
-        # Add vendors if available
-        if cve.get('vendors'):
-            vendor_list = ', '.join(cve['vendors'])
-            metrics.append(f"**Vendors:** {vendor_list}")
-
-        if metrics:
-            md_content += " | ".join(metrics) + "\n\n"
-
-        md_content += f"{cve['description']}\n\n"
-
-        if cve.get('published_date'):
-            md_content += f"*Published: {cve['published_date'][:10]}*\n"
-        if cve.get('last_modified') and cve.get('last_modified') != cve.get('published_date'):
-            md_content += f"*Last Modified: {cve['last_modified'][:10]}*\n"
-
-        md_content += "\n---\n\n"
-
-    # Write to file
-    with open(output_path, 'w', encoding='utf-8') as f:
-        f.write(md_content)
-
-    print(f"Markdown report generated: {output_path}")

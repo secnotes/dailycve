@@ -8,7 +8,7 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
 from collector import CVECollector
-from reporter import generate_html_report, generate_markdown_report
+from reporter import generate_html_report
 from config import Config
 import os
 
@@ -40,8 +40,7 @@ def test_cve_collection():
     if cves:
         print("\nGenerating test reports...")
         generate_html_report(cves, 'test_report.html')
-        generate_markdown_report(cves, 'test_report.md')
-        print("Test reports generated: test_report.html and test_report.md")
+        print("Test reports generated: test_report.html")
     else:
         print("No high-risk CVEs found for the test period.")
 
