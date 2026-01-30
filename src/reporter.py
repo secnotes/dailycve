@@ -148,7 +148,7 @@ def generate_html_report(cves, output_path='report.html'):
         }
 
         .extra-vendor {
-            background-color: #f9f9f9;
+            background-color: transparent;
         }
 
         .summary-box {
