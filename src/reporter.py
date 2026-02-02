@@ -9,7 +9,7 @@ def sanitize_vendor_id(vendor):
     # Replace non-alphanumeric characters with underscores
     return re.sub(r'[^a-zA-Z0-9]', '_', vendor)
 
-def generate_html_report(cves, output_path='report.html'):
+def generate_html_report(cves, output_path='index.html'):
     """Generate HTML report with CVE data"""
 
     # Define the HTML template as a string

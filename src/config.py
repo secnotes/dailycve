@@ -23,7 +23,7 @@ class Config:
     LOOKBACK_DAYS = 1
 
     # Output settings
-    REPORT_HTML_PATH = "docs/report.html"
+    REPORT_HTML_PATH = "docs/index.html"
     REPORT_DIR = f"docs/reports/{datetime.now().year}"
 
     # AI Enhancement (requires OPENAI_API_KEY in environment)
