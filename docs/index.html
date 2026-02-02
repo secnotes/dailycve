@@ -1,0 +1,1852 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily CVE Report - 2026-02-02</title>
+    <style>
+        :root {
+            --primary-color: #d32f2f;
+            --secondary-color: #1976d2;
+            --tertiary-color: #388e3c;
+            --warning-color: #ffa726;
+            --light-bg: #f5f5f5;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 25px;
+        }
+
+        .main-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .sidebar {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            max-height: 90vh;  /* 增加最大高度到90vh，提供更多空间 */
+            overflow-y: auto;  /* 允许垂直滚动 */
+        }
+
+        /* 自定义滚动条样式 */
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 15px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 2.2em;
+        }
+
+        .filter-status {
+            margin-bottom: 25px;
+        }
+
+        .current-filters {
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .current-filters strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #495057;
+        }
+
+        #active-filters {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .filter-section {
+            margin-bottom: 25px;
+        }
+
+        .filter-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .filter-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .filter-item {
+            padding: 2px 0;
+            cursor: pointer;
+            color: var(--secondary-color);
+        }
+
+        .filter-item:hover {
+            text-decoration: underline;
+        }
+
+        .extra-vendor {
+            background-color: transparent;
+        }
+
+        .summary-box {
+            background: linear-gradient(135deg, #e3f2fd, #f5f5f5);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .stat-number {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .cve-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+
+        .cve-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            background: white;
+            display: none; /* Initially hide all cards */
+        }
+
+        .cve-card.filtered-in {
+            display: block;
+        }
+
+        .cve-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .cve-header {
+            background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cve-id {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: var(--primary-color);
+        }
+
+        .cve-severity {
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+        }
+
+        .severity-critical {
+            background-color: #ffebee;
+            color: #b71c1c;
+        }
+
+        .severity-high {
+            background-color: #fff3e0;
+            color: #e65100;
+        }
+
+        .severity-medium {
+            background-color: #fff8e1;
+            color: #f57f17;
+        }
+
+        .cve-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .metric-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .metric-tag:hover {
+            opacity: 0.8;
+        }
+
+        .tag-cvss {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .tag-epss {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag-cisa {
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .tag-exp {
+            background-color: #fff3e0;
+            color: #f57c00;
+        }
+
+        .cve-vendors {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        .cve-vendor-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            margin: 2px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            font-size: 0.8em;
+            cursor: pointer;
+        }
+
+        .cve-vendor-tag:hover {
+            background-color: #dee2e6;
+        }
+
+        .cve-body {
+            padding: 20px;
+        }
+
+        .cve-description {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .cve-links {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        .link-item {
+            display: inline-block;
+            margin-right: 15px;
+            margin-bottom: 8px;
+        }
+
+        .link-btn {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #f0f0f0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.85em;
+            transition: background-color 0.2s;
+        }
+
+        .link-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .cve-meta {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed #eee;
+        }
+
+        .no-cves {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        .info-icon {
+            margin-right: 5px;
+        }
+
+        .show-all-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .show-all-btn:hover {
+            background-color: #45a049;
+        }
+
+        .show-more-btn {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            background-color: #2196f3;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .show-more-btn:hover {
+            background-color: #1976d2;
+        }
+
+        .filter-item.selected {
+            font-weight: bold;
+            background-color: #e3f2fd;
+            padding: 3px 0;
+        }
+
+        @media (max-width: 1200px) {
+            }
+        }
+
+        @media (min-width: 1201px) and (min-height: 801px) and (max-height: 1000px) {
+            /* 中等高度屏幕 */
+            .sidebar {
+                max-height: 80vh;
+            }
+        }
+
+        @media (min-width: 1201px) and (min-height: 1001px) {
+            /* 高屏幕 */
+            .sidebar {
+                max-height: 85vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                grid-template-columns: 1fr;
+            }
+
+            .cve-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cve-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .cve-metrics {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>🔍 Daily CVE Report - 2026-02-02</h1>
+                <p>High-Risk Vulnerabilities Collected from Multiple Sources</p>
+            </header>
+
+            <div class="summary-box">
+                <h2>📊 Summary</h2>
+                <p><strong>Report Generated:</strong> 2026-02-02 11:41:13</p>
+
+                <div class="summary-stats">
+                    <div class="stat-card" onclick="applySingleFilter('all')">
+                        <div class="stat-number">15</div>
+                        <div>Total Vulnerabilities</div>
+                    </div>
+                    <div class="stat-card" onclick="applySingleFilter('high-risk')">
+                        <div class="stat-number">15</div>
+                        <div>High Risk (CVSS > 7.0)</div>
+                    </div>
+                    <div class="stat-card" onclick="toggleStatusFilter('cisa')">
+                        <div class="stat-number">0</div>
+                        <div>In CISA KEV</div>
+                    </div>
+                    <div class="stat-card" onclick="toggleStatusFilter('epss')">
+                        <div class="stat-number">0</div>
+                        <div>High EPSS (>0.10)</div>
+                    </div>
+                </div>
+            </div>
+
+            
+                <div class="cve-grid" id="cve-grid">
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_25253"
+                         data-cvss="8.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="openclaw">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-25253</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                OpenClaw (aka clawdbot or Moltbot) before 2026.1.29 obtains a gatewayUrl value from a query string and automatically makes a WebSocket connection without prompting, sending a token value.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.8)">🛡️ CVSS: 8.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('openclaw')">openclaw</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-25253" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-25253" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-02-01
+                                
+                                | <strong>Modified:</strong> 2026-02-01
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_23490"
+                         data-cvss="7.5"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="True"
+                         data-vendors="pyasn1">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-23490</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                pyasn1 is a generic ASN.1 library for Python. Prior to 0.6.2, a Denial-of-Service issue has been found that leads to memory exhaustion from malformed RELATIVE-OID with excessive continuation octets. This vulnerability is fixed in 0.6.2.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.5)">🛡️ CVSS: 7.5</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('pyasn1')">pyasn1</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-23490" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-23490" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-01-16
+                                
+                                | <strong>Modified:</strong> 2026-02-01
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2020_37064"
+                         data-cvss="7.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="epson">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2020-37064</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                EPSON EasyMP Network Projection 2.81 contains an unquoted service path vulnerability in the EMP_NSWLSV service that allows local users to potentially execute arbitrary code. Attackers can exploit the unquoted path in C:\Program Files (x86)\EPSON Projector\EasyMP Network Projection V2\ to inject malicious code that would execute with LocalSystem privileges.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.8)">🛡️ CVSS: 7.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('epson')">epson</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-37064" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-37064" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-02-01
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2020_37063"
+                         data-cvss="7.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="weird-solutions">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2020-37063</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                TFTP Turbo 4.6.1273 contains an unquoted service path vulnerability that allows local attackers to potentially execute arbitrary code with elevated privileges. Attackers can exploit the unquoted path in the service configuration to inject malicious executables that will be launched with LocalSystem permissions.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.8)">🛡️ CVSS: 7.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('weird-solutions')">weird-solutions</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-37063" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-37063" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-02-01
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2020_37062"
+                         data-cvss="7.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="weird solutions">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2020-37062</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                DHCP Turbo 4.61298 contains an unquoted service path vulnerability that allows local attackers to potentially execute arbitrary code by exploiting the service binary path. Attackers can place malicious executables in the service path to gain elevated privileges when the service starts.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.8)">🛡️ CVSS: 7.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('weird solutions')">weird solutions</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-37062" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-37062" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-02-01
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2020_37061"
+                         data-cvss="7.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="weird-solutions">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2020-37061</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                BOOTP Turbo 2.0.1214 contains an unquoted service path vulnerability that allows local attackers to potentially execute arbitrary code with elevated system privileges. Attackers can exploit the unquoted executable path to inject malicious code that will be executed when the service starts with LocalSystem permissions.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.8)">🛡️ CVSS: 7.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('weird-solutions')">weird-solutions</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-37061" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-37061" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-02-01
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2020_37055"
+                         data-cvss="7.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="enigmasoftware">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2020-37055</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                SpyHunter 4 contains an unquoted service path vulnerability that allows local users to potentially execute arbitrary code with elevated system privileges. Attackers can exploit the unquoted service path by placing malicious executables in specific file system locations to gain elevated access during service startup.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.8)">🛡️ CVSS: 7.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('enigmasoftware')">enigmasoftware</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-37055" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-37055" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-02-01
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2020_37048"
+                         data-cvss="7.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="iskysoft">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2020-37048</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Iskysoft Application Framework Service 2.4.3.241 contains an unquoted service path vulnerability that allows local users to potentially execute arbitrary code with elevated privileges. Attackers can exploit the unquoted path in the service configuration to inject malicious executables that would be run with the service&amp;#x27;s high-level system permissions.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.8)">🛡️ CVSS: 7.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('iskysoft')">iskysoft</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-37048" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-37048" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-02-01
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2020_37047"
+                         data-cvss="7.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="deepinstinct">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2020-37047</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Deep Instinct Windows Agent 1.2.29.0 contains an unquoted service path vulnerability in the DeepMgmtService that allows local users to potentially execute code with elevated privileges. Attackers can exploit the unquoted path in C:\Program Files\HP Sure Sense\DeepMgmtService.exe to inject malicious code that would execute with LocalSystem permissions during service startup.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.8)">🛡️ CVSS: 7.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('deepinstinct')">deepinstinct</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-37047" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-37047" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-02-01
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2020_37045"
+                         data-cvss="7.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="veritas">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2020-37045</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Veritas NetBackup 7.0 contains an unquoted service path vulnerability in the NetBackup INET Daemon service that allows local users to potentially execute arbitrary code. Attackers can exploit the unquoted path in C:\Program Files\Veritas\NetBackup\bin\bpinetd.exe to inject malicious code that would execute with elevated LocalSystem privileges.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.8)">🛡️ CVSS: 7.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('veritas')">veritas</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-37045" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-37045" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-02-01
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2020_37037"
+                         data-cvss="7.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="avast">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2020-37037</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Avast SecureLine 5.5.522.0 contains an unquoted service path vulnerability that allows local users to potentially execute code with elevated system privileges. Attackers can exploit the unquoted path in the service configuration to inject malicious code that would execute with LocalSystem account permissions during service startup.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.8)">🛡️ CVSS: 7.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('avast')">avast</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-37037" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-37037" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-02-01
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2021_47918"
+                         data-cvss="8.1"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="simplephpscripts">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2021-47918</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Simple CMS 2.1 contains a remote SQL injection vulnerability that allows privileged attackers to inject unfiltered SQL commands in the users module. Attackers can exploit unvalidated input parameters in the admin.php file to compromise the database management system and web application.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.1)">🛡️ CVSS: 8.1</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('simplephpscripts')">simplephpscripts</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-47918" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-47918" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-02-01
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2021_47915"
+                         data-cvss="8.1"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="phpsugar">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2021-47915</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                PHP Melody version 3.0 contains a remote SQL injection vulnerability in the video edit module that allows authenticated attackers to inject malicious SQL commands. Attackers can exploit the unvalidated &amp;#x27;vid&amp;#x27; parameter to execute arbitrary database queries and potentially compromise the web application and database management system.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.1)">🛡️ CVSS: 8.1</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('phpsugar')">phpsugar</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-47915" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-47915" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-02-01
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2021_47909"
+                         data-cvss="8.1"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="techraft">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2021-47909</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Mult-E-Cart Ultimate 2.4 contains multiple SQL injection vulnerabilities in inventory, customer, vendor, and order modules. Remote attackers with privileged vendor or admin roles can exploit the &amp;#x27;id&amp;#x27; parameter to execute malicious SQL commands and compromise the database management system.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.1)">🛡️ CVSS: 8.1</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('techraft')">techraft</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-47909" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-47909" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-02-01
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_25069"
+                         data-cvss="9.3"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="True"
+                         data-vendors="sunfounder">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-25069</div>
+                            <div class="cve-severity severity-critical">Critical</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                SunFounder Pironman Dashboard (pm_dashboard) version 1.3.13 and prior contain a path traversal vulnerability in the log file API endpoints. An unauthenticated remote attacker can supply traversal sequences via the filename parameter to read and delete arbitrary files. Successful exploitation can disclose sensitive information and delete critical system files, resulting in data loss and potential system compromise or denial of service.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(9.3)">🛡️ CVSS: 9.3</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('sunfounder')">sunfounder</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-25069" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-25069" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-01-31
+                                
+                                | <strong>Modified:</strong> 2026-02-01
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            
+        </div>
+
+        <div class="sidebar">
+            <div class="filter-section">
+                <div class="filter-title">🏷️ Filter by Status</div>
+                <ul class="filter-list">
+                    <li class="filter-item" id="filter-cisa" onclick="toggleStatusFilter('cisa')">In CISA KEV (0)</li>
+                    <li class="filter-item" id="filter-epss" onclick="toggleStatusFilter('epss')">High EPSS (>0.10) (0)</li>
+                    <li class="filter-item" id="filter-modified" onclick="toggleStatusFilter('modified')">Recently Modified (2)</li>
+                    <li class="filter-item" id="filter-published" onclick="toggleStatusFilter('published')">Newly Published (13)</li>
+                </ul>
+            </div>
+
+            
+            <div class="filter-section">
+                <div class="filter-title">🏢 Filter by Vendor</div>
+                <ul class="filter-list" id="vendor-filter-list">
+                    
+                    <li class="filter-item" id="filter-vendor-avast" onclick="toggleVendorFilter('avast')" style="display:block;">avast (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-deepinstinct" onclick="toggleVendorFilter('deepinstinct')" style="display:block;">deepinstinct (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-enigmasoftware" onclick="toggleVendorFilter('enigmasoftware')" style="display:block;">enigmasoftware (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-epson" onclick="toggleVendorFilter('epson')" style="display:block;">epson (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-iskysoft" onclick="toggleVendorFilter('iskysoft')" style="display:block;">iskysoft (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-openclaw" onclick="toggleVendorFilter('openclaw')" style="display:block;">openclaw (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-phpsugar" onclick="toggleVendorFilter('phpsugar')" style="display:block;">phpsugar (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-pyasn1" onclick="toggleVendorFilter('pyasn1')" style="display:block;">pyasn1 (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-simplephpscripts" onclick="toggleVendorFilter('simplephpscripts')" style="display:block;">simplephpscripts (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-sunfounder" onclick="toggleVendorFilter('sunfounder')" style="display:block;">sunfounder (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-techraft" onclick="toggleVendorFilter('techraft')" style="display:block;">techraft (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-veritas" onclick="toggleVendorFilter('veritas')" style="display:block;">veritas (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-weird_solutions" onclick="toggleVendorFilter('weird solutions')" style="display:block;">weird solutions (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-weird_solutions" onclick="toggleVendorFilter('weird-solutions')" style="display:block;">weird-solutions (2)</li>
+                    
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-avast" onclick="toggleVendorFilter('avast')" style="display:none;">avast (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-deepinstinct" onclick="toggleVendorFilter('deepinstinct')" style="display:none;">deepinstinct (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-enigmasoftware" onclick="toggleVendorFilter('enigmasoftware')" style="display:none;">enigmasoftware (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-epson" onclick="toggleVendorFilter('epson')" style="display:none;">epson (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-iskysoft" onclick="toggleVendorFilter('iskysoft')" style="display:none;">iskysoft (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-openclaw" onclick="toggleVendorFilter('openclaw')" style="display:none;">openclaw (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-phpsugar" onclick="toggleVendorFilter('phpsugar')" style="display:none;">phpsugar (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-pyasn1" onclick="toggleVendorFilter('pyasn1')" style="display:none;">pyasn1 (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-simplephpscripts" onclick="toggleVendorFilter('simplephpscripts')" style="display:none;">simplephpscripts (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-sunfounder" onclick="toggleVendorFilter('sunfounder')" style="display:none;">sunfounder (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-techraft" onclick="toggleVendorFilter('techraft')" style="display:none;">techraft (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-veritas" onclick="toggleVendorFilter('veritas')" style="display:none;">veritas (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-weird_solutions" onclick="toggleVendorFilter('weird solutions')" style="display:none;">weird solutions (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-weird_solutions" onclick="toggleVendorFilter('weird-solutions')" style="display:none;">weird-solutions (2)</li>
+                    
+                </ul>
+                
+            </div>
+            
+
+        </div>
+    </div>
+
+    <script>
+        // Initialize all CVEs as visible and initialize filter state
+        document.addEventListener('DOMContentLoaded', function() {
+            const allCards = document.querySelectorAll('.cve-card');
+            allCards.forEach(card => {
+                card.classList.add('filtered-in');
+            });
+
+            // Initialize active filters object
+            window.activeFilters = {
+                status: [],
+                vendors: []
+            };
+        });
+
+        // Variable to track if more vendors are shown
+        let moreVendorsShown = false;
+
+        // Toggle status filter (CISA, EPSS, Modified, Published)
+        function toggleStatusFilter(filterType) {
+            const index = window.activeFilters.status.indexOf(filterType);
+            if (index > -1) {
+                // Remove filter
+                window.activeFilters.status.splice(index, 1);
+            } else {
+                // Add filter
+                // Handle mutually exclusive filters (modified/published)
+                if (filterType === 'modified' || filterType === 'published') {
+                    // Remove the opposite one if it exists
+                    const modIndex = window.activeFilters.status.indexOf('modified');
+                    const pubIndex = window.activeFilters.status.indexOf('published');
+
+                    if (modIndex > -1) {
+                        window.activeFilters.status.splice(modIndex, 1);
+                    }
+                    if (pubIndex > -1) {
+                        window.activeFilters.status.splice(pubIndex, 1);
+                    }
+                }
+
+                window.activeFilters.status.push(filterType);
+            }
+
+            applyAllFilters();
+            updateSelectedFiltersHighlight();
+        }
+
+        // Toggle vendor filter (mutually exclusive)
+        function toggleVendorFilter(vendor) {
+            const index = window.activeFilters.vendors.indexOf(vendor);
+            if (index > -1) {
+                // Remove filter (deselect current vendor)
+                window.activeFilters.vendors = [];
+            } else {
+                // Replace with new filter (select only this vendor)
+                window.activeFilters.vendors = [vendor];
+            }
+
+            applyAllFilters();
+            updateSelectedFiltersHighlight();
+        }
+
+        // Apply single filter (for summary stats clicks)
+        function applySingleFilter(filterType) {
+            if (filterType === 'all') {
+                clearAllFilters();
+            } else if (filterType === 'high-risk') {
+                // Apply high risk filter (CVSS > 7.0)
+                window.activeFilters = {
+                    status: ['high-risk'],
+                    vendors: []
+                };
+                applyAllFilters();
+                updateSelectedFiltersHighlight();
+            }
+        }
+
+        // Apply CVSS-specific filter
+        function applySingleFilterByCVSS(minScore) {
+            window.activeFilters = {
+                status: [`cvss-${minScore}`],
+                vendors: []
+            };
+            applyAllFilters();
+        }
+
+        // Apply EPSS-specific filter
+        function applySingleFilterByEPSS(minScore) {
+            window.activeFilters = {
+                status: [`epss-${minScore}`],
+                vendors: []
+            };
+            applyAllFilters();
+        }
+
+        // Apply all active filters
+        function applyAllFilters() {
+            const allCards = document.querySelectorAll('.cve-card');
+
+            allCards.forEach(card => {
+                let showCard = true;
+
+                // Apply status filters
+                if (window.activeFilters.status.length > 0) {
+                    for (let filter of window.activeFilters.status) {
+                        switch(filter) {
+                            case 'cisa':
+                                if (card.getAttribute('data-cisa') !== 'true') {
+                                    showCard = false;
+                                }
+                                break;
+                            case 'epss':
+                                if ((parseFloat(card.getAttribute('data-epss')) || 0) <= 0.10) {
+                                    showCard = false;
+                                }
+                                break;
+                            case 'modified':
+                                if (card.getAttribute('data-modified') !== 'True') {
+                                    showCard = false;
+                                }
+                                break;
+                            case 'published':
+                                if (card.getAttribute('data-modified') !== 'False') {
+                                    showCard = false;
+                                }
+                                break;
+                            case 'high-risk':
+                                if ((parseFloat(card.getAttribute('data-cvss')) || 0) <= 7.0) {
+                                    showCard = false;
+                                }
+                                break;
+                            default:
+                                // Handle CVSS specific filter
+                                if (filter.startsWith('cvss-')) {
+                                    const minCvss = parseFloat(filter.split('-')[1]);
+                                    if ((parseFloat(card.getAttribute('data-cvss')) || 0) < minCvss) {
+                                        showCard = false;
+                                    }
+                                }
+                                // Handle EPSS specific filter
+                                else if (filter.startsWith('epss-')) {
+                                    const minEpss = parseFloat(filter.split('-')[1]);
+                                    if ((parseFloat(card.getAttribute('data-epss')) || 0) < minEpss) {
+                                        showCard = false;
+                                    }
+                                }
+                                break;
+                        }
+
+                        // If any filter condition fails, stop checking other filters
+                        if (!showCard) break;
+                    }
+                }
+
+                // If status filters passed, apply vendor filters
+                if (showCard && window.activeFilters.vendors.length > 0) {
+                    const cardVendorsStr = card.getAttribute('data-vendors') || '';
+                    const cardVendors = cardVendorsStr.split(',');
+
+                    // Check if any of the active vendor filters match this card
+                    let hasMatchingVendor = false;
+                    for (let vendor of window.activeFilters.vendors) {
+                        if (cardVendors.includes(vendor)) {
+                            hasMatchingVendor = true;
+                            break;
+                        }
+                    }
+
+                    if (!hasMatchingVendor) {
+                        showCard = false;
+                    }
+                }
+
+                // Update card visibility
+                if (showCard) {
+                    card.style.display = 'block';
+                    card.classList.add('filtered-in');
+                } else {
+                    card.style.display = 'none';
+                    card.classList.remove('filtered-in');
+                }
+            });
+
+            // Update the display of active filters
+            updateActiveFiltersDisplay();
+        }
+
+        // Clear all filters
+        function clearAllFilters() {
+            window.activeFilters = {
+                status: [],
+                vendors: []
+            };
+
+            const allCards = document.querySelectorAll('.cve-card');
+            allCards.forEach(card => {
+                card.style.display = 'block';
+                card.classList.add('filtered-in');
+            });
+
+            updateActiveFiltersDisplay();
+            updateSelectedFiltersHighlight();
+        }
+
+        // Update the display of active filters
+        function updateActiveFiltersDisplay() {
+            const activeFiltersDiv = document.getElementById('active-filters');
+            let filterText = [];
+
+            // Add status filters
+            for (let status of window.activeFilters.status) {
+                switch(status) {
+                    case 'cisa':
+                        filterText.push('CISA KEV');
+                        break;
+                    case 'epss':
+                        filterText.push('High EPSS');
+                        break;
+                    case 'modified':
+                        filterText.push('Recently Modified');
+                        break;
+                    case 'published':
+                        filterText.push('Newly Published');
+                        break;
+                    case 'high-risk':
+                        filterText.push('High Risk (CVSS > 7.0)');
+                        break;
+                    default:
+                        if (status.startsWith('cvss-')) {
+                            const minCvss = parseFloat(status.split('-')[1]);
+                            filterText.push(`CVSS ≥ ${minCvss}`);
+                        } else if (status.startsWith('epss-')) {
+                            const minEpss = parseFloat(status.split('-')[1]);
+                            filterText.push(`EPSS ≥ ${minEpss}`);
+                        }
+                        break;
+                }
+            }
+
+            // Add vendor filters
+            for (let vendor of window.activeFilters.vendors) {
+                filterText.push(`Vendor: ${vendor}`);
+            }
+
+            if (filterText.length === 0) {
+                activeFiltersDiv.textContent = 'None';
+            } else {
+                activeFiltersDiv.innerHTML = filterText.join(', ');
+            }
+        }
+
+        // Update the display of active filters
+        function updateActiveFiltersDisplay() {
+            const activeFiltersDiv = document.getElementById('active-filters');
+            let filterText = [];
+
+            // Add status filters
+            for (let status of window.activeFilters.status) {
+                switch(status) {
+                    case 'cisa':
+                        filterText.push('CISA KEV');
+                        break;
+                    case 'epss':
+                        filterText.push('High EPSS');
+                        break;
+                    case 'modified':
+                        filterText.push('Recently Modified');
+                        break;
+                    case 'published':
+                        filterText.push('Newly Published');
+                        break;
+                    case 'high-risk':
+                        filterText.push('High Risk (CVSS > 7.0)');
+                        break;
+                    default:
+                        if (status.startsWith('cvss-')) {
+                            const minCvss = parseFloat(status.split('-')[1]);
+                            filterText.push(`CVSS ≥ ${minCvss}`);
+                        } else if (status.startsWith('epss-')) {
+                            const minEpss = parseFloat(status.split('-')[1]);
+                            filterText.push(`EPSS ≥ ${minEpss}`);
+                        }
+                        break;
+                }
+            }
+
+            // Add vendor filters
+            for (let vendor of window.activeFilters.vendors) {
+                filterText.push(`Vendor: ${vendor}`);
+            }
+
+            if (filterText.length === 0) {
+                activeFiltersDiv.textContent = 'None';
+            } else {
+                activeFiltersDiv.innerHTML = filterText.join(', ');
+            }
+        }
+
+        // Update highlight for selected filters in sidebar
+        function updateSelectedFiltersHighlight() {
+            // Remove all selected classes
+            const allFilterItems = document.querySelectorAll('.filter-item');
+            allFilterItems.forEach(item => {
+                item.classList.remove('selected');
+            });
+
+            // Add selected class to active status filters
+            if (window.activeFilters.status.length > 0) {
+                window.activeFilters.status.forEach(status => {
+                    let elementId = null;
+                    switch(status) {
+                        case 'cisa':
+                            elementId = 'filter-cisa';
+                            break;
+                        case 'epss':
+                            elementId = 'filter-epss';
+                            break;
+                        case 'modified':
+                            elementId = 'filter-modified';
+                            break;
+                        case 'published':
+                            elementId = 'filter-published';
+                            break;
+                        default:
+                            // Skip specific CVSS and EPSS filters as they are not in the sidebar
+                            break;
+                    }
+
+                    if (elementId) {
+                        const element = document.getElementById(elementId);
+                        if (element) {
+                            element.classList.add('selected');
+                        }
+                    }
+                });
+            }
+
+            // Add selected class to active vendor filter
+            if (window.activeFilters.vendors.length > 0) {
+                const vendor = window.activeFilters.vendors[0]; // We only support single vendor filter
+                // Sanitize vendor name for use in ID - replace any non-alphanumeric characters with underscores
+                const sanitizedVendor = vendor.replace(/[^a-zA-Z0-9]/g, '_');
+                const vendorId = 'filter-vendor-' + sanitizedVendor;
+                const vendorElement = document.getElementById(vendorId);
+                if (vendorElement) {
+                    vendorElement.classList.add('selected');
+                }
+            }
+        }
+
+        // Clear all filters (still available via JavaScript API)
+        function clearAllFilters() {
+            window.activeFilters = {
+                status: [],
+                vendors: []
+            };
+
+            const allCards = document.querySelectorAll('.cve-card');
+            allCards.forEach(card => {
+                card.style.display = 'block';
+                card.classList.add('filtered-in');
+            });
+
+            updateActiveFiltersDisplay();
+            updateSelectedFiltersHighlight();
+        }
+
+        // Toggle more vendors
+        function toggleMoreVendors() {
+            const extraVendors = document.querySelectorAll('.extra-vendor');
+            const showMoreBtn = document.getElementById('show-more-btn');
+
+            if (!moreVendorsShown) {
+                // Show all extra vendors
+                extraVendors.forEach(item => {
+                    item.style.display = 'block';
+                });
+
+                showMoreBtn.textContent = 'Show Less Vendors';
+                moreVendorsShown = true;
+            } else {
+                // Hide extra vendors (keep only the first 20)
+                extraVendors.forEach((item, index) => {
+                    item.style.display = 'none';
+                });
+
+                showMoreBtn.textContent = 'Show More Vendors (-5 more)';
+                moreVendorsShown = false;
+            }
+        }
+    </script>
+</body>
+</html>
+    
