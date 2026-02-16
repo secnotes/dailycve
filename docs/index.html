@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily CVE Report - 2026-02-15</title>
+    <title>Daily CVE Report - 2026-02-16</title>
     <style>
         :root {
             --primary-color: #d32f2f;
@@ -453,25 +453,25 @@
     <div class="container">
         <div class="main-content">
             <header>
-                <h1>🔍 Daily CVE Report - 2026-02-15</h1>
+                <h1>🔍 Daily CVE Report - 2026-02-16</h1>
                 <p>High-Risk Vulnerabilities Collected from Multiple Sources</p>
             </header>
 
             <div class="summary-box">
                 <h2>📊 Summary</h2>
-                <p><strong>Report Generated:</strong> 2026-02-15 12:47:11</p>
+                <p><strong>Report Generated:</strong> 2026-02-16 12:59:47</p>
 
                 <div class="summary-stats">
                     <div class="stat-card" onclick="applySingleFilter('all')">
-                        <div class="stat-number">11</div>
+                        <div class="stat-number">10</div>
                         <div>Total Vulnerabilities</div>
                     </div>
                     <div class="stat-card" onclick="applySingleFilter('high-risk')">
-                        <div class="stat-number">11</div>
+                        <div class="stat-number">10</div>
                         <div>High Risk (CVSS > 7.0)</div>
                     </div>
                     <div class="stat-card" onclick="toggleStatusFilter('cisa')">
-                        <div class="stat-number">1</div>
+                        <div class="stat-number">0</div>
                         <div>In CISA KEV</div>
                     </div>
                     <div class="stat-card" onclick="toggleStatusFilter('epss')">
@@ -484,20 +484,20 @@
             
                 <div class="cve-grid" id="cve-grid">
                     
-                    <div class="cve-card filtered-in" id="cve-CVE_2025_8572"
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_26369"
                          data-cvss="9.8"
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="dreamstechnologies">
+                         data-vendors="jung">
                         <div class="cve-header">
-                            <div class="cve-id">CVE-2025-8572</div>
+                            <div class="cve-id">CVE-2026-26369</div>
                             <div class="cve-severity severity-critical">Critical</div>
                         </div>
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                The Truelysell Core plugin for WordPress is vulnerable to privilege escalation in versions less than, or equal to, 1.8.7. This is due to insufficient validation of the user_role parameter during user registration. This makes it possible for unauthenticated attackers to create accounts with elevated privileges, including administrator access.
+                                eNet SMART HOME server 2.2.1 and 2.3.1 contains a privilege escalation vulnerability due to insufficient authorization checks in the setUserGroup JSON-RPC method. A low-privileged user (UG_USER) can send a crafted POST request to /jsonrpc/management specifying their own username to elevate their account to the UG_ADMIN group, bypassing intended access controls and gaining administrative capabilities such as modifying device configurations, network settings, and other smart home system functions.
                             </div>
 
                             
@@ -522,48 +522,48 @@
                             <div class="cve-vendors">
                                 <strong>/vendors/:</strong>
                                 
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('dreamstechnologies')">dreamstechnologies</span>
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('jung')">jung</span>
                                 
                             </div>
                             
 
                             <div class="cve-links">
                                 <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-8572" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-26369" target="_blank" class="link-btn">🔍 NVD Details</a>
                                 </div>
                                 <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-8572" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-26369" target="_blank" class="link-btn">📝 MITRE CVE</a>
                                 </div>
                                 
                             </div>
 
                             <div class="cve-meta">
-                                <strong>Published:</strong> 2026-02-14
+                                <strong>Published:</strong> 2026-02-15
                                 
                             </div>
                         </div>
                     </div>
                     
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_1843"
-                         data-cvss="7.2"
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_26368"
+                         data-cvss="8.8"
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="optimole">
+                         data-vendors="jung">
                         <div class="cve-header">
-                            <div class="cve-id">CVE-2026-1843</div>
+                            <div class="cve-id">CVE-2026-26368</div>
                             <div class="cve-severity severity-high">High</div>
                         </div>
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                The Super Page Cache plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the Activity Log in all versions up to, and including, 5.2.2 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page.
+                                eNet SMART HOME server 2.2.1 and 2.3.1 contains a missing authorization vulnerability in the resetUserPassword JSON-RPC method that allows any authenticated low-privileged user (UG_USER) to reset the password of arbitrary accounts, including those in the UG_ADMIN and UG_SUPER_ADMIN groups, without supplying the current password or having sufficient privileges. By sending a crafted JSON-RPC request to /jsonrpc/management, an attacker can overwrite existing credentials, resulting in direct account takeover with full administrative access and persistent privilege escalation.
                             </div>
 
                             
                             <div class="cve-metrics">
                                 
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.2)">🛡️ CVSS: 7.2</span>
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.8)">🛡️ CVSS: 8.8</span>
                                 
 
                                 
@@ -582,162 +582,42 @@
                             <div class="cve-vendors">
                                 <strong>/vendors/:</strong>
                                 
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('optimole')">optimole</span>
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('jung')">jung</span>
                                 
                             </div>
                             
 
                             <div class="cve-links">
                                 <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-1843" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-26368" target="_blank" class="link-btn">🔍 NVD Details</a>
                                 </div>
                                 <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-1843" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-26368" target="_blank" class="link-btn">📝 MITRE CVE</a>
                                 </div>
                                 
                             </div>
 
                             <div class="cve-meta">
-                                <strong>Published:</strong> 2026-02-14
+                                <strong>Published:</strong> 2026-02-15
                                 
                             </div>
                         </div>
                     </div>
                     
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_1988"
-                         data-cvss="7.5"
-                         data-epss="0"
-                         data-cisa="false"
-                         data-modified="False"
-                         data-vendors="wpdecent">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2026-1988</div>
-                            <div class="cve-severity severity-high">High</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                The Flexi Product Slider and Grid for WooCommerce plugin for WordPress is vulnerable to Local File Inclusion in all versions up to, and including, 1.0.5 via the `flexipsg_carousel` shortcode. This is due to the `theme` parameter being directly concatenated into a file path without proper sanitization or validation, allowing directory traversal. This makes it possible for authenticated attackers, with Contributor-level access and above, to include and execute arbitrary PHP files on the server via the `theme` parameter granted they can create posts with shortcodes.
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.5)">🛡️ CVSS: 7.5</span>
-                                
-
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('wpdecent')">wpdecent</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-1988" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-1988" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-02-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_0753"
-                         data-cvss="7.2"
-                         data-epss="0"
-                         data-cisa="false"
-                         data-modified="False"
-                         data-vendors="bitacre">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2026-0753</div>
-                            <div class="cve-severity severity-high">High</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                The Super Simple Contact Form plugin for WordPress is vulnerable to Reflected Cross-Site Scripting via the &amp;#x27;sscf_name&amp;#x27; parameter in all versions up to, and including, 1.6.2 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that execute if they can successfully trick a user into performing an action such as clicking on a link.
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.2)">🛡️ CVSS: 7.2</span>
-                                
-
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('bitacre')">bitacre</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-0753" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0753" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-02-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_1306"
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_26366"
                          data-cvss="9.8"
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="adminkov">
+                         data-vendors="jung">
                         <div class="cve-header">
-                            <div class="cve-id">CVE-2026-1306</div>
+                            <div class="cve-id">CVE-2026-26366</div>
                             <div class="cve-severity severity-critical">Critical</div>
                         </div>
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                The midi-Synth plugin for WordPress is vulnerable to arbitrary file uploads due to missing file type and file extension validation in the &amp;#x27;export&amp;#x27; AJAX action in all versions up to, and including, 1.1.0. This makes it possible for unauthenticated attackers to upload arbitrary files on the affected site&amp;#x27;s server which may make remote code execution possible granted the attacker can obtain a valid nonce. The nonce is exposed in frontend JavaScript making it trivially accessible to unauthenticated attackers.
+                                eNet SMART HOME server 2.2.1 and 2.3.1 ships with default credentials (user:user, admin:admin) that remain active after installation and commissioning without enforcing a mandatory password change. Unauthenticated attackers can use these default credentials to gain administrative access to sensitive smart home configuration and control functions.
                             </div>
 
                             
@@ -762,48 +642,48 @@
                             <div class="cve-vendors">
                                 <strong>/vendors/:</strong>
                                 
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('adminkov')">adminkov</span>
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('jung')">jung</span>
                                 
                             </div>
                             
 
                             <div class="cve-links">
                                 <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-1306" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-26366" target="_blank" class="link-btn">🔍 NVD Details</a>
                                 </div>
                                 <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-1306" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-26366" target="_blank" class="link-btn">📝 MITRE CVE</a>
                                 </div>
                                 
                             </div>
 
                             <div class="cve-meta">
-                                <strong>Published:</strong> 2026-02-14
+                                <strong>Published:</strong> 2026-02-15
                                 
                             </div>
                         </div>
                     </div>
                     
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_2024"
-                         data-cvss="7.5"
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_2540"
+                         data-cvss="8.4"
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="savitasoni">
+                         data-vendors="micca auto electronics co., ltd.">
                         <div class="cve-header">
-                            <div class="cve-id">CVE-2026-2024</div>
+                            <div class="cve-id">CVE-2026-2540</div>
                             <div class="cve-severity severity-high">High</div>
                         </div>
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                The PhotoStack Gallery plugin for WordPress is vulnerable to SQL Injection via the &amp;#x27;postid&amp;#x27; parameter in all versions up to, and including, 0.4.1 due to insufficient escaping on the user supplied parameter and lack of sufficient preparation on the existing SQL query. This makes it possible for unauthenticated attackers to append additional SQL queries into already existing queries that can be used to extract sensitive information from the database.
+                                The Micca KE700 system contains flawed resynchronization logic and is vulnerable to replay attacks. This attack requires sending two previously captured codes in a specific sequence. As a result, the system can be forced to accept previously used (stale) rolling codes and execute a command. Successful exploitation allows an attacker to clone the alarm key. This grants the attacker unauthorized access to the vehicle to unlock or lock the doors.
                             </div>
 
                             
                             <div class="cve-metrics">
                                 
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.5)">🛡️ CVSS: 7.5</span>
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.4)">🛡️ CVSS: 8.4</span>
                                 
 
                                 
@@ -822,48 +702,52 @@
                             <div class="cve-vendors">
                                 <strong>/vendors/:</strong>
                                 
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('savitasoni')">savitasoni</span>
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('micca auto electronics co., ltd.')">micca auto electronics co., ltd.</span>
                                 
                             </div>
                             
 
                             <div class="cve-links">
                                 <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-2024" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-2540" target="_blank" class="link-btn">🔍 NVD Details</a>
                                 </div>
                                 <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-2024" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-2540" target="_blank" class="link-btn">📝 MITRE CVE</a>
                                 </div>
                                 
                             </div>
 
                             <div class="cve-meta">
-                                <strong>Published:</strong> 2026-02-14
+                                <strong>Published:</strong> 2026-02-15
                                 
                             </div>
                         </div>
                     </div>
                     
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_0745"
-                         data-cvss="7.2"
+                    <div class="cve-card filtered-in" id="cve-CVE_2025_32062"
+                         data-cvss="8.8"
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="webilop">
+                         data-vendors="bosch,linux">
                         <div class="cve-header">
-                            <div class="cve-id">CVE-2026-0745</div>
+                            <div class="cve-id">CVE-2025-32062</div>
                             <div class="cve-severity severity-high">High</div>
                         </div>
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                The User Language Switch plugin for WordPress is vulnerable to Server-Side Request Forgery in all versions up to, and including, 1.6.10 due to missing URL validation on the &amp;#x27;download_language()&amp;#x27; function. This makes it possible for authenticated attackers, with Administrator-level access and above, to make web requests to arbitrary locations originating from the web application and can be used to query and modify information from internal services.
+                                The specific flaw exists within the Bluetooth stack developed by Alps Alpine of the Infotainment ECU manufactured by Bosch. The issue results from the lack of proper boundary validation of user-supplied data, which can result in a stack-based buffer overflow when receiving a specific packet on the established upper layer L2CAP channel. An attacker can leverage this vulnerability to obtain remote code execution on the Infotainment ECU with root privileges.
+
+
+
+First identified on Nissan Leaf ZE1 manufactured in 2020.
                             </div>
 
                             
                             <div class="cve-metrics">
                                 
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.2)">🛡️ CVSS: 7.2</span>
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.8)">🛡️ CVSS: 8.8</span>
                                 
 
                                 
@@ -882,112 +766,186 @@
                             <div class="cve-vendors">
                                 <strong>/vendors/:</strong>
                                 
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('webilop')">webilop</span>
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('bosch')">bosch</span>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
                                 
                             </div>
                             
 
                             <div class="cve-links">
                                 <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-0745" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32062" target="_blank" class="link-btn">🔍 NVD Details</a>
                                 </div>
                                 <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0745" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-32062" target="_blank" class="link-btn">📝 MITRE CVE</a>
                                 </div>
                                 
                             </div>
 
                             <div class="cve-meta">
-                                <strong>Published:</strong> 2026-02-14
+                                <strong>Published:</strong> 2026-02-15
                                 
                             </div>
                         </div>
                     </div>
                     
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_1731"
-                         data-cvss="9.9"
+                    <div class="cve-card filtered-in" id="cve-CVE_2025_32061"
+                         data-cvss="8.8"
                          data-epss="0"
-                         data-cisa="true"
-                         data-modified="True"
-                         data-vendors="beyondtrust">
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="bosch,linux">
                         <div class="cve-header">
-                            <div class="cve-id">CVE-2026-1731</div>
+                            <div class="cve-id">CVE-2025-32061</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                The specific flaw exists within the Bluetooth stack developed by Alps Alpine of the Infotainment ECU manufactured by Bosch. The issue results from the lack of proper boundary validation of user-supplied data, which can result in a stack-based buffer overflow when receiving a specific packet on the established upper layer L2CAP channel. An attacker can leverage this vulnerability to obtain remote code execution on the Infotainment ECU with root privileges.
+
+
+
+First identified on Nissan Leaf ZE1 manufactured in 2020.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.8)">🛡️ CVSS: 8.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('bosch')">bosch</span>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32061" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-32061" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-02-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2025_32059"
+                         data-cvss="8.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="bosch,linux">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2025-32059</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                The specific flaw exists within the Bluetooth stack developed by Alps Alpine of the Infotainment ECU manufactured by Bosch. The issue results from the lack of proper boundary validation of user-supplied data, which can result in a stack-based buffer overflow when receiving a specific packet on the established upper layer L2CAP channel. An attacker can leverage this vulnerability to obtain remote code execution on the Infotainment ECU with root privileges.
+
+
+
+First identified on Nissan Leaf ZE1 manufactured in 2020.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.8)">🛡️ CVSS: 8.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('bosch')">bosch</span>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32059" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-32059" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-02-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2025_32058"
+                         data-cvss="9.3"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="bosch,linux">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2025-32058</div>
                             <div class="cve-severity severity-critical">Critical</div>
                         </div>
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                BeyondTrust Remote Support (RS) and certain older versions of Privileged Remote Access (PRA) contain a critical pre-authentication remote code execution vulnerability. By sending specially crafted requests, an unauthenticated remote attacker may be able to execute operating system commands in the context of the site user.
+                                The Infotainment ECU manufactured by Bosch uses a RH850 module for CAN communication. RH850 is connected to infotainment over the INC interface through a custom protocol. There is a vulnerability during processing requests of this protocol on the V850 side which allows an attacker with code execution on the infotainment main SoC to perform code execution on the RH850 module and subsequently send arbitrary CAN messages over the connected CAN bus.
+
+
+
+First identified on Nissan Leaf ZE1 manufactured in 2020.
                             </div>
 
                             
                             <div class="cve-metrics">
                                 
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(9.9)">🛡️ CVSS: 9.9</span>
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-cisa" onclick="toggleStatusFilter('cisa')">🇺🇸 CISA KEV</span>
-                                
-
-                                
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('beyondtrust')">beyondtrust</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-1731" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-1731" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-02-06
-                                
-                                | <strong>Modified:</strong> 2026-02-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_2469"
-                         data-cvss="7.2"
-                         data-epss="0"
-                         data-cisa="false"
-                         data-modified="False"
-                         data-vendors="n/a">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2026-2469</div>
-                            <div class="cve-severity severity-high">High</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                Versions of the package directorytree/imapengine before 1.22.3 are vulnerable to Improper Neutralization of Special Elements in Output Used by a Downstream Component (&amp;#x27;Injection&amp;#x27;) via the id() function in ImapConnection.php due to improperly escaping user input before including it in IMAP ID commands. This allows attackers to read or delete victim&amp;#x27;s emails, terminate the victim&amp;#x27;s session or execute any valid IMAP command on victim&amp;#x27;s mailbox by including quote characters &amp;quot; or CRLF sequences \r\n in the input.
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.2)">🛡️ CVSS: 7.2</span>
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(9.3)">🛡️ CVSS: 9.3</span>
                                 
 
                                 
@@ -1006,48 +964,50 @@
                             <div class="cve-vendors">
                                 <strong>/vendors/:</strong>
                                 
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('n/a')">n/a</span>
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('bosch')">bosch</span>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
                                 
                             </div>
                             
 
                             <div class="cve-links">
                                 <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-2469" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32058" target="_blank" class="link-btn">🔍 NVD Details</a>
                                 </div>
                                 <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-2469" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-32058" target="_blank" class="link-btn">📝 MITRE CVE</a>
                                 </div>
                                 
                             </div>
 
                             <div class="cve-meta">
-                                <strong>Published:</strong> 2026-02-14
+                                <strong>Published:</strong> 2026-02-15
                                 
                             </div>
                         </div>
                     </div>
                     
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_0692"
-                         data-cvss="7.5"
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_1750"
+                         data-cvss="8.8"
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="bluesnap">
+                         data-vendors="ecwid">
                         <div class="cve-header">
-                            <div class="cve-id">CVE-2026-0692</div>
+                            <div class="cve-id">CVE-2026-1750</div>
                             <div class="cve-severity severity-high">High</div>
                         </div>
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                The BlueSnap Payment Gateway for WooCommerce plugin for WordPress is vulnerable to Missing Authorization in all versions up to, and including, 3.3.0. This is due to the plugin relying on WooCommerce&amp;#x27;s `WC_Geolocation::get_ip_address()` function to validate IPN requests, which trusts user-controllable headers like X-Real-IP and X-Forwarded-For to determine the client IP address. This makes it possible for unauthenticated attackers to bypass IP allowlist restrictions by spoofing a whitelisted BlueSnap IP address and send forged IPN (Instant Payment Notification) data to manipulate order statuses (mark orders as paid, failed, refunded, or on-hold) without proper authorization.
+                                The Ecwid by Lightspeed Ecommerce Shopping Cart plugin for WordPress is vulnerable to Privilege Escalation in all versions up to, and including, 7.0.7. This is due to a missing capability check in the &amp;#x27;save_custom_user_profile_fields&amp;#x27; function. This makes it possible for authenticated attackers, with minimal permissions such as a subscriber, to supply the &amp;#x27;ec_store_admin_access&amp;#x27; parameter during a profile update and gain store manager access to the site.
                             </div>
 
                             
                             <div class="cve-metrics">
                                 
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.5)">🛡️ CVSS: 7.5</span>
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.8)">🛡️ CVSS: 8.8</span>
                                 
 
                                 
@@ -1066,48 +1026,48 @@
                             <div class="cve-vendors">
                                 <strong>/vendors/:</strong>
                                 
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('bluesnap')">bluesnap</span>
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('ecwid')">ecwid</span>
                                 
                             </div>
                             
 
                             <div class="cve-links">
                                 <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-0692" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-1750" target="_blank" class="link-btn">🔍 NVD Details</a>
                                 </div>
                                 <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0692" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-1750" target="_blank" class="link-btn">📝 MITRE CVE</a>
                                 </div>
                                 
                             </div>
 
                             <div class="cve-meta">
-                                <strong>Published:</strong> 2026-02-14
+                                <strong>Published:</strong> 2026-02-15
                                 
                             </div>
                         </div>
                     </div>
                     
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_2144"
-                         data-cvss="8.1"
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_1490"
+                         data-cvss="9.8"
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="katsushi-kawamori">
+                         data-vendors="cleantalk">
                         <div class="cve-header">
-                            <div class="cve-id">CVE-2026-2144</div>
-                            <div class="cve-severity severity-high">High</div>
+                            <div class="cve-id">CVE-2026-1490</div>
+                            <div class="cve-severity severity-critical">Critical</div>
                         </div>
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                The Magic Login Mail or QR Code plugin for WordPress is vulnerable to Privilege Escalation in all versions up to, and including, 2.05. This is due to the plugin storing the magic login QR code image with a predictable, static filename (QR_Code.png) in the publicly accessible WordPress uploads directory during the email sending process. The file is only deleted after wp_mail() completes, creating an exploitable race condition window. This makes it possible for unauthenticated attackers to trigger a login link request for any user, including administrators, and then exploit the race condition between QR code file creation and deletion to obtain the login URL encoded in the QR code, thereby gaining unauthorized access to the targeted user&amp;#x27;s account.
+                                The Spam protection, Anti-Spam, FireWall by CleanTalk plugin for WordPress is vulnerable to unauthorized Arbitrary Plugin Installation due to an authorization bypass via reverse DNS (PTR record) spoofing on the &amp;#x27;checkWithoutToken&amp;#x27; function in all versions up to, and including, 6.71. This makes it possible for unauthenticated attackers to install and activate arbitrary plugins which can be leveraged to achieve remote code execution if another vulnerable plugin is installed and activated. Note: This is only exploitable on sites with an invalid API key.
                             </div>
 
                             
                             <div class="cve-metrics">
                                 
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.1)">🛡️ CVSS: 8.1</span>
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(9.8)">🛡️ CVSS: 9.8</span>
                                 
 
                                 
@@ -1126,23 +1086,23 @@
                             <div class="cve-vendors">
                                 <strong>/vendors/:</strong>
                                 
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('katsushi-kawamori')">katsushi-kawamori</span>
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('cleantalk')">cleantalk</span>
                                 
                             </div>
                             
 
                             <div class="cve-links">
                                 <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-2144" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-1490" target="_blank" class="link-btn">🔍 NVD Details</a>
                                 </div>
                                 <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-2144" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-1490" target="_blank" class="link-btn">📝 MITRE CVE</a>
                                 </div>
                                 
                             </div>
 
                             <div class="cve-meta">
-                                <strong>Published:</strong> 2026-02-14
+                                <strong>Published:</strong> 2026-02-15
                                 
                             </div>
                         </div>
@@ -1156,9 +1116,9 @@
             <div class="filter-section">
                 <div class="filter-title">🏷️ Filter by Status</div>
                 <ul class="filter-list">
-                    <li class="filter-item" id="filter-cisa" onclick="toggleStatusFilter('cisa')">In CISA KEV (1)</li>
+                    <li class="filter-item" id="filter-cisa" onclick="toggleStatusFilter('cisa')">In CISA KEV (0)</li>
                     <li class="filter-item" id="filter-epss" onclick="toggleStatusFilter('epss')">High EPSS (>0.10) (0)</li>
-                    <li class="filter-item" id="filter-modified" onclick="toggleStatusFilter('modified')">Recently Modified (1)</li>
+                    <li class="filter-item" id="filter-modified" onclick="toggleStatusFilter('modified')">Recently Modified (0)</li>
                     <li class="filter-item" id="filter-published" onclick="toggleStatusFilter('published')">Newly Published (10)</li>
                 </ul>
             </div>
@@ -1168,50 +1128,30 @@
                 <div class="filter-title">🏢 Filter by Vendor</div>
                 <ul class="filter-list" id="vendor-filter-list">
                     
-                    <li class="filter-item" id="filter-vendor-adminkov" onclick="toggleVendorFilter('adminkov')" style="display:block;">adminkov (1)</li>
+                    <li class="filter-item" id="filter-vendor-bosch" onclick="toggleVendorFilter('bosch')" style="display:block;">bosch (4)</li>
                     
-                    <li class="filter-item" id="filter-vendor-beyondtrust" onclick="toggleVendorFilter('beyondtrust')" style="display:block;">beyondtrust (1)</li>
+                    <li class="filter-item" id="filter-vendor-cleantalk" onclick="toggleVendorFilter('cleantalk')" style="display:block;">cleantalk (1)</li>
                     
-                    <li class="filter-item" id="filter-vendor-bitacre" onclick="toggleVendorFilter('bitacre')" style="display:block;">bitacre (1)</li>
+                    <li class="filter-item" id="filter-vendor-ecwid" onclick="toggleVendorFilter('ecwid')" style="display:block;">ecwid (1)</li>
                     
-                    <li class="filter-item" id="filter-vendor-bluesnap" onclick="toggleVendorFilter('bluesnap')" style="display:block;">bluesnap (1)</li>
+                    <li class="filter-item" id="filter-vendor-jung" onclick="toggleVendorFilter('jung')" style="display:block;">jung (3)</li>
                     
-                    <li class="filter-item" id="filter-vendor-dreamstechnologies" onclick="toggleVendorFilter('dreamstechnologies')" style="display:block;">dreamstechnologies (1)</li>
+                    <li class="filter-item" id="filter-vendor-linux" onclick="toggleVendorFilter('linux')" style="display:block;">linux (4)</li>
                     
-                    <li class="filter-item" id="filter-vendor-katsushi_kawamori" onclick="toggleVendorFilter('katsushi-kawamori')" style="display:block;">katsushi-kawamori (1)</li>
-                    
-                    <li class="filter-item" id="filter-vendor-n_a" onclick="toggleVendorFilter('n/a')" style="display:block;">n/a (1)</li>
-                    
-                    <li class="filter-item" id="filter-vendor-optimole" onclick="toggleVendorFilter('optimole')" style="display:block;">optimole (1)</li>
-                    
-                    <li class="filter-item" id="filter-vendor-savitasoni" onclick="toggleVendorFilter('savitasoni')" style="display:block;">savitasoni (1)</li>
-                    
-                    <li class="filter-item" id="filter-vendor-webilop" onclick="toggleVendorFilter('webilop')" style="display:block;">webilop (1)</li>
-                    
-                    <li class="filter-item" id="filter-vendor-wpdecent" onclick="toggleVendorFilter('wpdecent')" style="display:block;">wpdecent (1)</li>
+                    <li class="filter-item" id="filter-vendor-micca_auto_electronics_co___ltd_" onclick="toggleVendorFilter('micca auto electronics co., ltd.')" style="display:block;">micca auto electronics co., ltd. (1)</li>
                     
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-adminkov" onclick="toggleVendorFilter('adminkov')" style="display:none;">adminkov (1)</li>
+                    <li class="filter-item extra-vendor" id="filter-vendor-bosch" onclick="toggleVendorFilter('bosch')" style="display:none;">bosch (4)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-beyondtrust" onclick="toggleVendorFilter('beyondtrust')" style="display:none;">beyondtrust (1)</li>
+                    <li class="filter-item extra-vendor" id="filter-vendor-cleantalk" onclick="toggleVendorFilter('cleantalk')" style="display:none;">cleantalk (1)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-bitacre" onclick="toggleVendorFilter('bitacre')" style="display:none;">bitacre (1)</li>
+                    <li class="filter-item extra-vendor" id="filter-vendor-ecwid" onclick="toggleVendorFilter('ecwid')" style="display:none;">ecwid (1)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-bluesnap" onclick="toggleVendorFilter('bluesnap')" style="display:none;">bluesnap (1)</li>
+                    <li class="filter-item extra-vendor" id="filter-vendor-jung" onclick="toggleVendorFilter('jung')" style="display:none;">jung (3)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-dreamstechnologies" onclick="toggleVendorFilter('dreamstechnologies')" style="display:none;">dreamstechnologies (1)</li>
+                    <li class="filter-item extra-vendor" id="filter-vendor-linux" onclick="toggleVendorFilter('linux')" style="display:none;">linux (4)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-katsushi_kawamori" onclick="toggleVendorFilter('katsushi-kawamori')" style="display:none;">katsushi-kawamori (1)</li>
-                    
-                    <li class="filter-item extra-vendor" id="filter-vendor-n_a" onclick="toggleVendorFilter('n/a')" style="display:none;">n/a (1)</li>
-                    
-                    <li class="filter-item extra-vendor" id="filter-vendor-optimole" onclick="toggleVendorFilter('optimole')" style="display:none;">optimole (1)</li>
-                    
-                    <li class="filter-item extra-vendor" id="filter-vendor-savitasoni" onclick="toggleVendorFilter('savitasoni')" style="display:none;">savitasoni (1)</li>
-                    
-                    <li class="filter-item extra-vendor" id="filter-vendor-webilop" onclick="toggleVendorFilter('webilop')" style="display:none;">webilop (1)</li>
-                    
-                    <li class="filter-item extra-vendor" id="filter-vendor-wpdecent" onclick="toggleVendorFilter('wpdecent')" style="display:none;">wpdecent (1)</li>
+                    <li class="filter-item extra-vendor" id="filter-vendor-micca_auto_electronics_co___ltd_" onclick="toggleVendorFilter('micca auto electronics co., ltd.')" style="display:none;">micca auto electronics co., ltd. (1)</li>
                     
                 </ul>
                 
@@ -1607,7 +1547,7 @@
                     item.style.display = 'none';
                 });
 
-                showMoreBtn.textContent = 'Show More Vendors (-8 more)';
+                showMoreBtn.textContent = 'Show More Vendors (-13 more)';
                 moreVendorsShown = false;
             }
         }
