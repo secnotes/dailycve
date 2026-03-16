@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily CVE Report - 2026-03-15</title>
+    <title>Daily CVE Report - 2026-03-16</title>
     <style>
         :root {
             --primary-color: #d32f2f;
@@ -453,25 +453,25 @@
     <div class="container">
         <div class="main-content">
             <header>
-                <h1>🔍 Daily CVE Report - 2026-03-15</h1>
+                <h1>🔍 Daily CVE Report - 2026-03-16</h1>
                 <p>High-Risk Vulnerabilities Collected from Multiple Sources</p>
             </header>
 
             <div class="summary-box">
                 <h2>📊 Summary</h2>
-                <p><strong>Report Generated:</strong> 2026-03-15 12:51:10</p>
+                <p><strong>Report Generated:</strong> 2026-03-16 13:08:47</p>
 
                 <div class="summary-stats">
                     <div class="stat-card" onclick="applySingleFilter('all')">
-                        <div class="stat-number">18</div>
+                        <div class="stat-number">41</div>
                         <div>Total Vulnerabilities</div>
                     </div>
                     <div class="stat-card" onclick="applySingleFilter('high-risk')">
-                        <div class="stat-number">16</div>
+                        <div class="stat-number">41</div>
                         <div>High Risk (CVSS > 7.0)</div>
                     </div>
                     <div class="stat-card" onclick="toggleStatusFilter('cisa')">
-                        <div class="stat-number">2</div>
+                        <div class="stat-number">0</div>
                         <div>In CISA KEV</div>
                     </div>
                     <div class="stat-card" onclick="toggleStatusFilter('epss')">
@@ -484,20 +484,2002 @@
             
                 <div class="cve-grid" id="cve-grid">
                     
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_4163"
+                    <div class="cve-card filtered-in" id="cve-CVE_2025_1268"
+                         data-cvss="9.4"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="True"
+                         data-vendors="canon inc.">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2025-1268</div>
+                            <div class="cve-severity severity-critical">Critical</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Out-of-bounds vulnerability in EMF Recode processing of Generic Plus PCL6 Printer Driver / Generic Plus UFR II Printer Driver / Generic Plus LIPS4 Printer Driver / Generic Plus LIPSLX Printer Driver / Generic Plus PS Printer Driver / Generic FAX Printer Driver / UFRII LT Printer Driver / CARPS2 Printer Driver / PDF Driver / LIPS4 Printer Driver / LIPSLX Printer Driver / UFR II Printer Driver / PS Printer Driver / PCL6 Printer Driver
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(9.4)">🛡️ CVSS: 9.4</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('canon inc.')">canon inc.</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-1268" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-1268" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2025-03-31
+                                
+                                | <strong>Modified:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_4194"
+                         data-cvss="7.5"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="d-link">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-4194</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                A vulnerability was detected in D-Link DNS-120, DNR-202L, DNS-315L, DNS-320, DNS-320L, DNS-320LW, DNS-321, DNR-322L, DNS-323, DNS-325, DNS-326, DNS-327L, DNR-326, DNS-340L, DNS-343, DNS-345, DNS-726-4, DNS-1100-4, DNS-1200-05 and DNS-1550-04 up to 20260205. The impacted element is the function cgi_set_wto of the file /cgi-bin/system_mgr.cgi. Performing a manipulation results in improper access controls. Remote exploitation of the attack is possible. The exploit is now public and may be used.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.5)">🛡️ CVSS: 7.5</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('d-link')">d-link</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4194" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-4194" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_4193"
+                         data-cvss="7.5"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="d-link">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-4193</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                A security vulnerability has been detected in D-Link DIR-823G 1.0.2B05. The affected element is the function GetDDNSSettings/GetDeviceDomainName/GetDeviceSettings/GetDMZSettings/GetFirewallSettings/GetGuestNetworkSettings/GetLanWanConflictInfo/GetLocalMacAddress/GetNetworkSettings/GetQoSSettings/GetRouterInformationSettings/GetRouterLanSettings/GetWanSettings/SetAccessCtlList/SetAccessCtlSwitch/SetDeviceSettings/SetGuestWLanSettings/SetIPv4FirewallSettings/SetNetworkSettings/SetNetworkTomographySettings/SetNTPServerSettings/SetRouterLanSettings/SetStaticClientInfo/SetStaticRouteSettings/SetWLanRadioSecurity/SetWPSSettings/UpdateClientInfo of the component goahead. Such manipulation leads to improper access controls. The attack may be launched remotely. The exploit has been disclosed publicly and may be used. This vulnerability only affects products that are no longer supported by the maintainer.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.5)">🛡️ CVSS: 7.5</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('d-link')">d-link</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4193" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-4193" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_4191"
+                         data-cvss="7.5"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="jawherkl">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-4191</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                A flaw has been found in JawherKl node-api-postgres up to 2.5. Affected is the function path.extname of the file index.js of the component Profile Picture Handler. This manipulation causes unrestricted upload. The attack is possible to be carried out remotely. The exploit has been published and may be used. The vendor was contacted early about this disclosure but did not respond in any way.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.5)">🛡️ CVSS: 7.5</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('jawherkl')">jawherkl</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4191" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-4191" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_4190"
+                         data-cvss="7.5"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="jawherkl">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-4190</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                A vulnerability was detected in JawherKl node-api-postgres up to 2.5. This impacts the function User.getAll of the file models/user.js. The manipulation of the argument sort results in sql injection. The attack can be executed remotely. The exploit is now public and may be used. The vendor was contacted early about this disclosure but did not respond in any way.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.5)">🛡️ CVSS: 7.5</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('jawherkl')">jawherkl</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4190" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-4190" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_4188"
+                         data-cvss="9"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="d-link">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-4188</div>
+                            <div class="cve-severity severity-critical">Critical</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                A security flaw has been discovered in D-Link DIR-619L 2.06B01. The affected element is the function formSchedule of the file /goform/formSchedule of the component boa. Performing a manipulation of the argument curTime results in stack-based buffer overflow. The attack may be initiated remotely. The exploit has been released to the public and may be used for attacks. This vulnerability only affects products that are no longer supported by the maintainer.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(9)">🛡️ CVSS: 9.0</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('d-link')">d-link</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4188" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-4188" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2015_20120"
+                         data-cvss="8.2"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="next click ventures">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2015-20120</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Next Click Ventures RealtyScript 4.0.2 contains multiple time-based blind SQL injection vulnerabilities that allow unauthenticated attackers to extract database information by injecting SQL code into application parameters. Attackers can craft requests with time-delay payloads to infer database contents character by character based on response timing differences.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.2)">🛡️ CVSS: 8.2</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('next click ventures')">next click ventures</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2015-20120" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-20120" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2017_20220"
+                         data-cvss="7.5"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="serviio">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2017-20220</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Serviio PRO 1.8 contains an improper access control vulnerability in the Configuration REST API that allows unauthenticated attackers to change the mediabrowser login password. Attackers can send specially crafted requests to the REST API endpoints to modify credentials without authentication.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.5)">🛡️ CVSS: 7.5</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('serviio')">serviio</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-20220" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-20220" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2017_20218"
+                         data-cvss="7.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="serviio">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2017-20218</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Serviio PRO 1.8 contains an unquoted search path vulnerability in the Windows service that allows local users to execute arbitrary code with elevated privileges by placing malicious executables in the system root path. Additionally, improper directory permissions with full access for the Users group allow authenticated users to replace the executable file with arbitrary binaries, enabling privilege escalation during service startup or system reboot.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.8)">🛡️ CVSS: 7.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('serviio')">serviio</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-20218" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-20218" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2017_20217"
+                         data-cvss="7.5"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="serviio">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2017-20217</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Serviio PRO 1.8 contains an information disclosure vulnerability due to improper access control enforcement in the Configuration REST API that allows unauthenticated attackers to access sensitive information. Remote attackers can send specially crafted requests to the REST API endpoints to retrieve potentially sensitive configuration data without authentication.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.5)">🛡️ CVSS: 7.5</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('serviio')">serviio</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-20217" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-20217" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2016_20034"
+                         data-cvss="8.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="wowza media systems, llc.">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2016-20034</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Wowza Streaming Engine 4.5.0 contains a privilege escalation vulnerability that allows authenticated read-only users to elevate privileges to administrator by manipulating POST parameters. Attackers can send POST requests to the user edit endpoint with accessLevel set to &amp;#x27;admin&amp;#x27; and advUser parameters set to &amp;#x27;true&amp;#x27; and &amp;#x27;on&amp;#x27; to gain administrative access.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.8)">🛡️ CVSS: 8.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('wowza media systems, llc.')">wowza media systems, llc.</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-20034" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-20034" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2016_20033"
+                         data-cvss="7.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="wowza media systems, llc.">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2016-20033</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Wowza Streaming Engine 4.5.0 contains a local privilege escalation vulnerability that allows authenticated users to escalate privileges by replacing executable files due to improper file permissions granting full access to the Everyone group. Attackers can replace the nssm_x64.exe binary in the manager and engine service directories with malicious executables to execute code with LocalSystem privileges when services restart.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.8)">🛡️ CVSS: 7.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('wowza media systems, llc.')">wowza media systems, llc.</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-20033" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-20033" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2015_20121"
+                         data-cvss="8.2"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="next click ventures">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2015-20121</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Next Click Ventures RealtyScript 4.0.2 contains SQL injection vulnerabilities that allow unauthenticated attackers to manipulate database queries by injecting arbitrary SQL code through the GET parameter &amp;#x27;u_id&amp;#x27; in /admin/users.php and the POST parameter &amp;#x27;agent[]&amp;#x27; in /admin/mailer.php. Attackers can exploit time-based blind SQL injection techniques to extract sensitive database information or cause denial of service through sleep-based payloads.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.2)">🛡️ CVSS: 8.2</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('next click ventures')">next click ventures</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2015-20121" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-20121" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2015_20118"
+                         data-cvss="7.2"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="next click ventures">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2015-20118</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Next Click Ventures RealtyScript 4.0.2 contains a stored cross-site scripting vulnerability in the location_name parameter of the admin locations interface. Attackers can submit POST requests to the locations.php endpoint with JavaScript payloads in the location_name field to execute arbitrary code in administrator browsers.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.2)">🛡️ CVSS: 7.2</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('next click ventures')">next click ventures</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2015-20118" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-20118" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2015_20115"
+                         data-cvss="7.2"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="next click ventures">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2015-20115</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Next Click Ventures RealtyScript 4.0.2 fails to properly sanitize file uploads, allowing attackers to store malicious scripts through the file POST parameter in admin/tools.php. Attackers can upload files containing JavaScript code that executes in the context of admin/tools.php when accessed by other users.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.2)">🛡️ CVSS: 7.2</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('next click ventures')">next click ventures</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2015-20115" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-20115" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2013_20006"
+                         data-cvss="7.5"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="qool">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2013-20006</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                Qool CMS contains multiple persistent cross-site scripting vulnerabilities in several administrative scripts where POST parameters are not properly sanitized before being stored and returned to users. Attackers can inject malicious JavaScript code through parameters like &amp;#x27;title&amp;#x27;, &amp;#x27;name&amp;#x27;, &amp;#x27;email&amp;#x27;, &amp;#x27;username&amp;#x27;, &amp;#x27;link&amp;#x27;, and &amp;#x27;task&amp;#x27; in endpoints such as addnewtype, addnewdatafield, addmenu, addusergroup, addnewuserfield, adduser, addgeneraldata, and addcontentitem to execute arbitrary scripts in administrator browsers.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.5)">🛡️ CVSS: 7.5</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('qool')">qool</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2013-20006" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-20006" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_4184"
+                         data-cvss="10"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="d-link">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-4184</div>
+                            <div class="cve-severity severity-critical">Critical</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                A vulnerability was detected in D-Link DIR-816 1.10CNB05. Affected by this vulnerability is an unknown functionality of the file /goform/form2Wl5BasicSetup.cgi of the component goahead. Performing a manipulation of the argument pskValue results in stack-based buffer overflow. The attack is possible to be carried out remotely. The exploit is now public and may be used. This vulnerability only affects products that are no longer supported by the maintainer.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(10)">🛡️ CVSS: 10.0</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('d-link')">d-link</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4184" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-4184" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_4183"
+                         data-cvss="10"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="d-link">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-4183</div>
+                            <div class="cve-severity severity-critical">Critical</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                A security vulnerability has been detected in D-Link DIR-816 1.10CNB05. Affected is an unknown function of the file /goform/form2WlanBasicSetup.cgi of the component goahead. Such manipulation of the argument pskValue leads to stack-based buffer overflow. The attack can be executed remotely. The exploit has been disclosed publicly and may be used. This vulnerability only affects products that are no longer supported by the maintainer.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(10)">🛡️ CVSS: 10.0</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('d-link')">d-link</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4183" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-4183" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_4182"
+                         data-cvss="10"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="d-link">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-4182</div>
+                            <div class="cve-severity severity-critical">Critical</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                A weakness has been identified in D-Link DIR-816 1.10CNB05. This impacts an unknown function of the file /goform/form2Wl5RepeaterStep2.cgi of the component goahead. This manipulation of the argument key1/key2/key3/key4/pskValue causes stack-based buffer overflow. Remote exploitation of the attack is possible. The exploit has been made available to the public and could be used for attacks. This vulnerability only affects products that are no longer supported by the maintainer.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(10)">🛡️ CVSS: 10.0</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('d-link')">d-link</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4182" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-4182" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_4181"
+                         data-cvss="10"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="d-link">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-4181</div>
+                            <div class="cve-severity severity-critical">Critical</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                A security flaw has been discovered in D-Link DIR-816 1.10CNB05. This affects an unknown function of the file /goform/form2RepeaterStep2.cgi of the component goahead. The manipulation of the argument key1/key2/key3/key4/pskValue results in stack-based buffer overflow. The attack may be launched remotely. The exploit has been released to the public and may be used for attacks. This vulnerability only affects products that are no longer supported by the maintainer.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(10)">🛡️ CVSS: 10.0</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('d-link')">d-link</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4181" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-4181" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_28519"
+                         data-cvss="8.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="tuya">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-28519</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                arduino-TuyaOpen before version 1.2.1 contains a heap-based buffer overflow vulnerability in the DnsServer component. An attacker on the same local area network who controls the LAN DNS server can send malicious DNS responses to overflow the heap buffer, potentially allowing execution of arbitrary code on affected embedded devices.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.8)">🛡️ CVSS: 8.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('tuya')">tuya</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-28519" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-28519" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_28521"
+                         data-cvss="7.7"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="tuya">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-28521</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                arduino-TuyaOpen before version 1.2.1 contains an out-of-bounds memory read vulnerability in the TuyaIoT component. An attacker who hijacks or controls the Tuya cloud service can issue malicious DP event data to victim devices, causing out-of-bounds memory access that may result in information disclosure or a denial-of-service condition.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.7)">🛡️ CVSS: 7.7</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('tuya')">tuya</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-28521" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-28521" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_28520"
+                         data-cvss="8.4"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="tuya">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-28520</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                arduino-TuyaOpen before version 1.2.1 contains a single-byte buffer overflow vulnerability in the WiFiMulti component. When the victim&amp;#x27;s smart hardware connects to an attacker-controlled AP hotspot, the attacker can exploit the overflow to execute arbitrary code on the affected embedded device.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.4)">🛡️ CVSS: 8.4</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('tuya')">tuya</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-28520" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-28520" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2016_20032"
+                         data-cvss="7.2"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="zkteco inc.">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2016-20032</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                ZKTeco ZKAccess Security System 5.3.1 contains a stored cross-site scripting vulnerability that allows attackers to execute arbitrary HTML and script code by injecting malicious payloads through the &amp;#x27;holiday_name&amp;#x27; and &amp;#x27;memo&amp;#x27; POST parameters. Attackers can submit crafted requests with script code in these parameters to compromise user browser sessions and steal sensitive information.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.2)">🛡️ CVSS: 7.2</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('zkteco inc.')">zkteco inc.</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-20032" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-20032" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2016_20030"
+                         data-cvss="9.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="zkteco inc.">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2016-20030</div>
+                            <div class="cve-severity severity-critical">Critical</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                ZKTeco ZKBioSecurity 3.0 contains a user enumeration vulnerability that allows unauthenticated attackers to discover valid usernames by submitting partial characters via the username parameter. Attackers can send requests to the authLoginAction!login.do script with varying username inputs to enumerate valid user accounts based on application responses.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(9.8)">🛡️ CVSS: 9.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('zkteco inc.')">zkteco inc.</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-20030" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-20030" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2016_20026"
+                         data-cvss="9.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="zkteco inc.">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2016-20026</div>
+                            <div class="cve-severity severity-critical">Critical</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                ZKTeco ZKBioSecurity 3.0 contains hardcoded credentials in the bundled Apache Tomcat server that allow unauthenticated attackers to access the manager application. Attackers can authenticate with hardcoded credentials stored in tomcat-users.xml to upload malicious WAR archives containing JSP applications and execute arbitrary code with SYSTEM privileges.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(9.8)">🛡️ CVSS: 9.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('zkteco inc.')">zkteco inc.</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-20026" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-20026" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2016_20025"
+                         data-cvss="8.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="zkteco inc.">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2016-20025</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                ZKTeco ZKAccess Professional 3.5.3 contains an insecure file permissions vulnerability that allows authenticated users to escalate privileges by modifying executable files. Attackers can leverage the Modify permission granted to the Authenticated Users group to replace executable binaries with malicious code for privilege escalation.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.8)">🛡️ CVSS: 8.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('zkteco inc.')">zkteco inc.</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-20025" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-20025" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2016_20024"
+                         data-cvss="9.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="zkteco inc.">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2016-20024</div>
+                            <div class="cve-severity severity-critical">Critical</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                ZKTeco ZKTime.Net 3.0.1.6 contains an insecure file permissions vulnerability that allows unprivileged users to escalate privileges by modifying executable files. Attackers can exploit world-writable permissions on the ZKTimeNet3.0 directory and its contents to replace executable files with malicious binaries for privilege escalation.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(9.8)">🛡️ CVSS: 9.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('zkteco inc.')">zkteco inc.</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-20024" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-20024" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_4180"
+                         data-cvss="7.5"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="d-link">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-4180</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                A vulnerability was identified in D-Link DIR-816 1.10CNB05. The impacted element is an unknown function of the file redirect.asp of the component goahead. The manipulation of the argument token_id leads to improper access controls. The attack may be initiated remotely. The exploit is publicly available and might be used. This vulnerability only affects products that are no longer supported by the maintainer.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.5)">🛡️ CVSS: 7.5</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('d-link')">d-link</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4180" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-4180" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2025_14287"
+                         data-cvss="7.5"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="mlflow">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2025-14287</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                A command injection vulnerability exists in mlflow/mlflow versions before v3.7.0, specifically in the `mlflow/sagemaker/__init__.py` file at lines 161-167. The vulnerability arises from the direct interpolation of user-supplied container image names into shell commands without proper sanitization, which are then executed using `os.system()`. This allows attackers to execute arbitrary commands by supplying malicious input through the `--container` parameter of the CLI. The issue affects environments where MLflow is used, including development setups, CI/CD pipelines, and cloud deployments.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.5)">🛡️ CVSS: 7.5</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('mlflow')">mlflow</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-14287" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14287" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_4172"
+                         data-cvss="8.3"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="trendnet">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-4172</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                A vulnerability was detected in TRENDnet TEW-632BRP 1.010B32. This affects an unknown part of the file /ping_response.cgi of the component HTTP POST Request Handler. The manipulation of the argument ping_ipaddr results in stack-based buffer overflow. The attack may be performed from remote. The exploit is now public and may be used. The vendor was contacted early about this disclosure but did not respond in any way.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.3)">🛡️ CVSS: 8.3</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('trendnet')">trendnet</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4172" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-4172" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_4170"
+                         data-cvss="10"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="topsec">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-4170</div>
+                            <div class="cve-severity severity-critical">Critical</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                A weakness has been identified in Topsec TopACM 3.0. Affected by this vulnerability is an unknown functionality of the file /view/systemConfig/management/nmc_sync.php of the component HTTP Request Handler. Executing a manipulation of the argument template_path can lead to os command injection. The attack can be executed remotely. The exploit has been made available to the public and could be used for attacks. The vendor was contacted early about this disclosure but did not respond in any way.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(10)">🛡️ CVSS: 10.0</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('topsec')">topsec</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4170" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-4170" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_4167"
+                         data-cvss="9"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="False"
+                         data-vendors="belkin">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-4167</div>
+                            <div class="cve-severity severity-critical">Critical</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                A vulnerability was determined in Belkin F9K1122 1.00.33. This affects the function formReboot of the file /goform/formReboot. This manipulation of the argument webpage causes stack-based buffer overflow. The attack may be initiated remotely. The exploit has been publicly disclosed and may be utilized. The vendor was contacted early about this disclosure but did not respond in any way.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(9)">🛡️ CVSS: 9.0</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('belkin')">belkin</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4167" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-4167" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_4164"
                          data-cvss="10"
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
                          data-vendors="wavlink">
                         <div class="cve-header">
-                            <div class="cve-id">CVE-2026-4163</div>
+                            <div class="cve-id">CVE-2026-4164</div>
                             <div class="cve-severity severity-critical">Critical</div>
                         </div>
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                A vulnerability was detected in Wavlink WL-WN579A3 220323. This issue affects the function SetName/GuestWifi of the file /cgi-bin/wireless.cgi of the component POST Request Handler. Performing a manipulation results in command injection. It is possible to initiate the attack remotely. The exploit is now public and may be used. Upgrading the affected component is recommended.
+                                A flaw has been found in Wavlink WL-WN578W2 221110. Impacted is the function Delete_Mac_list/SetName/GuestWifi of the file /cgi-bin/wireless.cgi of the component POST Request Handler. Executing a manipulation can lead to command injection. It is possible to launch the attack remotely. The exploit has been published and may be used. It is recommended to upgrade the affected component.
                             </div>
 
                             
@@ -529,326 +2511,16 @@
 
                             <div class="cve-links">
                                 <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4163" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4164" target="_blank" class="link-btn">🔍 NVD Details</a>
                                 </div>
                                 <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-4163" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-4164" target="_blank" class="link-btn">📝 MITRE CVE</a>
                                 </div>
                                 
                             </div>
 
                             <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_31806"
-                         data-cvss="9.3"
-                         data-epss="0"
-                         data-cisa="false"
-                         data-modified="True"
-                         data-vendors="freerdp">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2026-31806</div>
-                            <div class="cve-severity severity-critical">Critical</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                FreeRDP is a free implementation of the Remote Desktop Protocol. Prior to 3.24.0,  the gdi_surface_bits() function processes SURFACE_BITS_COMMAND messages sent by the RDP server. When the command is handled using NSCodec, the bmp.width and bmp.height values provided by the server are not properly validated against the actual desktop dimensions. A malicious RDP server can supply crafted bmp.width and bmp.height values that exceed the expected surface size. Because these values are used during bitmap decoding and memory operations without proper bounds checking, this can lead to a heap buffer overflow. Since the attacker can also control the associated pixel data transmitted by the server, the overflow may be exploitable to overwrite adjacent heap memory. This vulnerability is fixed in 3.24.0.
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(9.3)">🛡️ CVSS: 9.3</span>
-                                
-
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('freerdp')">freerdp</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-31806" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-31806" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-13
-                                
-                                | <strong>Modified:</strong> 2026-03-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_32746"
-                         data-cvss="9.8"
-                         data-epss="0"
-                         data-cisa="false"
-                         data-modified="True"
-                         data-vendors="gnu">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2026-32746</div>
-                            <div class="cve-severity severity-critical">Critical</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                telnetd in GNU inetutils through 2.7 allows an out-of-bounds write in the LINEMODE SLC (Set Local Characters) suboption handler because add_slc does not check whether the buffer is full.
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(9.8)">🛡️ CVSS: 9.8</span>
-                                
-
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('gnu')">gnu</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32746" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-32746" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-13
-                                
-                                | <strong>Modified:</strong> 2026-03-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_0957"
-                         data-cvss="8.5"
-                         data-epss="0"
-                         data-cisa="false"
-                         data-modified="True"
-                         data-vendors="digilent">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2026-0957</div>
-                            <div class="cve-severity severity-high">High</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                There is a memory corruption vulnerability due to an out-of-bounds write when loading a corrupted file in Digilent DASYLab.  This vulnerability may result in information disclosure or arbitrary code execution. Successful exploitation requires an attacker to get a user to open a specially crafted file. This vulnerability affects all versions of Digilent DASYLab.
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.5)">🛡️ CVSS: 8.5</span>
-                                
-
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('digilent')">digilent</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-0957" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0957" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-13
-                                
-                                | <strong>Modified:</strong> 2026-03-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_0956"
-                         data-cvss="8.5"
-                         data-epss="0"
-                         data-cisa="false"
-                         data-modified="True"
-                         data-vendors="digilent">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2026-0956</div>
-                            <div class="cve-severity severity-high">High</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                There is a memory corruption vulnerability due to an out-of-bounds read when loading a corrupted file in Digilent DASYLab.  This vulnerability may result in information disclosure or arbitrary code execution. Successful exploitation requires an attacker to get a user to open a specially crafted file. This vulnerability affects all versions of Digilent DASYLab.
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.5)">🛡️ CVSS: 8.5</span>
-                                
-
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('digilent')">digilent</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-0956" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0956" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-13
-                                
-                                | <strong>Modified:</strong> 2026-03-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_0955"
-                         data-cvss="8.5"
-                         data-epss="0"
-                         data-cisa="false"
-                         data-modified="True"
-                         data-vendors="digilent">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2026-0955</div>
-                            <div class="cve-severity severity-high">High</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                There is a memory corruption vulnerability due to an out-of-bounds read when loading a corrupted file in Digilent DASYLab.  This vulnerability may result in information disclosure or arbitrary code execution. Successful exploitation requires an attacker to get a user to open a specially crafted file. This vulnerability affects all versions of Digilent DASYLab.
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.5)">🛡️ CVSS: 8.5</span>
-                                
-
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('digilent')">digilent</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-0955" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0955" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-13
-                                
-                                | <strong>Modified:</strong> 2026-03-14
+                                <strong>Published:</strong> 2026-03-15
                                 
                             </div>
                         </div>
@@ -910,156 +2582,32 @@
                             <div class="cve-meta">
                                 <strong>Published:</strong> 2026-03-13
                                 
-                                | <strong>Modified:</strong> 2026-03-14
+                                | <strong>Modified:</strong> 2026-03-15
                                 
                             </div>
                         </div>
                     </div>
                     
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_3910"
-                         data-cvss="0"
-                         data-epss="0"
-                         data-cisa="true"
-                         data-modified="True"
-                         data-vendors="google">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2026-3910</div>
-                            <div class="cve-severity severity-low">Low</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                Inappropriate implementation in V8 in Google Chrome prior to 146.0.7680.75 allowed a remote attacker to execute arbitrary code inside a sandbox via a crafted HTML page. (Chromium security severity: High)
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-cisa" onclick="toggleStatusFilter('cisa')">🇺🇸 CISA KEV</span>
-                                
-
-                                
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('google')">google</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3910" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-3910" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-12
-                                
-                                | <strong>Modified:</strong> 2026-03-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_3909"
-                         data-cvss="0"
-                         data-epss="0"
-                         data-cisa="true"
-                         data-modified="True"
-                         data-vendors="google">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2026-3909</div>
-                            <div class="cve-severity severity-low">Low</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                Out of bounds write in Skia in Google Chrome prior to 146.0.7680.75 allowed a remote attacker to perform out of bounds memory access via a crafted HTML page. (Chromium security severity: High)
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-cisa" onclick="toggleStatusFilter('cisa')">🇺🇸 CISA KEV</span>
-                                
-
-                                
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('google')">google</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3909" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-3909" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-12
-                                
-                                | <strong>Modified:</strong> 2026-03-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_27940"
-                         data-cvss="7.8"
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_0957"
+                         data-cvss="8.5"
                          data-epss="0"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="ggml-org">
+                         data-vendors="digilent">
                         <div class="cve-header">
-                            <div class="cve-id">CVE-2026-27940</div>
+                            <div class="cve-id">CVE-2026-0957</div>
                             <div class="cve-severity severity-high">High</div>
                         </div>
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                llama.cpp is an inference of several LLM models in C/C++. Prior to b8146, the gguf_init_from_file_impl() in gguf.cpp is vulnerable to an Integer overflow, leading to an undersized heap allocation. Using the subsequent fread() writes 528+ bytes of attacker-controlled data past the buffer boundary. This is a bypass of a similar bug in the same file - CVE-2025-53630, but the fix overlooked some areas. This vulnerability is fixed in b8146.
+                                There is a memory corruption vulnerability due to an out-of-bounds write when loading a corrupted file in Digilent DASYLab.  This vulnerability may result in information disclosure or arbitrary code execution. Successful exploitation requires an attacker to get a user to open a specially crafted file. This vulnerability affects all versions of Digilent DASYLab.
                             </div>
 
                             
                             <div class="cve-metrics">
                                 
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.8)">🛡️ CVSS: 7.8</span>
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.5)">🛡️ CVSS: 8.5</span>
                                 
 
                                 
@@ -1078,44 +2626,292 @@
                             <div class="cve-vendors">
                                 <strong>/vendors/:</strong>
                                 
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('ggml-org')">ggml-org</span>
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('digilent')">digilent</span>
                                 
                             </div>
                             
 
                             <div class="cve-links">
                                 <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-27940" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-0957" target="_blank" class="link-btn">🔍 NVD Details</a>
                                 </div>
                                 <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-27940" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0957" target="_blank" class="link-btn">📝 MITRE CVE</a>
                                 </div>
                                 
                             </div>
 
                             <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-12
+                                <strong>Published:</strong> 2026-03-13
                                 
-                                | <strong>Modified:</strong> 2026-03-14
+                                | <strong>Modified:</strong> 2026-03-15
                                 
                             </div>
                         </div>
                     </div>
                     
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_32319"
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_0955"
+                         data-cvss="8.5"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="True"
+                         data-vendors="digilent">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-0955</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                There is a memory corruption vulnerability due to an out-of-bounds read when loading a corrupted file in Digilent DASYLab.  This vulnerability may result in information disclosure or arbitrary code execution. Successful exploitation requires an attacker to get a user to open a specially crafted file. This vulnerability affects all versions of Digilent DASYLab.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.5)">🛡️ CVSS: 8.5</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('digilent')">digilent</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-0955" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0955" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-13
+                                
+                                | <strong>Modified:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_0956"
+                         data-cvss="8.5"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="True"
+                         data-vendors="digilent">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-0956</div>
+                            <div class="cve-severity severity-high">High</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                There is a memory corruption vulnerability due to an out-of-bounds read when loading a corrupted file in Digilent DASYLab.  This vulnerability may result in information disclosure or arbitrary code execution. Successful exploitation requires an attacker to get a user to open a specially crafted file. This vulnerability affects all versions of Digilent DASYLab.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.5)">🛡️ CVSS: 8.5</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('digilent')">digilent</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-0956" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0956" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-13
+                                
+                                | <strong>Modified:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_32746"
+                         data-cvss="9.8"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="True"
+                         data-vendors="gnu">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-32746</div>
+                            <div class="cve-severity severity-critical">Critical</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                telnetd in GNU inetutils through 2.7 allows an out-of-bounds write in the LINEMODE SLC (Set Local Characters) suboption handler because add_slc does not check whether the buffer is full.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(9.8)">🛡️ CVSS: 9.8</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('gnu')">gnu</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32746" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-32746" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-13
+                                
+                                | <strong>Modified:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_31806"
+                         data-cvss="9.3"
+                         data-epss="0"
+                         data-cisa="false"
+                         data-modified="True"
+                         data-vendors="freerdp">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-31806</div>
+                            <div class="cve-severity severity-critical">Critical</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                FreeRDP is a free implementation of the Remote Desktop Protocol. Prior to 3.24.0,  the gdi_surface_bits() function processes SURFACE_BITS_COMMAND messages sent by the RDP server. When the command is handled using NSCodec, the bmp.width and bmp.height values provided by the server are not properly validated against the actual desktop dimensions. A malicious RDP server can supply crafted bmp.width and bmp.height values that exceed the expected surface size. Because these values are used during bitmap decoding and memory operations without proper bounds checking, this can lead to a heap buffer overflow. Since the attacker can also control the associated pixel data transmitted by the server, the overflow may be exploitable to overwrite adjacent heap memory. This vulnerability is fixed in 3.24.0.
+                            </div>
+
+                            
+                            <div class="cve-metrics">
+                                
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(9.3)">🛡️ CVSS: 9.3</span>
+                                
+
+                                
+
+                                
+
+                                
+                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
+                                
+
+                                
+                            </div>
+                            
+
+                            
+                            <div class="cve-vendors">
+                                <strong>/vendors/:</strong>
+                                
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('freerdp')">freerdp</span>
+                                
+                            </div>
+                            
+
+                            <div class="cve-links">
+                                <div class="link-item">
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-31806" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                </div>
+                                <div class="link-item">
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-31806" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="cve-meta">
+                                <strong>Published:</strong> 2026-03-13
+                                
+                                | <strong>Modified:</strong> 2026-03-15
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_1947"
                          data-cvss="7.5"
                          data-epss="0"
                          data-cisa="false"
-                         data-modified="True"
-                         data-vendors="ellanetworks">
+                         data-modified="False"
+                         data-vendors="webaways">
                         <div class="cve-header">
-                            <div class="cve-id">CVE-2026-32319</div>
+                            <div class="cve-id">CVE-2026-1947</div>
                             <div class="cve-severity severity-high">High</div>
                         </div>
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                Ella Core is a 5G core designed for private networks. Prior to 1.5.1, Ella Core panics when processing a malformed integrity protected NGAP/NAS message with a length under 7 bytes. An attacker able to send crafted NAS messages to Ella Core can crash the process, causing service disruption for all connected subscribers. No authentication is required. This vulnerability is fixed in 1.5.1.
+                                The NEX-Forms – Ultimate Forms Plugin for WordPress plugin for WordPress is vulnerable to Insecure Direct Object Reference in all versions up to, and including, 9.1.9 via the submit_nex_form() function due to missing validation on a user controlled key. This makes it possible for unauthenticated attackers to to overwrite arbitrary form entries via the &amp;#x27;nf_set_entry_update_id&amp;#x27; parameter.
                             </div>
 
                             
@@ -1129,7 +2925,7 @@
                                 
 
                                 
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
+                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
                                 
 
                                 
@@ -1140,459 +2936,23 @@
                             <div class="cve-vendors">
                                 <strong>/vendors/:</strong>
                                 
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('ellanetworks')">ellanetworks</span>
+                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('webaways')">webaways</span>
                                 
                             </div>
                             
 
                             <div class="cve-links">
                                 <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32319" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-1947" target="_blank" class="link-btn">🔍 NVD Details</a>
                                 </div>
                                 <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-32319" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-1947" target="_blank" class="link-btn">📝 MITRE CVE</a>
                                 </div>
                                 
                             </div>
 
                             <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-12
-                                
-                                | <strong>Modified:</strong> 2026-03-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_32308"
-                         data-cvss="7.6"
-                         data-epss="0"
-                         data-cisa="false"
-                         data-modified="True"
-                         data-vendors="oneuptime">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2026-32308</div>
-                            <div class="cve-severity severity-high">High</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                OneUptime is a solution for monitoring and managing online services. Prior to 10.0.23, the Markdown viewer component renders Mermaid diagrams with securityLevel: &amp;quot;loose&amp;quot; and injects the SVG output via innerHTML. This configuration explicitly allows interactive event bindings in Mermaid diagrams, enabling XSS through Mermaid&amp;#x27;s click directive which can execute arbitrary JavaScript. Any field that renders markdown (incident descriptions, status page announcements, monitor notes) is vulnerable. This vulnerability is fixed in 10.0.23.
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.6)">🛡️ CVSS: 7.6</span>
-                                
-
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('oneuptime')">oneuptime</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32308" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-32308" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-12
-                                
-                                | <strong>Modified:</strong> 2026-03-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2026_32306"
-                         data-cvss="10"
-                         data-epss="0"
-                         data-cisa="false"
-                         data-modified="True"
-                         data-vendors="oneuptime">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2026-32306</div>
-                            <div class="cve-severity severity-critical">Critical</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                OneUptime is a solution for monitoring and managing online services. Prior to 10.0.23, the telemetry aggregation API accepts user-controlled aggregationType, aggregateColumnName, and aggregationTimestampColumnName parameters and interpolates them directly into ClickHouse SQL queries via the .append() method (documented as &amp;quot;trusted SQL&amp;quot;). There is no allowlist, no parameterized query binding, and no input validation. An authenticated user can inject arbitrary SQL into ClickHouse, enabling full database read (including telemetry data from all tenants), data modification, and potential remote code execution via ClickHouse table functions. This vulnerability is fixed in 10.0.23.
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(10)">🛡️ CVSS: 10.0</span>
-                                
-
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('oneuptime')">oneuptime</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32306" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-32306" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-12
-                                
-                                | <strong>Modified:</strong> 2026-03-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2019_25488"
-                         data-cvss="8.2"
-                         data-epss="0"
-                         data-cisa="false"
-                         data-modified="True"
-                         data-vendors="jettweb">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2019-25488</div>
-                            <div class="cve-severity severity-high">High</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                Jettweb Hazir Rent A Car Scripti V4 contains multiple SQL injection vulnerabilities in the admin panel that allow unauthenticated attackers to manipulate database queries through GET parameters. Attackers can inject SQL code into the &amp;#x27;tur&amp;#x27;, &amp;#x27;id&amp;#x27;, and &amp;#x27;ozellikdil&amp;#x27; parameters of the admin/index.php endpoint to extract sensitive database information or cause denial of service.
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.2)">🛡️ CVSS: 8.2</span>
-                                
-
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('jettweb')">jettweb</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2019-25488" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-25488" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-12
-                                
-                                | <strong>Modified:</strong> 2026-03-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2019_25482"
-                         data-cvss="8.2"
-                         data-epss="0"
-                         data-cisa="false"
-                         data-modified="True"
-                         data-vendors="jettweb">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2019-25482</div>
-                            <div class="cve-severity severity-high">High</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                Jettweb PHP Hazir Rent A Car Sitesi Scripti V2 contains an SQL injection vulnerability that allows unauthenticated attackers to manipulate database queries by injecting SQL code through the arac_kategori_id parameter. Attackers can send POST requests to the endpoint with malicious SQL payloads to extract sensitive database information.
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.2)">🛡️ CVSS: 8.2</span>
-                                
-
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('jettweb')">jettweb</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2019-25482" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-25482" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-12
-                                
-                                | <strong>Modified:</strong> 2026-03-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2019_25481"
-                         data-cvss="8.2"
-                         data-epss="0"
-                         data-cisa="false"
-                         data-modified="True"
-                         data-vendors="iscripts">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2019-25481</div>
-                            <div class="cve-severity severity-high">High</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                iScripts ReserveLogic contains an SQL injection vulnerability that allows unauthenticated attackers to manipulate database queries by injecting SQL code through the jqSearchDestination parameter. Attackers can send POST requests to the search endpoint with crafted SQL payloads to extract sensitive database information.
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.2)">🛡️ CVSS: 8.2</span>
-                                
-
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('iscripts')">iscripts</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2019-25481" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-25481" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-12
-                                
-                                | <strong>Modified:</strong> 2026-03-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2019_25479"
-                         data-cvss="8.2"
-                         data-epss="0"
-                         data-cisa="false"
-                         data-modified="True"
-                         data-vendors="inoutscripts">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2019-25479</div>
-                            <div class="cve-severity severity-high">High</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                Inout RealEstate contains an SQL injection vulnerability that allows unauthenticated attackers to manipulate database queries by injecting SQL code through the city parameter. Attackers can send POST requests to the agents/agentlistdetails endpoint with malicious SQL payloads in the city parameter to extract sensitive database information.
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.2)">🛡️ CVSS: 8.2</span>
-                                
-
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('inoutscripts')">inoutscripts</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2019-25479" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-25479" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-12
-                                
-                                | <strong>Modified:</strong> 2026-03-14
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cve-card filtered-in" id="cve-CVE_2019_25473"
-                         data-cvss="7.1"
-                         data-epss="0"
-                         data-cisa="false"
-                         data-modified="True"
-                         data-vendors="softwebinternational">
-                        <div class="cve-header">
-                            <div class="cve-id">CVE-2019-25473</div>
-                            <div class="cve-severity severity-high">High</div>
-                        </div>
-
-                        <div class="cve-body">
-                            <div class="cve-description">
-                                Clinic Pro contains a SQL injection vulnerability that allows authenticated attackers to manipulate database queries by injecting SQL code through the month parameter. Attackers can send POST requests to the monthly_expense_overview endpoint with crafted month values using boolean-based blind, time-based blind, or error-based SQL injection techniques to extract sensitive database information.
-                            </div>
-
-                            
-                            <div class="cve-metrics">
-                                
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.1)">🛡️ CVSS: 7.1</span>
-                                
-
-                                
-
-                                
-
-                                
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
-                                
-
-                                
-                            </div>
-                            
-
-                            
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('softwebinternational')">softwebinternational</span>
-                                
-                            </div>
-                            
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2019-25473" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-25473" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="cve-meta">
-                                <strong>Published:</strong> 2026-03-12
-                                
-                                | <strong>Modified:</strong> 2026-03-14
+                                <strong>Published:</strong> 2026-03-15
                                 
                             </div>
                         </div>
@@ -1606,10 +2966,10 @@
             <div class="filter-section">
                 <div class="filter-title">🏷️ Filter by Status</div>
                 <ul class="filter-list">
-                    <li class="filter-item" id="filter-cisa" onclick="toggleStatusFilter('cisa')">In CISA KEV (2)</li>
+                    <li class="filter-item" id="filter-cisa" onclick="toggleStatusFilter('cisa')">In CISA KEV (0)</li>
                     <li class="filter-item" id="filter-epss" onclick="toggleStatusFilter('epss')">High EPSS (>0.10) (0)</li>
-                    <li class="filter-item" id="filter-modified" onclick="toggleStatusFilter('modified')">Recently Modified (17)</li>
-                    <li class="filter-item" id="filter-published" onclick="toggleStatusFilter('published')">Newly Published (1)</li>
+                    <li class="filter-item" id="filter-modified" onclick="toggleStatusFilter('modified')">Recently Modified (7)</li>
+                    <li class="filter-item" id="filter-published" onclick="toggleStatusFilter('published')">Newly Published (34)</li>
                 </ul>
             </div>
 
@@ -1618,54 +2978,78 @@
                 <div class="filter-title">🏢 Filter by Vendor</div>
                 <ul class="filter-list" id="vendor-filter-list">
                     
-                    <li class="filter-item" id="filter-vendor-digilent" onclick="toggleVendorFilter('digilent')" style="display:block;">digilent (4)</li>
+                    <li class="filter-item" id="filter-vendor-belkin" onclick="toggleVendorFilter('belkin')" style="display:block;">belkin (1)</li>
                     
-                    <li class="filter-item" id="filter-vendor-ellanetworks" onclick="toggleVendorFilter('ellanetworks')" style="display:block;">ellanetworks (1)</li>
+                    <li class="filter-item" id="filter-vendor-canon_inc_" onclick="toggleVendorFilter('canon inc.')" style="display:block;">canon inc. (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-d_link" onclick="toggleVendorFilter('d-link')" style="display:block;">d-link (8)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-digilent" onclick="toggleVendorFilter('digilent')" style="display:block;">digilent (4)</li>
                     
                     <li class="filter-item" id="filter-vendor-freerdp" onclick="toggleVendorFilter('freerdp')" style="display:block;">freerdp (1)</li>
                     
-                    <li class="filter-item" id="filter-vendor-ggml_org" onclick="toggleVendorFilter('ggml-org')" style="display:block;">ggml-org (1)</li>
-                    
                     <li class="filter-item" id="filter-vendor-gnu" onclick="toggleVendorFilter('gnu')" style="display:block;">gnu (1)</li>
                     
-                    <li class="filter-item" id="filter-vendor-google" onclick="toggleVendorFilter('google')" style="display:block;">google (2)</li>
+                    <li class="filter-item" id="filter-vendor-jawherkl" onclick="toggleVendorFilter('jawherkl')" style="display:block;">jawherkl (2)</li>
                     
-                    <li class="filter-item" id="filter-vendor-inoutscripts" onclick="toggleVendorFilter('inoutscripts')" style="display:block;">inoutscripts (1)</li>
+                    <li class="filter-item" id="filter-vendor-mlflow" onclick="toggleVendorFilter('mlflow')" style="display:block;">mlflow (1)</li>
                     
-                    <li class="filter-item" id="filter-vendor-iscripts" onclick="toggleVendorFilter('iscripts')" style="display:block;">iscripts (1)</li>
+                    <li class="filter-item" id="filter-vendor-next_click_ventures" onclick="toggleVendorFilter('next click ventures')" style="display:block;">next click ventures (4)</li>
                     
-                    <li class="filter-item" id="filter-vendor-jettweb" onclick="toggleVendorFilter('jettweb')" style="display:block;">jettweb (2)</li>
+                    <li class="filter-item" id="filter-vendor-qool" onclick="toggleVendorFilter('qool')" style="display:block;">qool (1)</li>
                     
-                    <li class="filter-item" id="filter-vendor-oneuptime" onclick="toggleVendorFilter('oneuptime')" style="display:block;">oneuptime (2)</li>
+                    <li class="filter-item" id="filter-vendor-serviio" onclick="toggleVendorFilter('serviio')" style="display:block;">serviio (3)</li>
                     
-                    <li class="filter-item" id="filter-vendor-softwebinternational" onclick="toggleVendorFilter('softwebinternational')" style="display:block;">softwebinternational (1)</li>
+                    <li class="filter-item" id="filter-vendor-topsec" onclick="toggleVendorFilter('topsec')" style="display:block;">topsec (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-trendnet" onclick="toggleVendorFilter('trendnet')" style="display:block;">trendnet (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-tuya" onclick="toggleVendorFilter('tuya')" style="display:block;">tuya (3)</li>
                     
                     <li class="filter-item" id="filter-vendor-wavlink" onclick="toggleVendorFilter('wavlink')" style="display:block;">wavlink (1)</li>
                     
+                    <li class="filter-item" id="filter-vendor-webaways" onclick="toggleVendorFilter('webaways')" style="display:block;">webaways (1)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-wowza_media_systems__llc_" onclick="toggleVendorFilter('wowza media systems, llc.')" style="display:block;">wowza media systems, llc. (2)</li>
+                    
+                    <li class="filter-item" id="filter-vendor-zkteco_inc_" onclick="toggleVendorFilter('zkteco inc.')" style="display:block;">zkteco inc. (5)</li>
+                    
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-belkin" onclick="toggleVendorFilter('belkin')" style="display:none;">belkin (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-canon_inc_" onclick="toggleVendorFilter('canon inc.')" style="display:none;">canon inc. (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-d_link" onclick="toggleVendorFilter('d-link')" style="display:none;">d-link (8)</li>
                     
                     <li class="filter-item extra-vendor" id="filter-vendor-digilent" onclick="toggleVendorFilter('digilent')" style="display:none;">digilent (4)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-ellanetworks" onclick="toggleVendorFilter('ellanetworks')" style="display:none;">ellanetworks (1)</li>
-                    
                     <li class="filter-item extra-vendor" id="filter-vendor-freerdp" onclick="toggleVendorFilter('freerdp')" style="display:none;">freerdp (1)</li>
-                    
-                    <li class="filter-item extra-vendor" id="filter-vendor-ggml_org" onclick="toggleVendorFilter('ggml-org')" style="display:none;">ggml-org (1)</li>
                     
                     <li class="filter-item extra-vendor" id="filter-vendor-gnu" onclick="toggleVendorFilter('gnu')" style="display:none;">gnu (1)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-google" onclick="toggleVendorFilter('google')" style="display:none;">google (2)</li>
+                    <li class="filter-item extra-vendor" id="filter-vendor-jawherkl" onclick="toggleVendorFilter('jawherkl')" style="display:none;">jawherkl (2)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-inoutscripts" onclick="toggleVendorFilter('inoutscripts')" style="display:none;">inoutscripts (1)</li>
+                    <li class="filter-item extra-vendor" id="filter-vendor-mlflow" onclick="toggleVendorFilter('mlflow')" style="display:none;">mlflow (1)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-iscripts" onclick="toggleVendorFilter('iscripts')" style="display:none;">iscripts (1)</li>
+                    <li class="filter-item extra-vendor" id="filter-vendor-next_click_ventures" onclick="toggleVendorFilter('next click ventures')" style="display:none;">next click ventures (4)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-jettweb" onclick="toggleVendorFilter('jettweb')" style="display:none;">jettweb (2)</li>
+                    <li class="filter-item extra-vendor" id="filter-vendor-qool" onclick="toggleVendorFilter('qool')" style="display:none;">qool (1)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-oneuptime" onclick="toggleVendorFilter('oneuptime')" style="display:none;">oneuptime (2)</li>
+                    <li class="filter-item extra-vendor" id="filter-vendor-serviio" onclick="toggleVendorFilter('serviio')" style="display:none;">serviio (3)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-softwebinternational" onclick="toggleVendorFilter('softwebinternational')" style="display:none;">softwebinternational (1)</li>
+                    <li class="filter-item extra-vendor" id="filter-vendor-topsec" onclick="toggleVendorFilter('topsec')" style="display:none;">topsec (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-trendnet" onclick="toggleVendorFilter('trendnet')" style="display:none;">trendnet (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-tuya" onclick="toggleVendorFilter('tuya')" style="display:none;">tuya (3)</li>
                     
                     <li class="filter-item extra-vendor" id="filter-vendor-wavlink" onclick="toggleVendorFilter('wavlink')" style="display:none;">wavlink (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-webaways" onclick="toggleVendorFilter('webaways')" style="display:none;">webaways (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-wowza_media_systems__llc_" onclick="toggleVendorFilter('wowza media systems, llc.')" style="display:none;">wowza media systems, llc. (2)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-zkteco_inc_" onclick="toggleVendorFilter('zkteco inc.')" style="display:none;">zkteco inc. (5)</li>
                     
                 </ul>
                 
@@ -2061,7 +3445,7 @@
                     item.style.display = 'none';
                 });
 
-                showMoreBtn.textContent = 'Show More Vendors (-7 more)';
+                showMoreBtn.textContent = 'Show More Vendors (-1 more)';
                 moreVendorsShown = false;
             }
         }
