@@ -9,6 +9,81 @@ def sanitize_vendor_id(vendor):
     # Replace non-alphanumeric characters with underscores
     return re.sub(r'[^a-zA-Z0-9]', '_', vendor)
 
+def generate_markdown_report(cves, output_path='docs/reports/YYYY/daily_cve_YYYYMMDD.md'):
+    """Generate Markdown report with CVE data"""
+
+    # Create directory if it doesn't exist
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+    # Calculate statistics
+    high_risk_count = sum(1 for cve in cves if cve.get('cvss_score', 0) > 7.0)
+    cisa_kev_count = sum(1 for cve in cves if cve.get('in_cisa_kev', False))
+    epss_high_count = sum(1 for cve in cves if cve.get('epss_score', 0) > 0.10)
+    modified_count = sum(1 for cve in cves if cve.get('entry_type') == 'modified')
+    published_count = sum(1 for cve in cves if cve.get('entry_type') == 'published')
+
+    # Collect all unique vendors
+    all_vendors = set()
+    vendor_counts = {}
+    for cve in cves:
+        for vendor in cve.get('vendors', []):
+            all_vendors.add(vendor)
+            vendor_counts[vendor] = vendor_counts.get(vendor, 0) + 1
+
+    # Sort vendors by count and limit to top 10
+    sorted_vendors = sorted(vendor_counts.items(), key=lambda x: x[1], reverse=True)
+    top_vendors = dict(sorted_vendors[:10])  # Top 10 vendors
+
+    # Start generating markdown content
+    md_content = f"# Daily CVE Report - {datetime.now().strftime('%Y-%m-%d')}\n\n"
+    md_content += f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
+    md_content += f"Total High-Risk Vulnerabilities: {len(cves)}\n\n"
+
+    # Add Top Vendors table
+    md_content += "## Top Vendors by Vulnerability Count\n"
+    md_content += "| Vendor | Count |\n"
+    md_content += "|--------|-------|\n"
+    for vendor, count in top_vendors.items():
+        md_content += f"| {vendor} | {count} |\n"
+    md_content += "\n\n---\n\n"
+
+    # Add each CVE
+    for cve in cves:
+        severity = 'low'
+        if cve.get('cvss_score', 0) >= 9.0:
+            severity = 'critical'
+        elif cve.get('cvss_score', 0) >= 7.0:
+            severity = 'high'
+        elif cve.get('cvss_score', 0) >= 4.0:
+            severity = 'medium'
+
+        # Format entry type
+        status_text = "Newly Published" if cve.get('entry_type') == 'published' else "Recently Modified"
+
+        # Format vendors
+        vendor_list = ', '.join(cve.get('vendors', [])) if cve.get('vendors') else 'N/A'
+
+        md_content += f"## {cve['id']}\n\n"
+        md_content += f"**CVSS Score:** {cve.get('cvss_score', 0):.1f} | **Status:** {status_text} | **Vendors:** {vendor_list}\n\n"
+        md_content += f"{cve.get('description', 'No description available')}\n\n"
+
+        # Add publication and modification dates
+        pub_date = cve.get('published_date', '')[:10] if cve.get('published_date') else 'Unknown'
+        mod_date = cve.get('last_modified', '')[:10] if cve.get('last_modified') else 'Unknown'
+        md_content += f"*Published: {pub_date}*\n"
+        if mod_date != pub_date:
+            md_content += f"*Last Modified: {mod_date}*\n"
+        else:
+            md_content += f"*Last Modified: {pub_date}*\n"
+        md_content += "\n---\n\n"
+
+    # Write to file
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(md_content)
+
+    print(f"Markdown report generated: {output_path}")
+
+
 def generate_html_report(cves, output_path='index.html'):
     """Generate HTML report with CVE data"""
 
@@ -199,10 +274,14 @@ def generate_html_report(cves, output_path='index.html'):
             transition: transform 0.2s, box-shadow 0.2s;
             background: white;
             display: none; /* Initially hide all cards */
+            max-height: 500px; /* 限制卡片最大高度为500px */
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box; /* 确保padding包含在高度内 */
         }
 
         .cve-card.filtered-in {
-            display: block;
+            display: flex;
         }
 
         .cve-card:hover {
@@ -310,17 +389,38 @@ def generate_html_report(cves, output_path='index.html'):
 
         .cve-body {
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            overflow: hidden;
+            min-height: 0; /* Allow content to scroll if needed */
         }
 
         .cve-description {
             margin-bottom: 15px;
-            line-height: 1.7;
+            line-height: 1.6; /* 调整行高 */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 6; /* 限制为6行 */
+            -webkit-box-orient: vertical;
+            word-break: break-word; /* 确保长单词也能适当换行 */
+            flex-shrink: 0; /* 防止被压缩 */
+        }
+
+        /* Container for elements that should be grouped at the bottom */
+        .cve-content-group {
+            display: flex;
+            flex-direction: column;
+            margin-top: auto; /* Push to the bottom */
+            flex-shrink: 0; /* Prevent from shrinking */
         }
 
         .cve-links {
             margin-top: 15px;
             padding-top: 10px;
             border-top: 1px solid #eee;
+            flex-shrink: 0; /* 防止被压缩 */
         }
 
         .link-item {
@@ -347,9 +447,9 @@ def generate_html_report(cves, output_path='index.html'):
         .cve-meta {
             font-size: 0.85em;
             color: #666;
-            margin-top: 15px;
             padding-top: 10px;
             border-top: 1px dashed #eee;
+            flex-shrink: 0; /* 防止被压缩 */
         }
 
         .no-cves {
@@ -512,63 +612,66 @@ def generate_html_report(cves, output_path='index.html'):
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                {{ cve.description|e }}
+                                {{ cve.description }}
                             </div>
 
-                            {% if cve.cvss_score > 0 or cve.epss_score > 0 or cve.in_cisa_kev %}
-                            <div class="cve-metrics">
-                                {% if cve.cvss_score > 0 %}
-                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS({{ cve.cvss_score }})">🛡️ CVSS: {{ "%.1f"|format(cve.cvss_score) }}</span>
-                                {% endif %}
+                            <!-- Group all other content together to align at bottom -->
+                            <div class="cve-content-group">
+                                {% if cve.cvss_score > 0 or cve.epss_score > 0 or cve.in_cisa_kev %}
+                                <div class="cve-metrics">
+                                    {% if cve.cvss_score > 0 %}
+                                        <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS({{ cve.cvss_score }})">🛡️ CVSS: {{ "%.1f"|format(cve.cvss_score) }}</span>
+                                    {% endif %}
 
-                                {% if cve.epss_score > 0 %}
-                                    <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS({{ "%.3f"|format(cve.epss_score) }})">📈 EPSS: {{ "%.3f"|format(cve.epss_score) }}</span>
-                                {% endif %}
+                                    {% if cve.epss_score > 0 %}
+                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS({{ "%.3f"|format(cve.epss_score) }})">📈 EPSS: {{ "%.3f"|format(cve.epss_score) }}</span>
+                                    {% endif %}
 
-                                {% if cve.in_cisa_kev %}
-                                    <span class="metric-tag tag-cisa" onclick="toggleStatusFilter('cisa')">🇺🇸 CISA KEV</span>
-                                {% endif %}
+                                    {% if cve.in_cisa_kev %}
+                                        <span class="metric-tag tag-cisa" onclick="toggleStatusFilter('cisa')">🇺🇸 CISA KEV</span>
+                                    {% endif %}
 
-                                {% if cve.entry_type == 'modified' %}
-                                    <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
-                                {% else %}
-                                    <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
-                                {% endif %}
+                                    {% if cve.entry_type == 'modified' %}
+                                        <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
+                                    {% else %}
+                                        <span class="metric-tag tag-cvss" onclick="toggleStatusFilter('published')">🆕 New Entry</span>
+                                    {% endif %}
 
-                                {% if cve.exploits %}
-                                    <span class="metric-tag tag-exp">💥 Known Exploits</span>
-                                {% endif %}
-                            </div>
-                            {% endif %}
-
-                            {% if cve.vendors %}
-                            <div class="cve-vendors">
-                                <strong>/vendors/:</strong>
-                                {% for vendor in cve.vendors %}
-                                <span class="cve-vendor-tag" onclick="toggleVendorFilter('{{ vendor }}')">{{ vendor }}</span>
-                                {% endfor %}
-                            </div>
-                            {% endif %}
-
-                            <div class="cve-links">
-                                <div class="link-item">
-                                    <a href="https://nvd.nist.gov/vuln/detail/{{ cve.id }}" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                </div>
-                                <div class="link-item">
-                                    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name={{ cve.id }}" target="_blank" class="link-btn">📝 MITRE CVE</a>
-                                </div>
-                                {% if cve.epss_score > 0 %}
-                                <div class="link-item">
-                                    <a href="https://epss.cyentia.com/?cve={{ cve.id }}" target="_blank" class="link-btn">📊 EPSS Score</a>
+                                    {% if cve.exploits %}
+                                        <span class="metric-tag tag-exp">💥 Known Exploits</span>
+                                    {% endif %}
                                 </div>
                                 {% endif %}
-                            </div>
 
-                            <div class="cve-meta">
-                                <strong>Published:</strong> {{ cve.published_date[:10] if cve.published_date else 'Unknown' }}
-                                {% if cve.last_modified and cve.last_modified != cve.published_date %}
-                                | <strong>Modified:</strong> {{ cve.last_modified[:10] }}
+                                {% if cve.vendors %}
+                                <div class="cve-vendors">
+                                    <strong>/vendors/:</strong>
+                                    {% for vendor in cve.vendors %}
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('{{ vendor }}')">{{ vendor }}</span>
+                                    {% endfor %}
+                                </div>
                                 {% endif %}
+
+                                <div class="cve-links">
+                                    <div class="link-item">
+                                        <a href="https://nvd.nist.gov/vuln/detail/{{ cve.id }}" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                    </div>
+                                    <div class="link-item">
+                                        <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name={{ cve.id }}" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                    </div>
+                                    {% if cve.epss_score > 0 %}
+                                    <div class="link-item">
+                                        <a href="https://epss.cyentia.com/?cve={{ cve.id }}" target="_blank" class="link-btn">📊 EPSS Score</a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="cve-meta">
+                                    <strong>Published:</strong> {{ cve.published_date[:10] if cve.published_date else 'Unknown' }}
+                                    {% if cve.last_modified and cve.last_modified != cve.published_date %}
+                                    | <strong>Modified:</strong> {{ cve.last_modified[:10] }}
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1003,6 +1106,22 @@ def generate_html_report(cves, output_path='index.html'):
             }
         }
     </script>
+
+    <!-- Footer with link to original markdown report -->
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 30px auto; width: 100%; max-width: 1600px;">
+    <footer style="padding: 20px; text-align: center; color: #666;">
+        <div style="margin-bottom: 10px;">
+            <strong>For AI/Bot consumption:</strong>
+            <a href="reports/{{ date[:4] }}/daily_cve_{{ date|replace('-', '') }}.md" target="_blank" rel="noopener noreferrer"
+               style="color: #1976d2; text-decoration: none; padding: 5px 10px; border: 1px solid #1976d2; border-radius: 4px; display: inline-block; margin-left: 10px;">
+               📄 Original Markdown Report
+            </a>
+        </div>
+        <small>
+            Daily CVE Report - Generated on {{ generated_time }} |
+            <a href="https://github.com/secnotes/dailycve" style="color: #666; text-decoration: none;">GitHub Project</a>
+        </small>
+    </footer>
 </body>
 </html>
     """

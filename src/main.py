@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 from collector import CVECollector
-from reporter import generate_html_report
+from reporter import generate_html_report, generate_markdown_report
 from config import Config
 
 def main():
@@ -16,11 +16,16 @@ def main():
     # Collect daily CVEs
     cves = collector.collect_daily_cves(days=Config.LOOKBACK_DAYS)
 
+    # Generate Markdown report first
+    markdown_report_path = f"docs/reports/{datetime.now().year}/daily_cve_{datetime.now().strftime('%Y%m%d')}.md"
+    generate_markdown_report(cves, markdown_report_path)
+
     # Generate HTML report
     generate_html_report(cves, Config.REPORT_HTML_PATH)
 
     print(f"Daily CVE collection completed!")
     print(f"Found {len(cves)} high-risk vulnerabilities")
+    print(f"Markdown report saved as {markdown_report_path}")
     print(f"HTML report saved as {Config.REPORT_HTML_PATH}")
 
 if __name__ == "__main__":

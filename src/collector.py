@@ -66,16 +66,36 @@ class CVECollector:
                 response = requests.get(url)
 
             if response.status_code == 200:
+                # Check if response is actually CSV text and not binary content
+                content_type = response.headers.get('content-type', '')
+                if 'text' not in content_type and 'csv' not in content_type:
+                    # Attempt to check if the content looks like CSV
+                    try:
+                        # Try to decode and check the first few characters
+                        text_content = response.text
+                        if not text_content.startswith("# EPSS"):
+                            print("EPSS data does not appear to be in expected CSV format, skipping...")
+                            return
+                    except UnicodeDecodeError:
+                        print("EPSS data appears to be binary, skipping...")
+                        return
+
                 # Parse CSV content
                 lines = response.text.strip().split('\n')
                 for line in lines[1:]:  # Skip header
-                    parts = line.strip().split(',')
-                    if len(parts) >= 2:
-                        cve_id = parts[0].strip()
-                        epss_score = float(parts[1].strip())
-                        self.epss_data[cve_id] = epss_score
+                    # Check if line contains expected CSV format
+                    if ',' in line:
+                        parts = line.strip().split(',')
+                        if len(parts) >= 2:
+                            try:
+                                cve_id = parts[0].strip()
+                                epss_score = float(parts[1].strip())
+                                self.epss_data[cve_id] = epss_score
+                            except ValueError:
+                                # Skip lines that don't have proper float values
+                                continue
         except Exception as e:
-            print(f"Error loading EPSS data: {e}")
+            print(f"Error loading EPSS data: {str(e).encode('ascii', 'ignore').decode('ascii')}")
 
     def get_cvelistv5_cves(self, days=1):
         """Fetch CVEs from CVEProject/cvelistV5"""
@@ -110,17 +130,7 @@ class CVECollector:
             if response.status_code == 200:
                 print(f"Successfully downloaded the ZIP file for {date_str}")
 
-                # Create the directory to store the downloaded ZIP
-                zip_dir = f"docs/json/{target_date.year}/{target_date.month:02d}"
-                os.makedirs(zip_dir, exist_ok=True)
-
-                # Save the ZIP file to the directory
-                zip_filename = os.path.join(zip_dir, f"{date_str}_delta_CVEs_at_end_of_day.zip")
-                with open(zip_filename, 'wb') as f:
-                    f.write(response.content)
-                print(f"Saved ZIP file to: {zip_filename}")
-
-                # Extract the ZIP file in memory
+                # Extract the ZIP file in memory (skip saving to disk)
                 with zipfile.ZipFile(io.BytesIO(response.content)) as zip_file:
                     print(f"Extracting {len(zip_file.namelist())} files from the ZIP...")
 
@@ -141,6 +151,10 @@ class CVECollector:
                                             if desc.get('lang') == 'en':
                                                 description = desc.get('value', '')
                                                 break
+
+                                        # Decode HTML entities to convert &#x27; back to ' and other entities
+                                        import html
+                                        description = html.unescape(description)
 
                                         # Extract CVSS metrics
                                         cvss_score = 0
@@ -222,9 +236,11 @@ class CVECollector:
                                         )
 
                                         if is_high_risk:
+                                            # Enhance description with AI if available, otherwise use original description
+                                            enhanced_description = self.enhance_description_with_ai(cve_id, description)
                                             cves.append({
                                                 'id': cve_id,
-                                                'description': description,
+                                                'description': enhanced_description,
                                                 'cvss_score': cvss_score,
                                                 'epss_score': self.epss_data.get(cve_id, 0),
                                                 'in_cisa_kev': cve_id in self.cisa_kev_list,
@@ -272,17 +288,7 @@ class CVECollector:
                     if response.status_code == 200:
                         print(f"Successfully downloaded the ZIP file for {yesterday_date_str}")
 
-                        # Create the directory to store the downloaded ZIP
-                        zip_dir = f"docs/json/{yesterday_target.year}/{yesterday_target.month:02d}"
-                        os.makedirs(zip_dir, exist_ok=True)
-
-                        # Save the ZIP file to the directory
-                        zip_filename = os.path.join(zip_dir, f"{yesterday_date_str}_delta_CVEs_at_end_of_day.zip")
-                        with open(zip_filename, 'wb') as f:
-                            f.write(response.content)
-                        print(f"Saved ZIP file to: {zip_filename}")
-
-                        # Extract the ZIP file in memory
+                        # Extract the ZIP file in memory (skip saving to disk)
                         with zipfile.ZipFile(io.BytesIO(response.content)) as zip_file:
                             print(f"Extracting {len(zip_file.namelist())} files from the ZIP...")
 
@@ -399,30 +405,8 @@ class CVECollector:
         if not self.openai_client or not self.enable_ai:
             return description
 
-        try:
-            prompt = f"""Please enhance and summarize this CVE description to make it more readable and understandable for security professionals. Make it concise but informative, highlighting the key vulnerability characteristics and potential impact:
-
-CVE: {cve_id}
-
-Description: {description}
-
-Provide a clear, professional summary."""
-
-            response = self.openai_client.chat.completions.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "You are a cybersecurity expert who summarizes vulnerability information clearly and concisely."},
-                    {"role": "user", "content": prompt}
-                ],
-                max_tokens=500,
-                temperature=0.3
-            )
-
-            enhanced_desc = response.choices[0].message.content.strip()
-            return enhanced_desc
-        except Exception as e:
-            print(f"Error enhancing description with AI: {e}")
-            return description
+        # Skip AI enhancement and return original description
+        return description or ""
 
     def collect_daily_cves(self, days=Config.LOOKBACK_DAYS):
         """Collect CVEs from the new CVEProject/cvelistV5 source"""
@@ -516,17 +500,7 @@ Provide a clear, professional summary."""
             if response.status_code == 200:
                 print(f"Successfully downloaded the ZIP file for {date_str}")
 
-                # Create the directory to store the downloaded ZIP
-                zip_dir = f"docs/json/{target_date.year}/{target_date.month:02d}"
-                os.makedirs(zip_dir, exist_ok=True)
-
-                # Save the ZIP file to the directory
-                zip_filename = os.path.join(zip_dir, f"{date_str}_delta_CVEs_at_end_of_day.zip")
-                with open(zip_filename, 'wb') as f:
-                    f.write(response.content)
-                print(f"Saved ZIP file to: {zip_filename}")
-
-                # Extract the ZIP file in memory
+                # Extract the ZIP file in memory (skip saving to disk)
                 with zipfile.ZipFile(io.BytesIO(response.content)) as zip_file:
                     print(f"Extracting {len(zip_file.namelist())} files from the ZIP...")
 
@@ -547,6 +521,10 @@ Provide a clear, professional summary."""
                                             if desc.get('lang') == 'en':
                                                 description = desc.get('value', '')
                                                 break
+
+                                        # Decode HTML entities to convert &#x27; back to ' and other entities
+                                        import html
+                                        description = html.unescape(description)
 
                                         # Extract CVSS metrics
                                         cvss_score = 0
@@ -628,9 +606,11 @@ Provide a clear, professional summary."""
                                         )
 
                                         if is_high_risk:
+                                            # Enhance description with AI if available, otherwise use original description
+                                            enhanced_description = self.enhance_description_with_ai(cve_id, description)
                                             cves.append({
                                                 'id': cve_id,
-                                                'description': description,
+                                                'description': enhanced_description,
                                                 'cvss_score': cvss_score,
                                                 'epss_score': self.epss_data.get(cve_id, 0),
                                                 'in_cisa_kev': cve_id in self.cisa_kev_list,
