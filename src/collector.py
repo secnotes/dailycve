@@ -165,20 +165,12 @@ class CVECollector:
 
             print(f"Downloading from: {zip_url}")
 
-            # Try downloading with the proxy if direct download fails
+            # Try downloading directly
             try:
                 response = requests.get(zip_url, timeout=60)
             except:
-                print("Direct download failed, trying with proxy...")
-                proxies = {
-                    'http': 'http://192.168.17.1:7890',
-                    'https': 'https://192.168.17.1:7890'
-                }
-                try:
-                    response = requests.get(zip_url, timeout=60, proxies=proxies)
-                except:
-                    print("Proxy download failed as well.")
-                    return []
+                print("Download failed.")
+                return []
 
             if response.status_code == 200:
                 print(f"Successfully downloaded the ZIP file for {date_str}")
@@ -331,16 +323,8 @@ class CVECollector:
                     try:
                         response = requests.get(yesterday_zip_url, timeout=60)
                     except:
-                        print("Alternative download failed, trying with proxy...")
-                        proxies = {
-                            'http': 'http://192.168.17.1:7890',
-                            'https': 'https://192.168.17.1:7890'
-                        }
-                        try:
-                            response = requests.get(yesterday_zip_url, timeout=60, proxies=proxies)
-                        except:
-                            print("Alternative proxy download failed as well.")
-                            return []
+                        print("Alternative download failed.")
+                        return []
 
                     if response.status_code == 200:
                         print(f"Successfully downloaded the ZIP file for {yesterday_date_str}")
@@ -561,20 +545,12 @@ class CVECollector:
 
             print(f"Downloading from: {zip_url}")
 
-            # Try downloading with the proxy if direct download fails
+            # Try downloading directly
             try:
                 response = requests.get(zip_url, timeout=60)
             except:
-                print("Direct download failed, trying with proxy...")
-                proxies = {
-                    'http': 'http://192.168.17.1:7890',
-                    'https': 'https://192.168.17.1:7890'
-                }
-                try:
-                    response = requests.get(zip_url, timeout=60, proxies=proxies)
-                except:
-                    print("Proxy download failed as well.")
-                    return []
+                print("Download failed.")
+                return []
 
             if response.status_code == 200:
                 print(f"Successfully downloaded the ZIP file for {date_str}")

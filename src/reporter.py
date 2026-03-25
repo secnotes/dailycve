@@ -4,6 +4,7 @@ from jinja2 import Template
 import html
 import re
 from decimal import Decimal, ROUND_HALF_UP
+import markdown
 
 def sanitize_vendor_id(vendor):
     """Sanitize vendor names to create safe IDs for HTML elements"""
@@ -18,6 +19,17 @@ def round_epss_score(score):
     decimal_score = Decimal(str(score))
     rounded = decimal_score.quantize(Decimal('0.001'), rounding=ROUND_HALF_UP)
     return float(rounded)
+
+
+def convert_markdown_code_blocks(text):
+    """Convert markdown code blocks (backticks) to HTML <code> tags"""
+    # Replace inline code blocks marked with single backticks
+    import re
+    # Pattern to match text between backticks
+    pattern = r'`(.*?)`'
+    # Replace with <code> tags
+    result = re.sub(pattern, r'<code>\1</code>', text)
+    return result
 
 def generate_markdown_report(cves, output_path='docs/reports/YYYY/daily_cve_YYYYMMDD.md'):
     """Generate Markdown report with CVE data"""
@@ -338,6 +350,11 @@ def generate_html_report(cves, output_path='index.html'):
             color: #f57f17;
         }
 
+        .severity-low {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
         .cve-metrics {
             display: flex;
             flex-wrap: wrap;
@@ -625,7 +642,7 @@ def generate_html_report(cves, output_path='index.html'):
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                {{ cve.description }}
+                                {{ convert_md_code(cve.description)|safe }}
                             </div>
 
                             <!-- Group all other content together to align at bottom -->
@@ -1141,6 +1158,7 @@ def generate_html_report(cves, output_path='index.html'):
     template = Template(html_template_str)
     template.globals['sanitize_vendor_id'] = sanitize_vendor_id
     template.globals['round_epss'] = round_epss_score
+    template.globals['convert_md_code'] = convert_markdown_code_blocks
 
     # Calculate statistics
     high_risk_count = sum(1 for cve in cves if cve.get('cvss_score', 0) > 7.0)
