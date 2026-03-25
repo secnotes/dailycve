@@ -111,7 +111,3 @@ After execution, the system generates:
 - Centralized configuration management
 - Risk thresholds and API endpoints
 - Output paths and settings
-
-## 📄 License
-
-MIT
