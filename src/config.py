@@ -17,7 +17,7 @@ class Config:
 
     # Thresholds for high-risk classification
     CVSS_THRESHOLD = 7.0  # Consider vulnerabilities with CVSS score higher than this as high-risk
-    EPSS_THRESHOLD = 0.10  # Consider vulnerabilities with EPSS score higher than this as high-risk
+    EPSS_THRESHOLD = 0.01  # Consider vulnerabilities with EPSS score higher than or equal to this as high-risk
 
     # Number of days to look back for new CVEs
     LOOKBACK_DAYS = 1

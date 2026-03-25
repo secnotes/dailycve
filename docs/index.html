@@ -486,11 +486,11 @@
 
             <div class="summary-box">
                 <h2>📊 Summary</h2>
-                <p><strong>Report Generated:</strong> 2026-03-25 17:34:02</p>
+                <p><strong>Report Generated:</strong> 2026-03-25 09:19:29</p>
 
                 <div class="summary-stats">
                     <div class="stat-card" onclick="applySingleFilter('all')">
-                        <div class="stat-number">290</div>
+                        <div class="stat-number">291</div>
                         <div>Total Vulnerabilities</div>
                     </div>
                     <div class="stat-card" onclick="applySingleFilter('high-risk')">
@@ -502,8 +502,8 @@
                         <div>In CISA KEV</div>
                     </div>
                     <div class="stat-card" onclick="toggleStatusFilter('epss')">
-                        <div class="stat-number">0</div>
-                        <div>High EPSS (>0.10)</div>
+                        <div class="stat-number">6</div>
+                        <div>High EPSS (≥0.01)</div>
                     </div>
                 </div>
             </div>
@@ -641,6 +641,75 @@
 
                                 <div class="cve-meta">
                                     <strong>Published:</strong> 2024-03-21
+                                    
+                                    | <strong>Modified:</strong> 2026-03-24
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cve-card filtered-in" id="cve-CVE_2024_12243"
+                         data-cvss="5.3"
+                         data-epss="0.01689"
+                         data-cisa="false"
+                         data-modified="True"
+                         data-vendors="red hat">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2024-12243</div>
+                            <div class="cve-severity severity-medium">Medium</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                A flaw was found in GnuTLS, which relies on libtasn1 for ASN.1 data processing. Due to an inefficient algorithm in libtasn1, decoding certain DER-encoded certificate data can take excessive time, leading to increased resource consumption. This flaw allows a remote attacker to send a specially crafted certificate, causing GnuTLS to become unresponsive or slow, resulting in a denial-of-service condition.
+                            </div>
+
+                            <!-- Group all other content together to align at bottom -->
+                            <div class="cve-content-group">
+                                
+                                <div class="cve-metrics">
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(5.3)">🛡️ CVSS: 5.3</span>
+
+                                    
+                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.017)">📈 EPSS: 0.017</span>
+                                    
+
+                                    
+
+                                    
+                                        <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
+                                    
+
+                                    
+                                </div>
+                                
+
+                                
+                                <div class="cve-vendors">
+                                    <strong>/vendors/:</strong>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('red hat')">red hat</span>
+                                    
+                                </div>
+                                
+
+                                <div class="cve-links">
+                                    <div class="link-item">
+                                        <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-12243" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                    </div>
+                                    <div class="link-item">
+                                        <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-12243" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                    </div>
+                                    
+                                    <div class="link-item">
+                                        <a href="https://epss.cyentia.com/?cve=CVE-2024-12243" target="_blank" class="link-btn">📊 EPSS Score</a>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="cve-meta">
+                                    <strong>Published:</strong> 2025-02-10
                                     
                                     | <strong>Modified:</strong> 2026-03-24
                                     
@@ -790,7 +859,7 @@
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="all platforms,nvidia">
+                         data-vendors="nvidia,all platforms">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24157</div>
                             <div class="cve-severity severity-high">High</div>
@@ -823,9 +892,9 @@
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all platforms')">all platforms</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all platforms')">all platforms</span>
                                     
                                 </div>
                                 
@@ -855,7 +924,7 @@
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="all platforms,nvidia">
+                         data-vendors="nvidia,all platforms">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24159</div>
                             <div class="cve-severity severity-high">High</div>
@@ -888,9 +957,9 @@
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all platforms')">all platforms</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all platforms')">all platforms</span>
                                     
                                 </div>
                                 
@@ -981,7 +1050,7 @@
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="nvidia,all">
+                         data-vendors="all,nvidia">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24141</div>
                             <div class="cve-severity severity-high">High</div>
@@ -1014,9 +1083,9 @@
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('all')">all</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
                                     
                                 </div>
                                 
@@ -1044,7 +1113,7 @@
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="nvidia,all">
+                         data-vendors="all,nvidia">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24158</div>
                             <div class="cve-severity severity-high">High</div>
@@ -1077,9 +1146,9 @@
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('all')">all</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
                                     
                                 </div>
                                 
@@ -1107,7 +1176,7 @@
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="nvidia,all">
+                         data-vendors="all,nvidia">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-33254</div>
                             <div class="cve-severity severity-high">High</div>
@@ -1140,9 +1209,9 @@
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('all')">all</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
                                     
                                 </div>
                                 
@@ -1170,7 +1239,7 @@
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="nvidia,all">
+                         data-vendors="all,nvidia">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-33238</div>
                             <div class="cve-severity severity-high">High</div>
@@ -1203,9 +1272,9 @@
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('all')">all</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
                                     
                                 </div>
                                 
@@ -1233,7 +1302,7 @@
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="all platforms,nvidia">
+                         data-vendors="nvidia,all platforms">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24152</div>
                             <div class="cve-severity severity-high">High</div>
@@ -1266,9 +1335,9 @@
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all platforms')">all platforms</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all platforms')">all platforms</span>
                                     
                                 </div>
                                 
@@ -1296,7 +1365,7 @@
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="all platforms,nvidia">
+                         data-vendors="nvidia,all platforms">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24151</div>
                             <div class="cve-severity severity-high">High</div>
@@ -1329,9 +1398,9 @@
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all platforms')">all platforms</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all platforms')">all platforms</span>
                                     
                                 </div>
                                 
@@ -1359,7 +1428,7 @@
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="all platforms,nvidia">
+                         data-vendors="nvidia,all platforms">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24150</div>
                             <div class="cve-severity severity-high">High</div>
@@ -1392,9 +1461,9 @@
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all platforms')">all platforms</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all platforms')">all platforms</span>
                                     
                                 </div>
                                 
@@ -1422,7 +1491,7 @@
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="all platforms,nvidia">
+                         data-vendors="nvidia,all platforms">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-33248</div>
                             <div class="cve-severity severity-high">High</div>
@@ -1455,9 +1524,9 @@
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all platforms')">all platforms</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all platforms')">all platforms</span>
                                     
                                 </div>
                                 
@@ -1485,7 +1554,7 @@
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="all platforms,nvidia">
+                         data-vendors="nvidia,all platforms">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-33247</div>
                             <div class="cve-severity severity-high">High</div>
@@ -1518,9 +1587,9 @@
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all platforms')">all platforms</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all platforms')">all platforms</span>
                                     
                                 </div>
                                 
@@ -1619,14 +1688,14 @@
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                An Improper Input Validation vulnerability in UniFi Network Server may allow unauthorized access to an account if the account owner is socially engineered into clicking a malicious link.
-
-
-Affected Products:
-UniFi Network Server (Version 10.1.85 and earlier) 
-
-
-Mitigation:
+                                An Improper Input Validation vulnerability in UniFi Network Server may allow unauthorized access to an account if the account owner is socially engineered into clicking a malicious link.
+
+
+Affected Products:
+UniFi Network Server (Version 10.1.85 and earlier) 
+
+
+Mitigation:
 Update UniFi Network Server to Version 10.1.89 or later.
                             </div>
 
@@ -2500,7 +2569,7 @@ Update UniFi Network Server to Version 10.1.89 or later.
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_32278"
                          data-cvss="8.2"
-                         data-epss="0.00038"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="opensource-workshop">
@@ -2520,8 +2589,6 @@ Update UniFi Network Server to Version 10.1.89 or later.
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.2)">🛡️ CVSS: 8.2</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -2549,10 +2616,6 @@ Update UniFi Network Server to Version 10.1.89 or later.
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32278" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-32278" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -5293,7 +5356,7 @@ This issue affects perf-ninja.
                          data-epss="0.00077"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-23669</div>
                             <div class="cve-severity severity-high">High</div>
@@ -5332,9 +5395,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -5437,7 +5500,7 @@ This issue affects perf-ninja.
                          data-epss="0.00127"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-26144</div>
                             <div class="cve-severity severity-high">High</div>
@@ -5474,9 +5537,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('32-bit systems')">32-bit systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -5786,7 +5849,7 @@ This issue affects perf-ninja.
                          data-epss="0.00166"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-26110</div>
                             <div class="cve-severity severity-high">High</div>
@@ -5823,9 +5886,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('32-bit systems')">32-bit systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -5859,7 +5922,7 @@ This issue affects perf-ninja.
                          data-epss="0.00049"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-26109</div>
                             <div class="cve-severity severity-high">High</div>
@@ -5896,9 +5959,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('32-bit systems')">32-bit systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -5932,7 +5995,7 @@ This issue affects perf-ninja.
                          data-epss="0.00062"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-26108</div>
                             <div class="cve-severity severity-high">High</div>
@@ -5969,9 +6032,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('32-bit systems')">32-bit systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -6005,7 +6068,7 @@ This issue affects perf-ninja.
                          data-epss="0.00062"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-26107</div>
                             <div class="cve-severity severity-high">High</div>
@@ -6042,9 +6105,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('32-bit systems')">32-bit systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -7184,7 +7247,7 @@ This issue affects perf-ninja.
                          data-epss="0.00125"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-23674</div>
                             <div class="cve-severity severity-high">High</div>
@@ -7223,9 +7286,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -7397,7 +7460,7 @@ This issue affects perf-ninja.
                          data-epss="0.00066"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,x64-based systems,microsoft,arm64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-26132</div>
                             <div class="cve-severity severity-high">High</div>
@@ -7434,11 +7497,11 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('32-bit systems')">32-bit systems</span>
                                     
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
+                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
                                 </div>
                                 
@@ -7541,7 +7604,7 @@ This issue affects perf-ninja.
                          data-epss="0.00045"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-26128</div>
                             <div class="cve-severity severity-high">High</div>
@@ -7580,9 +7643,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -7967,7 +8030,7 @@ This issue affects perf-ninja.
                          data-epss="0.00067"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-26113</div>
                             <div class="cve-severity severity-high">High</div>
@@ -8004,9 +8067,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('32-bit systems')">32-bit systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -8040,7 +8103,7 @@ This issue affects perf-ninja.
                          data-epss="0.00062"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-26112</div>
                             <div class="cve-severity severity-high">High</div>
@@ -8077,9 +8140,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('32-bit systems')">32-bit systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -8113,7 +8176,7 @@ This issue affects perf-ninja.
                          data-epss="0.00067"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-26111</div>
                             <div class="cve-severity severity-high">High</div>
@@ -8152,9 +8215,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -8259,7 +8322,7 @@ This issue affects perf-ninja.
                          data-epss="0.00058"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-25190</div>
                             <div class="cve-severity severity-high">High</div>
@@ -8298,9 +8361,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -8334,7 +8397,7 @@ This issue affects perf-ninja.
                          data-epss="0.00049"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-25189</div>
                             <div class="cve-severity severity-high">High</div>
@@ -8373,9 +8436,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -8409,7 +8472,7 @@ This issue affects perf-ninja.
                          data-epss="0.00096"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-25188</div>
                             <div class="cve-severity severity-high">High</div>
@@ -8448,9 +8511,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -8484,7 +8547,7 @@ This issue affects perf-ninja.
                          data-epss="0.00136"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-25187</div>
                             <div class="cve-severity severity-high">High</div>
@@ -8523,9 +8586,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -8559,7 +8622,7 @@ This issue affects perf-ninja.
                          data-epss="0.00085"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-25181</div>
                             <div class="cve-severity severity-high">High</div>
@@ -8598,9 +8661,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -8634,7 +8697,7 @@ This issue affects perf-ninja.
                          data-epss="0.00085"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-25177</div>
                             <div class="cve-severity severity-high">High</div>
@@ -8673,9 +8736,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -8709,7 +8772,7 @@ This issue affects perf-ninja.
                          data-epss="0.00045"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-25176</div>
                             <div class="cve-severity severity-high">High</div>
@@ -8748,9 +8811,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -8784,7 +8847,7 @@ This issue affects perf-ninja.
                          data-epss="0.00049"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-25175</div>
                             <div class="cve-severity severity-high">High</div>
@@ -8823,9 +8886,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -8859,7 +8922,7 @@ This issue affects perf-ninja.
                          data-epss="0.00049"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-25174</div>
                             <div class="cve-severity severity-high">High</div>
@@ -8898,9 +8961,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -8934,7 +8997,7 @@ This issue affects perf-ninja.
                          data-epss="0.00067"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-25173</div>
                             <div class="cve-severity severity-high">High</div>
@@ -8973,9 +9036,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -9009,7 +9072,7 @@ This issue affects perf-ninja.
                          data-epss="0.00067"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-25172</div>
                             <div class="cve-severity severity-high">High</div>
@@ -9048,9 +9111,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -9084,7 +9147,7 @@ This issue affects perf-ninja.
                          data-epss="0.0004"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="x64-based systems,microsoft,arm64-based systems">
+                         data-vendors="arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-25167</div>
                             <div class="cve-severity severity-high">High</div>
@@ -9119,11 +9182,11 @@ This issue affects perf-ninja.
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
+                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
                                 </div>
                                 
@@ -9226,7 +9289,7 @@ This issue affects perf-ninja.
                          data-epss="0.00049"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-25165</div>
                             <div class="cve-severity severity-high">High</div>
@@ -9265,9 +9328,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -9301,7 +9364,7 @@ This issue affects perf-ninja.
                          data-epss="0.00061"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24294</div>
                             <div class="cve-severity severity-high">High</div>
@@ -9340,9 +9403,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -9376,7 +9439,7 @@ This issue affects perf-ninja.
                          data-epss="0.00049"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,x64-based systems,microsoft,arm64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24293</div>
                             <div class="cve-severity severity-high">High</div>
@@ -9413,11 +9476,11 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('32-bit systems')">32-bit systems</span>
                                     
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
+                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
                                 </div>
                                 
@@ -9451,7 +9514,7 @@ This issue affects perf-ninja.
                          data-epss="0.00049"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24292</div>
                             <div class="cve-severity severity-high">High</div>
@@ -9490,9 +9553,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -9526,7 +9589,7 @@ This issue affects perf-ninja.
                          data-epss="0.00063"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24291</div>
                             <div class="cve-severity severity-high">High</div>
@@ -9565,9 +9628,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -9601,7 +9664,7 @@ This issue affects perf-ninja.
                          data-epss="0.00045"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24290</div>
                             <div class="cve-severity severity-high">High</div>
@@ -9640,9 +9703,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -9676,7 +9739,7 @@ This issue affects perf-ninja.
                          data-epss="0.00049"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24289</div>
                             <div class="cve-severity severity-high">High</div>
@@ -9715,9 +9778,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -9751,7 +9814,7 @@ This issue affects perf-ninja.
                          data-epss="0.00073"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24287</div>
                             <div class="cve-severity severity-high">High</div>
@@ -9790,9 +9853,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -9826,7 +9889,7 @@ This issue affects perf-ninja.
                          data-epss="0.00049"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="x64-based systems,microsoft,arm64-based systems">
+                         data-vendors="arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24283</div>
                             <div class="cve-severity severity-high">High</div>
@@ -9861,11 +9924,11 @@ This issue affects perf-ninja.
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
+                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
                                 </div>
                                 
@@ -9899,7 +9962,7 @@ This issue affects perf-ninja.
                          data-epss="0.00049"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-23673</div>
                             <div class="cve-severity severity-high">High</div>
@@ -9938,9 +10001,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -9974,7 +10037,7 @@ This issue affects perf-ninja.
                          data-epss="0.00049"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="32-bit systems,arm64-based systems,microsoft,x64-based systems">
+                         data-vendors="32-bit systems,arm64-based systems,x64-based systems,microsoft">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-23672</div>
                             <div class="cve-severity severity-high">High</div>
@@ -10013,9 +10076,9 @@ This issue affects perf-ninja.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('arm64-based systems')">arm64-based systems</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('x64-based systems')">x64-based systems</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('microsoft')">microsoft</span>
                                     
                                 </div>
                                 
@@ -10732,7 +10795,7 @@ This issue affects perf-ninja.
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_32299"
                          data-cvss="7.5"
-                         data-epss="0.0003"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="opensource-workshop">
@@ -10752,8 +10815,6 @@ This issue affects perf-ninja.
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.5)">🛡️ CVSS: 7.5</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -10781,10 +10842,6 @@ This issue affects perf-ninja.
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32299" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-32299" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -12351,7 +12408,7 @@ Note: Software versions which have reached End of Technical Support (EoTS) are n
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_32276"
                          data-cvss="8.8"
-                         data-epss="0.00067"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="opensource-workshop">
@@ -12371,8 +12428,6 @@ Note: Software versions which have reached End of Technical Support (EoTS) are n
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.8)">🛡️ CVSS: 8.8</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.001)">📈 EPSS: 0.001</span>
                                     
 
                                     
@@ -12400,10 +12455,6 @@ Note: Software versions which have reached End of Technical Support (EoTS) are n
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32276" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-32276" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -13577,7 +13628,7 @@ This issue affects Windchill PDMLink: 11.0 M030, 11.1 M020, 11.2.1.0, 12.0.2.0, 
                          data-epss="0.0002"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="tp-link systems inc.,rtos">
+                         data-vendors="rtos,tp-link systems inc.">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-15606</div>
                             <div class="cve-severity severity-high">High</div>
@@ -13612,9 +13663,9 @@ This issue affects Windchill PDMLink: 11.0 M030, 11.1 M020, 11.2.1.0, 12.0.2.0, 
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('tp-link systems inc.')">tp-link systems inc.</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('rtos')">rtos</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('tp-link systems inc.')">tp-link systems inc.</span>
                                     
                                 </div>
                                 
@@ -15937,7 +15988,7 @@ Avoid direct `${{ ... }}` interpolation inside `run:` for any user-controlled va
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_32277"
                          data-cvss="8.7"
-                         data-epss="0.00032"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="opensource-workshop">
@@ -15957,8 +16008,6 @@ Avoid direct `${{ ... }}` interpolation inside `run:` for any user-controlled va
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.7)">🛡️ CVSS: 8.7</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -15986,10 +16035,6 @@ Avoid direct `${{ ... }}` interpolation inside `run:` for any user-controlled va
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32277" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-32277" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -16420,7 +16465,7 @@ Avoid direct `${{ ... }}` interpolation inside `run:` for any user-controlled va
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_32913"
                          data-cvss="9.3"
-                         data-epss="0.00028"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="openclaw">
@@ -16440,8 +16485,6 @@ Avoid direct `${{ ... }}` interpolation inside `run:` for any user-controlled va
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(9.3)">🛡️ CVSS: 9.3</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -16469,10 +16512,6 @@ Avoid direct `${{ ... }}` interpolation inside `run:` for any user-controlled va
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32913" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-32913" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -19447,7 +19486,7 @@ Avoid direct `${{ ... }}` interpolation inside `run:` for any user-controlled va
                          data-epss="0.0004"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="tp-link systems inc.,linux">
+                         data-vendors="linux,tp-link systems inc.">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-15517</div>
                             <div class="cve-severity severity-high">High</div>
@@ -19482,9 +19521,9 @@ Avoid direct `${{ ... }}` interpolation inside `run:` for any user-controlled va
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('tp-link systems inc.')">tp-link systems inc.</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('tp-link systems inc.')">tp-link systems inc.</span>
                                     
                                 </div>
                                 
@@ -19518,7 +19557,7 @@ Avoid direct `${{ ... }}` interpolation inside `run:` for any user-controlled va
                          data-epss="0.00012"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="tp-link systems inc.,linux">
+                         data-vendors="linux,tp-link systems inc.">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-15605</div>
                             <div class="cve-severity severity-high">High</div>
@@ -19553,9 +19592,9 @@ Avoid direct `${{ ... }}` interpolation inside `run:` for any user-controlled va
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('tp-link systems inc.')">tp-link systems inc.</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('tp-link systems inc.')">tp-link systems inc.</span>
                                     
                                 </div>
                                 
@@ -19670,7 +19709,7 @@ This vulnerability allows local privilege escalation and may result in full syst
                          data-epss="0.00025"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="tp-link systems inc.,linux">
+                         data-vendors="linux,tp-link systems inc.">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-15519</div>
                             <div class="cve-severity severity-high">High</div>
@@ -19705,9 +19744,9 @@ This vulnerability allows local privilege escalation and may result in full syst
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('tp-link systems inc.')">tp-link systems inc.</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('tp-link systems inc.')">tp-link systems inc.</span>
                                     
                                 </div>
                                 
@@ -19741,7 +19780,7 @@ This vulnerability allows local privilege escalation and may result in full syst
                          data-epss="0.00025"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="tp-link systems inc.,linux">
+                         data-vendors="linux,tp-link systems inc.">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-15518</div>
                             <div class="cve-severity severity-high">High</div>
@@ -19776,9 +19815,9 @@ This vulnerability allows local privilege escalation and may result in full syst
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('tp-link systems inc.')">tp-link systems inc.</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('tp-link systems inc.')">tp-link systems inc.</span>
                                     
                                 </div>
                                 
@@ -19878,7 +19917,7 @@ This vulnerability allows local privilege escalation and may result in full syst
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_32733"
                          data-cvss="8.7"
-                         data-epss="0.0004"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="squidowl">
@@ -19898,8 +19937,6 @@ This vulnerability allows local privilege escalation and may result in full syst
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.7)">🛡️ CVSS: 8.7</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -19927,10 +19964,6 @@ This vulnerability allows local privilege escalation and may result in full syst
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32733" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-32733" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -20223,7 +20256,7 @@ This vulnerability allows local privilege escalation and may result in full syst
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_33037"
                          data-cvss="8.1"
-                         data-epss="0.00248"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="wwbn">
@@ -20243,8 +20276,6 @@ This vulnerability allows local privilege escalation and may result in full syst
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.1)">🛡️ CVSS: 8.1</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.002)">📈 EPSS: 0.002</span>
                                     
 
                                     
@@ -20274,10 +20305,6 @@ This vulnerability allows local privilege escalation and may result in full syst
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-33037" target="_blank" class="link-btn">🔍 NVD Details</a>
                                     </div>
                                     
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-33037" target="_blank" class="link-btn">📊 EPSS Score</a>
-                                    </div>
-                                    
                                 </div>
 
                                 <div class="cve-meta">
@@ -20292,7 +20319,7 @@ This vulnerability allows local privilege escalation and may result in full syst
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_32950"
                          data-cvss="8.6"
-                         data-epss="0.00161"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="dataease">
@@ -20312,8 +20339,6 @@ This vulnerability allows local privilege escalation and may result in full syst
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.6)">🛡️ CVSS: 8.6</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.002)">📈 EPSS: 0.002</span>
                                     
 
                                     
@@ -20343,10 +20368,6 @@ This vulnerability allows local privilege escalation and may result in full syst
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32950" target="_blank" class="link-btn">🔍 NVD Details</a>
                                     </div>
                                     
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-32950" target="_blank" class="link-btn">📊 EPSS Score</a>
-                                    </div>
-                                    
                                 </div>
 
                                 <div class="cve-meta">
@@ -20361,7 +20382,7 @@ This vulnerability allows local privilege escalation and may result in full syst
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_32622"
                          data-cvss="8.6"
-                         data-epss="0.003"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="dataease">
@@ -20381,8 +20402,6 @@ This vulnerability allows local privilege escalation and may result in full syst
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.6)">🛡️ CVSS: 8.6</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.003)">📈 EPSS: 0.003</span>
                                     
 
                                     
@@ -20410,10 +20429,6 @@ This vulnerability allows local privilege escalation and may result in full syst
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32622" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-32622" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -20506,8 +20521,8 @@ This vulnerability allows local privilege escalation and may result in full syst
                 <div class="filter-title">🏷️ Filter by Status</div>
                 <ul class="filter-list">
                     <li class="filter-item" id="filter-cisa" onclick="toggleStatusFilter('cisa')">In CISA KEV (1)</li>
-                    <li class="filter-item" id="filter-epss" onclick="toggleStatusFilter('epss')">High EPSS (>0.10) (0)</li>
-                    <li class="filter-item" id="filter-modified" onclick="toggleStatusFilter('modified')">Recently Modified (176)</li>
+                    <li class="filter-item" id="filter-epss" onclick="toggleStatusFilter('epss')">High EPSS (≥0.01) (6)</li>
+                    <li class="filter-item" id="filter-modified" onclick="toggleStatusFilter('modified')">Recently Modified (177)</li>
                     <li class="filter-item" id="filter-published" onclick="toggleStatusFilter('published')">Newly Published (114)</li>
                 </ul>
             </div>
@@ -20545,7 +20560,7 @@ This vulnerability allows local privilege escalation and may result in full syst
                     
                     <li class="filter-item" id="filter-vendor-parse_community" onclick="toggleVendorFilter('parse-community')" style="display:block;">parse-community (6)</li>
                     
-                    <li class="filter-item" id="filter-vendor-red_hat" onclick="toggleVendorFilter('red hat')" style="display:block;">red hat (19)</li>
+                    <li class="filter-item" id="filter-vendor-red_hat" onclick="toggleVendorFilter('red hat')" style="display:block;">red hat (20)</li>
                     
                     <li class="filter-item" id="filter-vendor-sourcecodester" onclick="toggleVendorFilter('sourcecodester')" style="display:block;">sourcecodester (5)</li>
                     
@@ -20748,7 +20763,7 @@ This vulnerability allows local privilege escalation and may result in full syst
                     
                     <li class="filter-item extra-vendor" id="filter-vendor-rails" onclick="toggleVendorFilter('rails')" style="display:none;">rails (1)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-red_hat" onclick="toggleVendorFilter('red hat')" style="display:none;">red hat (19)</li>
+                    <li class="filter-item extra-vendor" id="filter-vendor-red_hat" onclick="toggleVendorFilter('red hat')" style="display:none;">red hat (20)</li>
                     
                     <li class="filter-item extra-vendor" id="filter-vendor-rizonesoft" onclick="toggleVendorFilter('rizonesoft')" style="display:none;">rizonesoft (1)</li>
                     
@@ -20938,7 +20953,7 @@ This vulnerability allows local privilege escalation and may result in full syst
                                 }
                                 break;
                             case 'epss':
-                                if ((parseFloat(card.getAttribute('data-epss')) || 0) <= 0.10) {
+                                if ((parseFloat(card.getAttribute('data-epss')) || 0) < 0.01) {
                                     showCard = false;
                                 }
                                 break;
@@ -21229,7 +21244,7 @@ This vulnerability allows local privilege escalation and may result in full syst
             </a>
         </div>
         <small>
-            Daily CVE Report - Generated on 2026-03-25 17:34:02 |
+            Daily CVE Report - Generated on 2026-03-25 09:19:29 |
             <a href="https://github.com/secnotes/dailycve" style="color: #666; text-decoration: none;">GitHub Project</a>
         </small>
     </footer>

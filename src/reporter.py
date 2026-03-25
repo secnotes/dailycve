@@ -28,7 +28,7 @@ def generate_markdown_report(cves, output_path='docs/reports/YYYY/daily_cve_YYYY
     # Calculate statistics
     high_risk_count = sum(1 for cve in cves if cve.get('cvss_score', 0) > 7.0)
     cisa_kev_count = sum(1 for cve in cves if cve.get('in_cisa_kev', False))
-    epss_high_count = sum(1 for cve in cves if cve.get('epss_score', 0) > 0.10)
+    epss_high_count = sum(1 for cve in cves if cve.get('epss_score', 0) >= 0.01)
     modified_count = sum(1 for cve in cves if cve.get('entry_type') == 'modified')
     published_count = sum(1 for cve in cves if cve.get('entry_type') == 'published')
 
@@ -604,7 +604,7 @@ def generate_html_report(cves, output_path='index.html'):
                     </div>
                     <div class="stat-card" onclick="toggleStatusFilter('epss')">
                         <div class="stat-number">{{ epss_high_count }}</div>
-                        <div>High EPSS (>0.10)</div>
+                        <div>High EPSS (≥0.01)</div>
                     </div>
                 </div>
             </div>
@@ -700,7 +700,7 @@ def generate_html_report(cves, output_path='index.html'):
                 <div class="filter-title">🏷️ Filter by Status</div>
                 <ul class="filter-list">
                     <li class="filter-item" id="filter-cisa" onclick="toggleStatusFilter('cisa')">In CISA KEV ({{ cisa_kev_count }})</li>
-                    <li class="filter-item" id="filter-epss" onclick="toggleStatusFilter('epss')">High EPSS (>0.10) ({{ epss_high_count }})</li>
+                    <li class="filter-item" id="filter-epss" onclick="toggleStatusFilter('epss')">High EPSS (≥0.01) ({{ epss_high_count }})</li>
                     <li class="filter-item" id="filter-modified" onclick="toggleStatusFilter('modified')">Recently Modified ({{ modified_count }})</li>
                     <li class="filter-item" id="filter-published" onclick="toggleStatusFilter('published')">Newly Published ({{ published_count }})</li>
                 </ul>
@@ -838,7 +838,7 @@ def generate_html_report(cves, output_path='index.html'):
                                 }
                                 break;
                             case 'epss':
-                                if ((parseFloat(card.getAttribute('data-epss')) || 0) <= 0.10) {
+                                if ((parseFloat(card.getAttribute('data-epss')) || 0) < 0.01) {
                                     showCard = false;
                                 }
                                 break;
@@ -1145,7 +1145,7 @@ def generate_html_report(cves, output_path='index.html'):
     # Calculate statistics
     high_risk_count = sum(1 for cve in cves if cve.get('cvss_score', 0) > 7.0)
     cisa_kev_count = sum(1 for cve in cves if cve.get('in_cisa_kev', False))
-    epss_high_count = sum(1 for cve in cves if cve.get('epss_score', 0) > 0.10)
+    epss_high_count = sum(1 for cve in cves if cve.get('epss_score', 0) >= 0.01)
     modified_count = sum(1 for cve in cves if cve.get('entry_type') == 'modified')
     published_count = sum(1 for cve in cves if cve.get('entry_type') == 'published')
 

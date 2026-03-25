@@ -424,7 +424,7 @@ class CVECollector:
                                                 is_high_risk = (
                                                     cvss_score > Config.CVSS_THRESHOLD or
                                                     cve_id in self.cisa_kev_list or
-                                                    (cve_id in self.epss_data and self.epss_data[cve_id] > Config.EPSS_THRESHOLD)
+                                                    (cve_id in self.epss_data and self.epss_data[cve_id] >= Config.EPSS_THRESHOLD)
                                                 )
 
                                                 if is_high_risk:
@@ -513,7 +513,7 @@ class CVECollector:
             is_high_risk = (
                 cve.get('cvss_score', 0) > Config.CVSS_THRESHOLD or
                 cve.get('in_cisa_kev', False) or
-                cve.get('epss_score', 0) > Config.EPSS_THRESHOLD
+                cve.get('epss_score', 0) >= Config.EPSS_THRESHOLD
             )
 
             if is_high_risk:
