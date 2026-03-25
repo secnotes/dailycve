@@ -26,7 +26,14 @@ class CVECollector:
         # Initialize OpenAI client if API key is available
         openai_api_key = os.getenv('OPENAI_API_KEY')
         if openai_api_key:
-            self.openai_client = OpenAI(api_key=openai_api_key)
+            try:
+                self.openai_client = OpenAI(api_key=openai_api_key)
+            except Exception as e:
+                print(f"Warning: Could not initialize OpenAI client: {e}")
+                print("Continuing without AI enhancement...")
+                self.openai_client = None
+        else:
+            self.openai_client = None
 
         # Load CISA KEV data
         self.load_cisa_kev()
@@ -50,52 +57,98 @@ class CVECollector:
         except Exception as e:
             print(f"Error loading CISA KEV: {e}")
 
-    def load_epss_data(self):
-        """Load EPSS scores from public source"""
+    def load_epss_data_batch(self, cve_ids):
+        """Load EPSS scores for specific CVE IDs using the FIRST API"""
         try:
-            # Get yesterday's date for EPSS data (as today's might not be available yet)
-            yesterday = datetime.now() - timedelta(days=1)
-            date_str = yesterday.strftime("%Y-%m-%d")
+            if not cve_ids:
+                return
 
-            url = f"{Config.EPSS_BASE_URL}epss_scores-{date_str}.csv.gz"
-            response = requests.get(url)
+            # Process CVEs in smaller batches to avoid potential API issues
+            batch_size = 20  # Smaller batch size to reduce API load
+            for i in range(0, len(cve_ids), batch_size):
+                batch = cve_ids[i:i + batch_size]
 
-            if response.status_code != 200:
-                # Try alternative date format (without gzip)
-                url = f"{Config.EPSS_BASE_URL}epss_scores-{date_str}.csv"
-                response = requests.get(url)
+                # Format CVE IDs as comma-separated string
+                cve_list = ','.join(batch)
 
-            if response.status_code == 200:
-                # Check if response is actually CSV text and not binary content
-                content_type = response.headers.get('content-type', '')
-                if 'text' not in content_type and 'csv' not in content_type:
-                    # Attempt to check if the content looks like CSV
-                    try:
-                        # Try to decode and check the first few characters
-                        text_content = response.text
-                        if not text_content.startswith("# EPSS"):
-                            print("EPSS data does not appear to be in expected CSV format, skipping...")
-                            return
-                    except UnicodeDecodeError:
-                        print("EPSS data appears to be binary, skipping...")
-                        return
+                # Use the FIRST API to get EPSS scores
+                url = f"https://api.first.org/data/v1/epss?cve={cve_list}"
 
-                # Parse CSV content
-                lines = response.text.strip().split('\n')
-                for line in lines[1:]:  # Skip header
-                    # Check if line contains expected CSV format
-                    if ',' in line:
-                        parts = line.strip().split(',')
-                        if len(parts) >= 2:
-                            try:
-                                cve_id = parts[0].strip()
-                                epss_score = float(parts[1].strip())
-                                self.epss_data[cve_id] = epss_score
-                            except ValueError:
-                                # Skip lines that don't have proper float values
-                                continue
+                try:
+                    response = requests.get(url, timeout=30)
+                except requests.exceptions.SSLError as ssl_err:
+                    print(f"SSL error when requesting EPSS data: {ssl_err}")
+                    print(f"Retrying with reduced batch size for {len(batch)} CVEs...")
+                    # Retry one by one for the current batch
+                    for single_cve in batch:
+                        single_url = f"https://api.first.org/data/v1/epss?cve={single_cve}"
+                        try:
+                            single_response = requests.get(single_url, timeout=30)
+                            if single_response.status_code == 200:
+                                data = single_response.json()
+                                if 'data' in data:
+                                    for item in data['data']:
+                                        cve_id = item.get('cve')
+                                        epss_score_str = item.get('epss')
+                                        if cve_id and epss_score_str is not None:
+                                            try:
+                                                epss_score = float(epss_score_str)
+                                                self.epss_data[cve_id] = epss_score
+                                            except ValueError:
+                                                continue
+                        except Exception as e:
+                            print(f"Error getting EPSS for {single_cve}: {e}")
+                    continue  # Skip processing this batch since we handled individually
+                except Exception as e:
+                    print(f"Error fetching batch of {len(batch)} CVEs: {e}")
+                    continue
+
+                if response.status_code == 200:
+                    data = response.json()
+
+                    # Parse the response and populate epss_data dictionary
+                    if 'data' in data:
+                        for item in data['data']:
+                            cve_id = item.get('cve')
+                            epss_score_str = item.get('epss')
+
+                            if cve_id and epss_score_str is not None:
+                                try:
+                                    epss_score = float(epss_score_str)
+                                    self.epss_data[cve_id] = epss_score
+                                except ValueError:
+                                    # Skip entries with invalid EPSS score values
+                                    continue
+                else:
+                    print(f"Warning: Failed to fetch EPSS data for batch. Status code: {response.status_code}")
+
+                    # Still try individual requests for this batch
+                    for single_cve in batch:
+                        single_url = f"https://api.first.org/data/v1/epss?cve={single_cve}"
+                        try:
+                            single_response = requests.get(single_url, timeout=30)
+                            if single_response.status_code == 200:
+                                data = single_response.json()
+                                if 'data' in data:
+                                    for item in data['data']:
+                                        cve_id = item.get('cve')
+                                        epss_score_str = item.get('epss')
+                                        if cve_id and epss_score_str is not None:
+                                            try:
+                                                epss_score = float(epss_score_str)
+                                                self.epss_data[cve_id] = epss_score
+                                            except ValueError:
+                                                continue
+                        except Exception as e:
+                            print(f"Error getting EPSS for {single_cve}: {e}")
         except Exception as e:
             print(f"Error loading EPSS data: {str(e).encode('ascii', 'ignore').decode('ascii')}")
+
+    def load_epss_data(self):
+        """Load EPSS scores from public source - kept for compatibility"""
+        # This method is now deprecated since we're fetching EPSS data on-demand for specific CVEs
+        # Keeping it for backward compatibility but it does nothing now
+        pass
 
     def get_cvelistv5_cves(self, days=1):
         """Fetch CVEs from CVEProject/cvelistV5"""
@@ -228,21 +281,25 @@ class CVECollector:
                                         else:
                                             entry_type = 'published'
 
-                                        # Check if it's high risk
-                                        is_high_risk = (
+                                        # Check if it's high risk (based only on available data at collection time)
+                                        # Full evaluation with EPSS happens after batch EPSS retrieval
+                                        is_high_risk_initial = (
                                             cvss_score > Config.CVSS_THRESHOLD or
-                                            cve_id in self.cisa_kev_list or
-                                            (cve_id in self.epss_data and self.epss_data[cve_id] > Config.EPSS_THRESHOLD)
+                                            cve_id in self.cisa_kev_list
                                         )
 
-                                        if is_high_risk:
+                                        # Include in results if it's high risk based on current data
+                                        # or if it has CVSS score > 0 (we might later find high EPSS)
+                                        include_in_results = is_high_risk_initial or cvss_score > 0
+
+                                        if include_in_results:
                                             # Enhance description with AI if available, otherwise use original description
                                             enhanced_description = self.enhance_description_with_ai(cve_id, description)
                                             cves.append({
                                                 'id': cve_id,
                                                 'description': enhanced_description,
                                                 'cvss_score': cvss_score,
-                                                'epss_score': self.epss_data.get(cve_id, 0),
+                                                'epss_score': 0,  # Will be updated later
                                                 'in_cisa_kev': cve_id in self.cisa_kev_list,
                                                 'vendors': list(vendors),
                                                 'products': list(products),  # Keep products for processing but we'll not use them in the UI
@@ -437,8 +494,30 @@ class CVECollector:
                 cve['description'] = self.enhance_description_with_ai(cve_id, cve['description'])
                 all_cves[cve_id] = cve
 
-        # Convert to list and sort by the most recent date (either published or last modified)
-        result = list(all_cves.values())
+        # Now that we have all CVEs, fetch their EPSS scores in batches
+        cve_ids = list(all_cves.keys())
+        print(f"Fetching EPSS scores for {len(cve_ids)} CVEs...")
+        self.load_epss_data_batch(cve_ids)
+
+        # Update each CVE with the fetched EPSS score and re-evaluate high-risk status
+        result = []
+        for cve in all_cves.values():
+            cve_id = cve['id']
+            if cve_id in self.epss_data:
+                cve['epss_score'] = self.epss_data[cve_id]
+            else:
+                # If no EPSS score is found, default to 0
+                cve['epss_score'] = 0
+
+            # Now check if it qualifies as high-risk with complete information
+            is_high_risk = (
+                cve.get('cvss_score', 0) > Config.CVSS_THRESHOLD or
+                cve.get('in_cisa_kev', False) or
+                cve.get('epss_score', 0) > Config.EPSS_THRESHOLD
+            )
+
+            if is_high_risk:
+                result.append(cve)
 
         # Sort by the more recent of published_date or last_modified date
         def get_sort_date(cve):
@@ -598,21 +677,25 @@ class CVECollector:
                                         else:
                                             entry_type = 'published'
 
-                                        # Check if it's high risk
-                                        is_high_risk = (
+                                        # Check if it's high risk (based only on available data at collection time)
+                                        # Full evaluation with EPSS happens after batch EPSS retrieval
+                                        is_high_risk_initial = (
                                             cvss_score > Config.CVSS_THRESHOLD or
-                                            cve_id in self.cisa_kev_list or
-                                            (cve_id in self.epss_data and self.epss_data[cve_id] > Config.EPSS_THRESHOLD)
+                                            cve_id in self.cisa_kev_list
                                         )
 
-                                        if is_high_risk:
+                                        # Include in results if it's high risk based on current data
+                                        # or if it has CVSS score > 0 (we might later find high EPSS)
+                                        include_in_results = is_high_risk_initial or cvss_score > 0
+
+                                        if include_in_results:
                                             # Enhance description with AI if available, otherwise use original description
                                             enhanced_description = self.enhance_description_with_ai(cve_id, description)
                                             cves.append({
                                                 'id': cve_id,
                                                 'description': enhanced_description,
                                                 'cvss_score': cvss_score,
-                                                'epss_score': self.epss_data.get(cve_id, 0),
+                                                'epss_score': 0,  # Will be updated later
                                                 'in_cisa_kev': cve_id in self.cisa_kev_list,
                                                 'vendors': list(vendors),
                                                 'products': list(products),  # Keep products for processing but we'll not use them in the UI

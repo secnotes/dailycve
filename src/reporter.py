@@ -3,11 +3,21 @@ from datetime import datetime
 from jinja2 import Template
 import html
 import re
+from decimal import Decimal, ROUND_HALF_UP
 
 def sanitize_vendor_id(vendor):
     """Sanitize vendor names to create safe IDs for HTML elements"""
     # Replace non-alphanumeric characters with underscores
     return re.sub(r'[^a-zA-Z0-9]', '_', vendor)
+
+def round_epss_score(score):
+    """Round EPSS score to 3 decimal places with proper rounding"""
+    if score is None:
+        return 0.0
+    # Convert to Decimal for precise rounding
+    decimal_score = Decimal(str(score))
+    rounded = decimal_score.quantize(Decimal('0.001'), rounding=ROUND_HALF_UP)
+    return float(rounded)
 
 def generate_markdown_report(cves, output_path='docs/reports/YYYY/daily_cve_YYYYMMDD.md'):
     """Generate Markdown report with CVE data"""
@@ -64,7 +74,8 @@ def generate_markdown_report(cves, output_path='docs/reports/YYYY/daily_cve_YYYY
         vendor_list = ', '.join(cve.get('vendors', [])) if cve.get('vendors') else 'N/A'
 
         md_content += f"## {cve['id']}\n\n"
-        md_content += f"**CVSS Score:** {cve.get('cvss_score', 0):.1f} | **Status:** {status_text} | **Vendors:** {vendor_list}\n\n"
+        # Add both CVSS and EPSS scores to the markdown report
+        md_content += f"**CVSS Score:** {cve.get('cvss_score', 0):.1f} | **EPSS Score:** {round_epss_score(cve.get('epss_score', 0)):.3f} | **Status:** {status_text} | **Vendors:** {vendor_list}\n\n"
         md_content += f"{cve.get('description', 'No description available')}\n\n"
 
         # Add publication and modification dates
@@ -278,6 +289,7 @@ def generate_html_report(cves, output_path='index.html'):
             display: flex;
             flex-direction: column;
             box-sizing: border-box; /* 确保padding包含在高度内 */
+            min-height: 320px; /* 设置最小高度以保持一致性 */
         }
 
         .cve-card.filtered-in {
@@ -295,6 +307,7 @@ def generate_html_report(cves, output_path='index.html'):
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-shrink: 0; /* 防止头部被压缩 */
         }
 
         .cve-id {
@@ -617,14 +630,12 @@ def generate_html_report(cves, output_path='index.html'):
 
                             <!-- Group all other content together to align at bottom -->
                             <div class="cve-content-group">
-                                {% if cve.cvss_score > 0 or cve.epss_score > 0 or cve.in_cisa_kev %}
+                                {% if cve.cvss_score >= 0 or cve.epss_score > 0 or cve.in_cisa_kev %}
                                 <div class="cve-metrics">
-                                    {% if cve.cvss_score > 0 %}
-                                        <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS({{ cve.cvss_score }})">🛡️ CVSS: {{ "%.1f"|format(cve.cvss_score) }}</span>
-                                    {% endif %}
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS({{ cve.cvss_score }})">🛡️ CVSS: {{ "%.1f"|format(cve.cvss_score) }}</span>
 
                                     {% if cve.epss_score > 0 %}
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS({{ "%.3f"|format(cve.epss_score) }})">📈 EPSS: {{ "%.3f"|format(cve.epss_score) }}</span>
+                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS({{ "%.3f"|format(round_epss(cve.epss_score)) }})">📈 EPSS: {{ "%.3f"|format(round_epss(cve.epss_score)) }}</span>
                                     {% endif %}
 
                                     {% if cve.in_cisa_kev %}
@@ -654,10 +665,10 @@ def generate_html_report(cves, output_path='index.html'):
 
                                 <div class="cve-links">
                                     <div class="link-item">
-                                        <a href="https://nvd.nist.gov/vuln/detail/{{ cve.id }}" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                        <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name={{ cve.id }}" target="_blank" class="link-btn">📝 MITRE CVE</a>
                                     </div>
                                     <div class="link-item">
-                                        <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name={{ cve.id }}" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                        <a href="https://nvd.nist.gov/vuln/detail/{{ cve.id }}" target="_blank" class="link-btn">🔍 NVD Details</a>
                                     </div>
                                     {% if cve.epss_score > 0 %}
                                     <div class="link-item">
@@ -1129,6 +1140,7 @@ def generate_html_report(cves, output_path='index.html'):
     # Create template and add our custom filter
     template = Template(html_template_str)
     template.globals['sanitize_vendor_id'] = sanitize_vendor_id
+    template.globals['round_epss'] = round_epss_score
 
     # Calculate statistics
     high_risk_count = sum(1 for cve in cves if cve.get('cvss_score', 0) > 7.0)
