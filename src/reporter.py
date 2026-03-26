@@ -22,13 +22,23 @@ def round_epss_score(score):
 
 
 def convert_markdown_code_blocks(text):
-    """Convert markdown code blocks (backticks) to HTML <code> tags"""
-    # Replace inline code blocks marked with single backticks
+    """Convert markdown code blocks (backticks) to HTML <code> and <pre><code> tags"""
     import re
-    # Pattern to match text between backticks
-    pattern = r'`(.*?)`'
-    # Replace with <code> tags
-    result = re.sub(pattern, r'<code>\1</code>', text)
+
+    # First, handle triple backtick blocks (```code```) - these should become <pre><code> blocks
+    # This handles both indented and non-indented triple backticks
+    pattern_block = r'```(\w*)\n?(.*?)```'
+    def replace_block(match):
+        lang = match.group(1)  # Language identifier if present
+        code = match.group(2)
+        return f'<pre><code class="{lang}">{html.escape(code.strip())}</code></pre>'
+
+    result = re.sub(pattern_block, replace_block, text, flags=re.DOTALL)
+
+    # Then, handle inline code (single backticks) - these should remain as <code> spans
+    pattern_inline = r'`([^`]+)`'
+    result = re.sub(pattern_inline, r'<code>\1</code>', result)
+
     return result
 
 def generate_markdown_report(cves, output_path='docs/reports/YYYY/daily_cve_YYYYMMDD.md', total_cve_count=None):
@@ -533,6 +543,35 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             flex-shrink: 0; /* 防止被压缩 */
         }
 
+        /* Code block styling */
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', Consolas, Monaco, monospace;
+            font-size: 0.9em;
+            color: #d6336c;
+            border: 1px solid #eaeaea;
+        }
+
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 12px;
+            overflow: auto;
+            font-family: 'Courier New', Consolas, Monaco, monospace;
+            line-height: 1.4;
+            margin: 10px 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            border: none;
+            color: inherit;
+        }
+
         /* Container for elements that should be grouped at the bottom */
         .cve-content-group {
             display: flex;
@@ -732,7 +771,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         <div class="main-content">
             <header>
                 <h1>🔍 Daily CVE Report - {{ date }}</h1>
-                <p>High-Risk Vulnerabilities Collected from Multiple Sources</p>
+                <p>An advanced automated vulnerability monitoring system that sources data from MITRE CVE,<br />enabling quick filtering of high-risk vulnerabilities with intuitive visual reports.</p>
             </header>
 
             <div class="summary-box">
@@ -1374,7 +1413,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
 
     # Sort vendors by count and limit to top 19
     sorted_vendors = sorted(vendor_counts.items(), key=lambda x: x[1], reverse=True)
-    top_vendors = dict(sorted_vendors[:19])  # Top 19 vendors
+    top_vendors = dict(sorted_vendors[:15])  # Top 15 vendors
     all_sorted_vendors = dict(sorted_vendors)  # All vendors sorted by count
 
     # Prepare data for template
