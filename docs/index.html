@@ -105,8 +105,8 @@
             font-size: 0.9em;
         }
 
-        .filter-section {
-
+        .filter-section:not(:last-child) {
+            margin-bottom: 30px;
         }
 
         .filter-title {
@@ -146,6 +146,7 @@
             margin: 2px 5px 2px 0;
             display: inline-block;
             cursor: pointer;
+            font-weight: bold;
         }
 
         .filter-high {
@@ -157,6 +158,7 @@
             margin: 2px 5px 2px 0;
             display: inline-block;
             cursor: pointer;
+            font-weight: bold;
         }
 
         .filter-medium {
@@ -168,6 +170,7 @@
             margin: 2px 5px 2px 0;
             display: inline-block;
             cursor: pointer;
+            font-weight: bold;
         }
 
         .filter-low {
@@ -179,6 +182,7 @@
             margin: 2px 5px 2px 0;
             display: inline-block;
             cursor: pointer;
+            font-weight: bold;
         }
 
         /* Status filter styles */
@@ -198,6 +202,27 @@
             margin: 2px 0;
             border-radius: 4px;
             display: block;
+        }
+
+        /* Card-style metric tags for sidebar */
+        .filter-metric-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 500;
+            cursor: pointer;
+            margin: 2px 5px 2px 0;
+        }
+
+        .filter-tag-exp {
+            background-color: #fff3e0;
+            color: #f57c00;
+        }
+
+        .filter-tag-cvss {
+            background-color: #ffebee;
+            color: #c62828;
         }
 
         .summary-box {
@@ -593,7 +618,7 @@
 
             <div class="summary-box">
                 <h2>📊 Summary</h2>
-                <p><strong>Report Generated:</strong> 2026-03-26 20:48:35</p>
+                <p><strong>Report Generated:</strong> 2026-03-26 21:09:29</p>
 
                 <div class="summary-stats">
                     <div class="stat-card" onclick="applySingleFilter('all')">
@@ -1428,7 +1453,7 @@
                          data-epss="7e-05"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="red hat,operator-framework">
+                         data-vendors="operator-framework,red hat">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-7195</div>
                             <div class="cve-severity severity-medium">Medium</div>
@@ -1465,9 +1490,9 @@ In affected images, the /etc/passwd file is created during build time with group
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('red hat')">red hat</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('operator-framework')">operator-framework</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('red hat')">red hat</span>
                                     
                                 </div>
                                 
@@ -14565,7 +14590,7 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                          data-epss="0.00034"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="nvidia,all">
+                         data-vendors="all,nvidia">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-33238</div>
                             <div class="cve-severity severity-high">High</div>
@@ -14600,9 +14625,9 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('all')">all</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
                                     
                                 </div>
                                 
@@ -14707,7 +14732,7 @@ NOTE: The vendor was contacted several times to verifying fixing process but did
                          data-epss="0.00034"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="nvidia,all">
+                         data-vendors="all,nvidia">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-33254</div>
                             <div class="cve-severity severity-high">High</div>
@@ -14742,9 +14767,9 @@ NOTE: The vendor was contacted several times to verifying fixing process but did
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('all')">all</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
                                     
                                 </div>
                                 
@@ -14847,7 +14872,7 @@ NOTE: The vendor was contacted several times to verifying fixing process but did
                          data-epss="0.00042"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="tenable, inc.,64 bit,linux">
+                         data-vendors="64 bit,tenable, inc.,linux">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-4433</div>
                             <div class="cve-severity severity-low">Low</div>
@@ -14882,9 +14907,9 @@ NOTE: The vendor was contacted several times to verifying fixing process but did
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('tenable, inc.')">tenable, inc.</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('64 bit')">64 bit</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('tenable, inc.')">tenable, inc.</span>
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
                                     
@@ -14920,7 +14945,7 @@ NOTE: The vendor was contacted several times to verifying fixing process but did
                          data-epss="0.00038"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="nvidia,all">
+                         data-vendors="all,nvidia">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24158</div>
                             <div class="cve-severity severity-high">High</div>
@@ -14955,9 +14980,9 @@ NOTE: The vendor was contacted several times to verifying fixing process but did
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('all')">all</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
                                     
                                 </div>
                                 
@@ -14991,7 +15016,7 @@ NOTE: The vendor was contacted several times to verifying fixing process but did
                          data-epss="0.00061"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="nvidia,all">
+                         data-vendors="all,nvidia">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24141</div>
                             <div class="cve-severity severity-high">High</div>
@@ -15026,9 +15051,9 @@ NOTE: The vendor was contacted several times to verifying fixing process but did
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('all')">all</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
                                     
                                 </div>
                                 
@@ -22363,7 +22388,7 @@ unauthorized disclosure and modification of certain information.
                          data-epss="0.00028"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="hitachi,linux">
+                         data-vendors="linux,hitachi">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-1166</div>
                             <div class="cve-severity severity-medium">Medium</div>
@@ -22398,9 +22423,9 @@ unauthorized disclosure and modification of certain information.
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('hitachi')">hitachi</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('hitachi')">hitachi</span>
                                     
                                 </div>
                                 
@@ -22434,7 +22459,7 @@ unauthorized disclosure and modification of certain information.
                          data-epss="0.0004"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="64 bit,hitachi,linux">
+                         data-vendors="64 bit,linux,hitachi">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-2072</div>
                             <div class="cve-severity severity-high">High</div>
@@ -22471,9 +22496,9 @@ unauthorized disclosure and modification of certain information.
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('64 bit')">64 bit</span>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('hitachi')">hitachi</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('hitachi')">hitachi</span>
                                     
                                 </div>
                                 
@@ -23205,7 +23230,7 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="codra,windows">
+                         data-vendors="windows,codra">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-4760</div>
                             <div class="cve-severity severity-high">High</div>
@@ -23263,9 +23288,9 @@ Please refer to security bulletin BS-035, available on the Panorama CSIRT websit
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('codra')">codra</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('windows')">windows</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('codra')">codra</span>
                                     
                                 </div>
                                 
@@ -23295,7 +23320,7 @@ Please refer to security bulletin BS-035, available on the Panorama CSIRT websit
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="codra,windows">
+                         data-vendors="windows,codra">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-4761</div>
                             <div class="cve-severity severity-low">Low</div>
@@ -23343,9 +23368,9 @@ Please refer to security bulletin BS-036, available on the Panorama CSIRT websit
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('codra')">codra</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('windows')">windows</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('codra')">codra</span>
                                     
                                 </div>
                                 
@@ -24686,7 +24711,7 @@ Please refer to security bulletin BS-036, available on the Panorama CSIRT websit
                          data-epss="0.00012"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="red hat,gnu">
+                         data-vendors="gnu,red hat">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-61662</div>
                             <div class="cve-severity severity-high">High</div>
@@ -24721,9 +24746,9 @@ Please refer to security bulletin BS-036, available on the Panorama CSIRT websit
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('red hat')">red hat</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('gnu')">gnu</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('red hat')">red hat</span>
                                     
                                 </div>
                                 
@@ -25038,7 +25063,7 @@ privileges assigned to it in the /etc/exports file at mount time. In particular,
                          data-epss="0.00035"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="nvidia,linux">
+                         data-vendors="linux,nvidia">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-33244</div>
                             <div class="cve-severity severity-critical">Critical</div>
@@ -25073,9 +25098,9 @@ privileges assigned to it in the /etc/exports file at mount time. In particular,
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
                                     
                                 </div>
                                 
@@ -25880,20 +25905,20 @@ Avoid direct <code>${{ ... }}</code> interpolation inside <code>run:</code> for 
         <div class="sidebar">
             <div class="filter-section">
                 <div class="filter-title">🛡️ Filter by CVSS Severity</div>
-                <ul class="filter-list">
-                    <li class="filter-item filter-critical" id="filter-critical" onclick="applySingleFilterBySeverity('critical')">Critical (CVSS ≥ 9.0) (32)</li>
-                    <li class="filter-item filter-high" id="filter-high" onclick="applySingleFilterBySeverity('high')">High (7.0 ≤ CVSS < 9.0) (147)</li>
-                    <li class="filter-item filter-medium" id="filter-medium" onclick="applySingleFilterBySeverity('medium')">Medium (4.0 ≤ CVSS < 7.0) (179)</li>
-                    <li class="filter-item filter-low" id="filter-low" onclick="applySingleFilterBySeverity('low')">Low (0 < CVSS < 4.0) (17)</li>
-                </ul>
+                <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                    <span class="filter-item filter-critical" id="filter-critical" onclick="applySingleFilterBySeverity('critical')">Critical (32)</span>
+                    <span class="filter-item filter-high" id="filter-high" onclick="applySingleFilterBySeverity('high')">High (147)</span>
+                    <span class="filter-item filter-medium" id="filter-medium" onclick="applySingleFilterBySeverity('medium')">Medium (179)</span>
+                    <span class="filter-item filter-low" id="filter-low" onclick="applySingleFilterBySeverity('low')">Low (17)</span>
+                </div>
             </div>
 
             <div class="filter-section">
                 <div class="filter-title">🏷️ Filter by Status</div>
-                <ul class="filter-list">
-                    <li class="filter-item filter-modified-item" id="filter-modified" onclick="toggleStatusFilter('modified')">Recently Modified (236)</li>
-                    <li class="filter-item filter-published-item" id="filter-published" onclick="toggleStatusFilter('published')">Newly Published (139)</li>
-                </ul>
+                <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                    <span class="filter-metric-tag filter-tag-exp" id="filter-modified" onclick="toggleStatusFilter('modified')">🔄 Recently Modified (236)</span>
+                    <span class="filter-metric-tag filter-tag-cvss" id="filter-published" onclick="toggleStatusFilter('published')">🆕 Newly Published (139)</span>
+                </div>
             </div>
 
             
@@ -26036,9 +26061,9 @@ Avoid direct <code>${{ ... }}</code> interpolation inside <code>run:</code> for 
                     
                     <li class="filter-item extra-vendor" id="filter-vendor-hitachi" onclick="toggleVendorFilter('hitachi')" style="display:none;">hitachi (2)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-codra" onclick="toggleVendorFilter('codra')" style="display:none;">codra (2)</li>
-                    
                     <li class="filter-item extra-vendor" id="filter-vendor-windows" onclick="toggleVendorFilter('windows')" style="display:none;">windows (2)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-codra" onclick="toggleVendorFilter('codra')" style="display:none;">codra (2)</li>
                     
                     <li class="filter-item extra-vendor" id="filter-vendor-doramart" onclick="toggleVendorFilter('doramart')" style="display:none;">doramart (2)</li>
                     
@@ -26711,7 +26736,7 @@ Avoid direct <code>${{ ... }}</code> interpolation inside <code>run:</code> for 
             </a>
         </div>
         <small>
-            Daily CVE Report - Generated on 2026-03-26 20:48:35 |
+            Daily CVE Report - Generated on 2026-03-26 21:09:29 |
             <a href="https://github.com/secnotes/dailycve" style="color: #666; text-decoration: none;">GitHub Project</a>
         </small>
     </footer>

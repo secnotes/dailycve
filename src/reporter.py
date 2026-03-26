@@ -224,8 +224,8 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             font-size: 0.9em;
         }
 
-        .filter-section {
-
+        .filter-section:not(:last-child) {
+            margin-bottom: 30px;
         }
 
         .filter-title {
@@ -265,6 +265,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             margin: 2px 5px 2px 0;
             display: inline-block;
             cursor: pointer;
+            font-weight: bold;
         }
 
         .filter-high {
@@ -276,6 +277,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             margin: 2px 5px 2px 0;
             display: inline-block;
             cursor: pointer;
+            font-weight: bold;
         }
 
         .filter-medium {
@@ -287,6 +289,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             margin: 2px 5px 2px 0;
             display: inline-block;
             cursor: pointer;
+            font-weight: bold;
         }
 
         .filter-low {
@@ -298,6 +301,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             margin: 2px 5px 2px 0;
             display: inline-block;
             cursor: pointer;
+            font-weight: bold;
         }
 
         /* Status filter styles */
@@ -317,6 +321,27 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             margin: 2px 0;
             border-radius: 4px;
             display: block;
+        }
+
+        /* Card-style metric tags for sidebar */
+        .filter-metric-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 500;
+            cursor: pointer;
+            margin: 2px 5px 2px 0;
+        }
+
+        .filter-tag-exp {
+            background-color: #fff3e0;
+            color: #f57c00;
+        }
+
+        .filter-tag-cvss {
+            background-color: #ffebee;
+            color: #c62828;
         }
 
         .summary-box {
@@ -823,20 +848,20 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         <div class="sidebar">
             <div class="filter-section">
                 <div class="filter-title">🛡️ Filter by CVSS Severity</div>
-                <ul class="filter-list">
-                    <li class="filter-item filter-critical" id="filter-critical" onclick="applySingleFilterBySeverity('critical')">Critical (CVSS ≥ 9.0) ({{ critical_count }})</li>
-                    <li class="filter-item filter-high" id="filter-high" onclick="applySingleFilterBySeverity('high')">High (7.0 ≤ CVSS < 9.0) ({{ high_count }})</li>
-                    <li class="filter-item filter-medium" id="filter-medium" onclick="applySingleFilterBySeverity('medium')">Medium (4.0 ≤ CVSS < 7.0) ({{ medium_count }})</li>
-                    <li class="filter-item filter-low" id="filter-low" onclick="applySingleFilterBySeverity('low')">Low (0 < CVSS < 4.0) ({{ low_count }})</li>
-                </ul>
+                <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                    <span class="filter-item filter-critical" id="filter-critical" onclick="applySingleFilterBySeverity('critical')">Critical ({{ critical_count }})</span>
+                    <span class="filter-item filter-high" id="filter-high" onclick="applySingleFilterBySeverity('high')">High ({{ high_count }})</span>
+                    <span class="filter-item filter-medium" id="filter-medium" onclick="applySingleFilterBySeverity('medium')">Medium ({{ medium_count }})</span>
+                    <span class="filter-item filter-low" id="filter-low" onclick="applySingleFilterBySeverity('low')">Low ({{ low_count }})</span>
+                </div>
             </div>
 
             <div class="filter-section">
                 <div class="filter-title">🏷️ Filter by Status</div>
-                <ul class="filter-list">
-                    <li class="filter-item filter-modified-item" id="filter-modified" onclick="toggleStatusFilter('modified')">Recently Modified ({{ modified_count }})</li>
-                    <li class="filter-item filter-published-item" id="filter-published" onclick="toggleStatusFilter('published')">Newly Published ({{ published_count }})</li>
-                </ul>
+                <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                    <span class="filter-metric-tag filter-tag-exp" id="filter-modified" onclick="toggleStatusFilter('modified')">🔄 Recently Modified ({{ modified_count }})</span>
+                    <span class="filter-metric-tag filter-tag-cvss" id="filter-published" onclick="toggleStatusFilter('published')">🆕 Newly Published ({{ published_count }})</span>
+                </div>
             </div>
 
             {% if all_vendors_list %}
