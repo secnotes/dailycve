@@ -219,7 +219,7 @@ def generate_html_report(cves, output_path='index.html'):
         }
 
         .filter-section {
-            margin-bottom: 25px;
+
         }
 
         .filter-title {
@@ -297,7 +297,7 @@ def generate_html_report(cves, output_path='index.html'):
             transition: transform 0.2s, box-shadow 0.2s;
             background: white;
             display: none; /* Initially hide all cards */
-            max-height: 500px; /* 限制卡片最大高度为500px */
+            max-height: 700px; /* 增加卡片最大高度以容纳更多内容 */
             display: flex;
             flex-direction: column;
             box-sizing: border-box; /* 确保padding包含在高度内 */
@@ -571,6 +571,44 @@ def generate_html_report(cves, output_path='index.html'):
 
             .cve-metrics {
                 width: 100%;
+            }
+
+            .cve-card {
+                max-height: none; /* 在移动设备上去除卡片最大高度限制，允许内容完全展开 */
+                min-height: auto; /* 让卡片高度适应内容 */
+            }
+
+            .cve-description {
+                -webkit-line-clamp: 10; /* 在移动设备上允许显示更多行文本 */
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* 针对更小的屏幕进行额外优化 */
+            .cve-card {
+                min-height: auto;
+            }
+
+            .cve-header {
+                padding: 12px 15px; /* 减少内边距 */
+            }
+
+            .cve-body {
+                padding: 15px; /* 减少内边距 */
+            }
+
+            .cve-description {
+                -webkit-line-clamp: 8; /* 在极小屏幕上显示较少的行数 */
+            }
+
+            .metric-tag {
+                padding: 3px 8px; /* 减少标签内边距 */
+                font-size: 0.75em; /* 稍微缩小字体 */
+            }
+
+            .cve-vendor-tag {
+                padding: 2px 6px; /* 减少供应商标签内边距 */
+                font-size: 0.75em; /* 稍微缩小字体 */
             }
         }
     </style>
