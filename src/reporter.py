@@ -259,37 +259,45 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         .filter-critical {
             background-color: #ffebee;
             color: #c62828;
-            padding: 4px 8px;
-            margin: 2px 0;
-            border-radius: 4px;
-            display: block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px 5px 2px 0;
+            display: inline-block;
+            cursor: pointer;
         }
 
         .filter-high {
             background-color: #fff3e0;
             color: #e65100;
-            padding: 4px 8px;
-            margin: 2px 0;
-            border-radius: 4px;
-            display: block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px 5px 2px 0;
+            display: inline-block;
+            cursor: pointer;
         }
 
         .filter-medium {
             background-color: #fff8e1;
             color: #f57f17;
-            padding: 4px 8px;
-            margin: 2px 0;
-            border-radius: 4px;
-            display: block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px 5px 2px 0;
+            display: inline-block;
+            cursor: pointer;
         }
 
         .filter-low {
             background-color: #e8f5e9;
             color: #2e7d32;
-            padding: 4px 8px;
-            margin: 2px 0;
-            border-radius: 4px;
-            display: block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px 5px 2px 0;
+            display: inline-block;
+            cursor: pointer;
         }
 
         /* Status filter styles */
