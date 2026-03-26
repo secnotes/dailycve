@@ -618,11 +618,11 @@
 
             <div class="summary-box">
                 <h2>📊 Summary</h2>
-                <p><strong>Report Generated:</strong> 2026-03-26 21:09:29</p>
+                <p><strong>Report Generated:</strong> 2026-03-26 13:12:23</p>
 
                 <div class="summary-stats">
                     <div class="stat-card" onclick="applySingleFilter('all')">
-                        <div class="stat-number">375</div>
+                        <div class="stat-number">376</div>
                         <div>Total Vulnerabilities</div>
                     </div>
                     <div class="stat-card" onclick="applySingleFilter('high-risk')">
@@ -630,7 +630,7 @@
                         <div>High Risk (CVSS > 7.0)</div>
                     </div>
                     <div class="stat-card" onclick="toggleStatusFilter('cisa')">
-                        <div class="stat-number">0</div>
+                        <div class="stat-number">5</div>
                         <div>In CISA KEV</div>
                     </div>
                     <div class="stat-card" onclick="toggleStatusFilter('epss')">
@@ -1453,7 +1453,7 @@
                          data-epss="7e-05"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="operator-framework,red hat">
+                         data-vendors="red hat,operator-framework">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-7195</div>
                             <div class="cve-severity severity-medium">Medium</div>
@@ -1490,9 +1490,9 @@ In affected images, the /etc/passwd file is created during build time with group
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('operator-framework')">operator-framework</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('red hat')">red hat</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('operator-framework')">operator-framework</span>
                                     
                                 </div>
                                 
@@ -2274,7 +2274,7 @@ In affected images, the /etc/passwd file is created during build time with group
                     <div class="cve-card filtered-in" id="cve-CVE_2026_33017"
                          data-cvss="9.3"
                          data-epss="0.00592"
-                         data-cisa="false"
+                         data-cisa="true"
                          data-modified="True"
                          data-vendors="langflow-ai">
                         <div class="cve-header">
@@ -2297,6 +2297,8 @@ In affected images, the /etc/passwd file is created during build time with group
                                         <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.006)">📈 EPSS: 0.006</span>
                                     
 
+                                    
+                                        <span class="metric-tag tag-cisa" onclick="toggleStatusFilter('cisa')">🇺🇸 CISA KEV</span>
                                     
 
                                     
@@ -7333,7 +7335,7 @@ In affected images, the /etc/passwd file is created during build time with group
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                A vulnerability in the HTTP Server feature of Cisco IOS Software and Cisco IOS XE Software Release 3E could allow an authenticated, remote attacker to cause an affected device to reload unexpectedly, resulting in a denial of service (DoS) condition.
+                                A vulnerability in the HTTP Server feature of Cisco IOS Software and Cisco IOS XE Software Release 3E could allow an authenticated, remote attacker to cause an affected device to reload unexpectedly, resulting in a denial of service (DoS) condition.
  This vulnerability is due to improper validation of user-supplied input. An attacker could exploit this vulnerability by sending malformed HTTP requests to an affected device. A successful exploit could allow the attacker to cause a watchdog timer to expire and the device to reload, resulting in a DoS condition. To exploit this vulnerability, the attacker must have a valid user account.
                             </div>
 
@@ -7460,7 +7462,7 @@ In affected images, the /etc/passwd file is created during build time with group
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                A vulnerability in Cisco IOS XE Software for Cisco Meraki could allow a remote, unauthenticated attacker to view confidential device information.
+                                A vulnerability in Cisco IOS XE Software for Cisco Meraki could allow a remote, unauthenticated attacker to view confidential device information.
  This vulnerability is due to a device configuration upload being performed over an insecure tunnel. An attacker could exploit this vulnerability by conducting an on-path attack between the affected device and the Cisco Meraki Dashboard. A successful exploit could allow the attacker to view sensitive device configuration information.
                             </div>
 
@@ -7587,7 +7589,7 @@ In affected images, the /etc/passwd file is created during build time with group
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                A vulnerability in the Lobby Ambassador web-based management API of Cisco IOS XE Software could allow an authenticated, remote attacker to elevate their privileges and access management APIs that would not normally be available for Lobby Ambassador users. 
+                                A vulnerability in the Lobby Ambassador web-based management API of Cisco IOS XE Software could allow an authenticated, remote attacker to elevate their privileges and access management APIs that would not normally be available for Lobby Ambassador users. 
  This vulnerability exists because parameters that are received by an API endpoint are not sufficiently validated. An attacker could exploit this vulnerability by authenticating as a Lobby Ambassador user and sending a crafted HTTP request to an affected device. A successful exploit could allow the attacker to create a new user with privilege level 1 access to the web-based management API. The attacker would then be able to access the device with these new credentials and privileges.
                             </div>
 
@@ -9165,7 +9167,7 @@ This issue affects Kea versions 2.6.0 through 2.6.4 and 3.0.0 through 3.0.2.
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                A vulnerability in the web-based management interface of Cisco Catalyst SD-WAN Manager could allow an authenticated, remote attacker to conduct a cross-site scripting (XSS) attack against a user of the interface of an affected device.
+                                A vulnerability in the web-based management interface of Cisco Catalyst SD-WAN Manager could allow an authenticated, remote attacker to conduct a cross-site scripting (XSS) attack against a user of the interface of an affected device.
  This vulnerability is due to insufficient validation of user input. An attacker could exploit this vulnerability by persuading a user of the web-based management interface to click a crafted link. A successful exploit could allow the attacker to execute arbitrary script code in the context of the affected interface or access sensitive, browser-based information.
                             </div>
 
@@ -9227,7 +9229,7 @@ This issue affects Kea versions 2.6.0 through 2.6.4 and 3.0.0 through 3.0.2.
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                A vulnerability in the web-based Cisco IOx application hosting environment management interface of Cisco IOS XE Software could allow an authenticated, remote attacker to conduct a stored cross-site scripting (XSS) attack against a user of the web-based management interface of an affected device.
+                                A vulnerability in the web-based Cisco IOx application hosting environment management interface of Cisco IOS XE Software could allow an authenticated, remote attacker to conduct a stored cross-site scripting (XSS) attack against a user of the web-based management interface of an affected device.
  This vulnerability is due to insufficient validation of user-supplied input. An attacker could exploit this vulnerability by injecting malicious code into specific pages of the interface. A successful exploit could allow the attacker to execute arbitrary script code in the context of the affected interface or access sensitive, browser-based information. To exploit this vulnerability, the attacker must have valid administrative credentials.
                             </div>
 
@@ -9289,7 +9291,7 @@ This issue affects Kea versions 2.6.0 through 2.6.4 and 3.0.0 through 3.0.2.
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                A vulnerability in the web-based Cisco IOx application hosting environment management interface of Cisco IOS XE Software could allow an unauthenticated, remote attacker to perform a carriage return line feed (CRLF) injection attack against a user.
+                                A vulnerability in the web-based Cisco IOx application hosting environment management interface of Cisco IOS XE Software could allow an unauthenticated, remote attacker to perform a carriage return line feed (CRLF) injection attack against a user.
  This vulnerability is due to insufficient validation of user input. An attacker could exploit this vulnerability by sending crafted packets to an affected device. A successful exploit could allow the attacker to arbitrarily inject log entries, manipulate the structure of log files, or obscure legitimate log events.
                             </div>
 
@@ -9351,7 +9353,7 @@ This issue affects Kea versions 2.6.0 through 2.6.4 and 3.0.0 through 3.0.2.
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                A vulnerability in the Secure Copy Protocol (SCP) server feature of Cisco IOS XE Software could allow an authenticated, local attacker with low privileges to cause a denial of service (DoS) condition on an affected device.
+                                A vulnerability in the Secure Copy Protocol (SCP) server feature of Cisco IOS XE Software could allow an authenticated, local attacker with low privileges to cause a denial of service (DoS) condition on an affected device.
  This vulnerability is due to improper handling of a malformed SCP request. An attacker could exploit this vulnerability by issuing a crafted command through SSH. A successful exploit could allow the attacker to cause the device to reload unexpectedly, resulting in a DoS condition.
                             </div>
 
@@ -9413,7 +9415,7 @@ This issue affects Kea versions 2.6.0 through 2.6.4 and 3.0.0 through 3.0.2.
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                A vulnerability in the CLI of Cisco IOS XE Software could allow an authenticated, local attacker to cause a denial of service (DoS) condition on an affected device.
+                                A vulnerability in the CLI of Cisco IOS XE Software could allow an authenticated, local attacker to cause a denial of service (DoS) condition on an affected device.
  This vulnerability exists because incorrect privileges are associated with the start maintenance command. An attacker could exploit this vulnerability by accessing the management CLI of the affected device as a low-privileged user and using the start maintenance command. A successful exploit could allow the attacker to put the device in maintenance mode, which shuts down interfaces, resulting in a denial of service (DoS) condition. In case of exploitation, a device administrator can connect to the CLI and use the stop maintenance command to restore operations.
                             </div>
 
@@ -9475,8 +9477,8 @@ This issue affects Kea versions 2.6.0 through 2.6.4 and 3.0.0 through 3.0.2.
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                A vulnerability in the bootloader of Cisco IOS XE Software for Cisco Catalyst 9200 Series Switches, Cisco Catalyst ESS9300 Embedded Series Switches, Cisco Catalyst IE9310 and IE9320 Rugged Series Switches, and Cisco IE3500 and IE3505 Rugged Series Switches could allow an authenticated, local attacker with level-15 privileges or an unauthenticated attacker with physical access to an affected device to execute arbitrary code at boot time and break the chain of trust.
- This vulnerability is due to insufficient validation of software at boot time. An attacker could exploit this vulnerability by manipulating the loaded binaries on an affected device to bypass some of the integrity checks that are performed during the boot process. A successful exploit could allow the attacker to execute code that bypasses the requirement to run Cisco-signed images.
+                                A vulnerability in the bootloader of Cisco IOS XE Software for Cisco Catalyst 9200 Series Switches, Cisco Catalyst ESS9300 Embedded Series Switches, Cisco Catalyst IE9310 and IE9320 Rugged Series Switches, and Cisco IE3500 and IE3505 Rugged Series Switches could allow an authenticated, local attacker with level-15 privileges or an unauthenticated attacker with physical access to an affected device to execute arbitrary code at boot time and break the chain of trust.
+ This vulnerability is due to insufficient validation of software at boot time. An attacker could exploit this vulnerability by manipulating the loaded binaries on an affected device to bypass some of the integrity checks that are performed during the boot process. A successful exploit could allow the attacker to execute code that bypasses the requirement to run Cisco-signed images.
  Cisco has assigned this security advisory a Security Impact Rating (SIR) of High rather than Medium as the score indicates because this vulnerability allows an attacker to bypass a major security feature of a device.
                             </div>
 
@@ -9538,7 +9540,7 @@ This issue affects Kea versions 2.6.0 through 2.6.4 and 3.0.0 through 3.0.2.
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                A vulnerability in the TLS library of Cisco IOS XE Software could allow an unauthenticated, adjacent attacker to exhaust the available memory of an affected device.
+                                A vulnerability in the TLS library of Cisco IOS XE Software could allow an unauthenticated, adjacent attacker to exhaust the available memory of an affected device.
  This vulnerability is due to improper management of memory resources during TLS connection setup. An attacker could exploit this vulnerability by repeatedly triggering the conditions that cause the memory increase. This could be done in a variety of ways, such as by repeatedly attempting Extensible Authentication Protocol (EAP) authentication when local EAP is enabled on an affected device or by using a machine-in-the-middle attack and resetting TLS connections between the affected device and other devices. A successful exploit could allow the attacker to exhaust the available memory on an affected device, resulting in an unexpected reload and a denial of service (DoS) condition.
                             </div>
 
@@ -9590,7 +9592,7 @@ This issue affects Kea versions 2.6.0 through 2.6.4 and 3.0.0 through 3.0.2.
                     <div class="cve-card filtered-in" id="cve-CVE_2026_20131"
                          data-cvss="10"
                          data-epss="0.0065"
-                         data-cisa="false"
+                         data-cisa="true"
                          data-modified="True"
                          data-vendors="cisco">
                         <div class="cve-header">
@@ -9600,9 +9602,9 @@ This issue affects Kea versions 2.6.0 through 2.6.4 and 3.0.0 through 3.0.2.
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                A vulnerability in the web-based management interface of Cisco Secure Firewall Management Center (FMC) Software could allow an unauthenticated, remote attacker to execute arbitrary Java code as root on an affected device.
-
-This vulnerability is due to insecure deserialization of a user-supplied Java byte stream. An attacker could exploit this vulnerability by sending a crafted serialized Java object to the web-based management interface of an affected device. A successful exploit could allow the attacker to execute arbitrary code on the device and elevate privileges to root.
+                                A vulnerability in the web-based management interface of Cisco Secure Firewall Management Center (FMC) Software could allow an unauthenticated, remote attacker to execute arbitrary Java code as root on an affected device.
+
+This vulnerability is due to insecure deserialization of a user-supplied Java byte stream. An attacker could exploit this vulnerability by sending a crafted serialized Java object to the web-based management interface of an affected device. A successful exploit could allow the attacker to execute arbitrary code on the device and elevate privileges to root.
 Note: If the FMC management interface does not have public internet access, the attack surface that is associated with this vulnerability is reduced.
                             </div>
 
@@ -9616,6 +9618,8 @@ Note: If the FMC management interface does not have public internet access, the 
                                         <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.007)">📈 EPSS: 0.007</span>
                                     
 
+                                    
+                                        <span class="metric-tag tag-cisa" onclick="toggleStatusFilter('cisa')">🇺🇸 CISA KEV</span>
                                     
 
                                     
@@ -9672,7 +9676,7 @@ Note: If the FMC management interface does not have public internet access, the 
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                A vulnerability in the Internet Key Exchange version 2 (IKEv2) feature of Cisco IOS Software, Cisco IOS XE Software, Cisco Secure Firewall Adaptive Security Appliance (ASA) Software, and Cisco Secure Firewall Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to trigger a memory leak, resulting in a denial of service (DoS) condition on an affected device.
+                                A vulnerability in the Internet Key Exchange version 2 (IKEv2) feature of Cisco IOS Software, Cisco IOS XE Software, Cisco Secure Firewall Adaptive Security Appliance (ASA) Software, and Cisco Secure Firewall Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to trigger a memory leak, resulting in a denial of service (DoS) condition on an affected device.
  This vulnerability is due to improper parsing of IKEv2 packets. An attacker could exploit this vulnerability by sending crafted IKEv2 packets to an affected device. A successful exploit of Cisco IOS Software and IOS XE Software could allow the attacker to cause the affected device to reload, resulting in a DoS condition. A successful exploit of Cisco Secure Firewall ASA Software and Secure FTD Software could allow the attacker to partially exhaust system memory, resulting in system instability, such as the inability to establish new IKEv2 VPN sessions. A manual reboot of the device is required to recover from this condition.
                             </div>
 
@@ -9734,7 +9738,7 @@ Note: If the FMC management interface does not have public internet access, the 
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                A vulnerability in the processing of Control and Provisioning of Wireless Access Points (CAPWAP) packets of Cisco IOS XE Wireless Controller Software for the Catalyst CW9800 Family could allow an unauthenticated, remote attacker to cause a denial of service (DoS) condition on an affected device.
+                                A vulnerability in the processing of Control and Provisioning of Wireless Access Points (CAPWAP) packets of Cisco IOS XE Wireless Controller Software for the Catalyst CW9800 Family could allow an unauthenticated, remote attacker to cause a denial of service (DoS) condition on an affected device.
  This vulnerability is due to improper handling of a malformed CAPWAP packet. An attacker could exploit this vulnerability by sending a malformed CAPWAP packet to an affected device. A successful exploit could allow the attacker to cause the affected device to reload unexpectedly, resulting in a DoS condition.
                             </div>
 
@@ -9796,9 +9800,9 @@ Note: If the FMC management interface does not have public internet access, the 
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                A vulnerability in the DHCP snooping feature of Cisco IOS XE Software could allow an unauthenticated, remote attacker to cause BOOTP packets to be forwarded between VLANs, resulting in a denial of service (DoS) condition. 
- This vulnerability is due to improper handling of BOOTP packets on Cisco Catalyst 9000 Series Switches. An attacker could exploit this vulnerability by sending BOOTP request packets to an affected device. A successful exploit could allow an attacker to forward BOOTP packets from one VLAN to another, resulting in BOOTP VLAN leakage and potentially leading to high CPU utilization. This makes the device unreachable (either through console or remote management) and unable to forward traffic, resulting in a DoS condition. 
- Note: This vulnerability can be exploited with either unicast or broadcast BOOTP packets.
+                                A vulnerability in the DHCP snooping feature of Cisco IOS XE Software could allow an unauthenticated, remote attacker to cause BOOTP packets to be forwarded between VLANs, resulting in a denial of service (DoS) condition. 
+ This vulnerability is due to improper handling of BOOTP packets on Cisco Catalyst 9000 Series Switches. An attacker could exploit this vulnerability by sending BOOTP request packets to an affected device. A successful exploit could allow an attacker to forward BOOTP packets from one VLAN to another, resulting in BOOTP VLAN leakage and potentially leading to high CPU utilization. This makes the device unreachable (either through console or remote management) and unable to forward traffic, resulting in a DoS condition. 
+ Note: This vulnerability can be exploited with either unicast or broadcast BOOTP packets.
    There are workarounds that address this vulnerability.
                             </div>
 
@@ -10109,12 +10113,83 @@ Note: If the FMC management interface does not have public internet access, the 
                         </div>
                     </div>
                     
+                    <div class="cve-card filtered-in" id="cve-CVE_2026_20700"
+                         data-cvss="0"
+                         data-epss="0.00308"
+                         data-cisa="true"
+                         data-modified="True"
+                         data-vendors="apple">
+                        <div class="cve-header">
+                            <div class="cve-id">CVE-2026-20700</div>
+                            <div class="cve-severity severity-low">Low</div>
+                        </div>
+
+                        <div class="cve-body">
+                            <div class="cve-description">
+                                A memory corruption issue was addressed with improved state management. This issue is fixed in iOS 26.3 and iPadOS 26.3, macOS Tahoe 26.3, tvOS 26.3, visionOS 26.3, watchOS 26.3. An attacker with memory write capability may be able to execute arbitrary code. Apple is aware of a report that this issue may have been exploited in an extremely sophisticated attack against specific targeted individuals on versions of iOS before iOS 26. CVE-2025-14174 and CVE-2025-43529 were also issued in response to this report.
+                            </div>
+
+                            <!-- Group all other content together to align at bottom -->
+                            <div class="cve-content-group">
+                                
+                                <div class="cve-metrics">
+                                    <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(0)">🛡️ CVSS: 0.0</span>
+
+                                    
+                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.003)">📈 EPSS: 0.003</span>
+                                    
+
+                                    
+                                        <span class="metric-tag tag-cisa" onclick="toggleStatusFilter('cisa')">🇺🇸 CISA KEV</span>
+                                    
+
+                                    
+                                        <span class="metric-tag tag-exp" onclick="toggleStatusFilter('modified')">🔄 Recently Updated</span>
+                                    
+
+                                    
+                                </div>
+                                
+
+                                
+                                <div class="cve-vendors">
+                                    <strong>/vendors/:</strong>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('apple')">apple</span>
+                                    
+                                </div>
+                                
+
+                                <div class="cve-links">
+                                    <div class="link-item">
+                                        <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-20700" target="_blank" class="link-btn">📝 MITRE CVE</a>
+                                    </div>
+                                    <div class="link-item">
+                                        <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20700" target="_blank" class="link-btn">🔍 NVD Details</a>
+                                    </div>
+                                    
+                                    <div class="link-item">
+                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-20700" target="_blank" class="link-btn">📊 EPSS Score</a>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="cve-meta">
+                                    <strong>Published:</strong> 2026-02-11
+                                    
+                                    | <strong>Modified:</strong> 2026-03-25
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="cve-card filtered-in" id="cve-CVE_2026_33634"
                          data-cvss="9.4"
                          data-epss="0.00043"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="berriai,aquasecurity">
+                         data-vendors="aquasecurity,berriai">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-33634</div>
                             <div class="cve-severity severity-critical">Critical</div>
@@ -10149,9 +10224,9 @@ Note: If the FMC management interface does not have public internet access, the 
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('berriai')">berriai</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('aquasecurity')">aquasecurity</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('berriai')">berriai</span>
                                     
                                 </div>
                                 
@@ -10447,7 +10522,7 @@ Note: If the FMC management interface does not have public internet access, the 
                     <div class="cve-card filtered-in" id="cve-CVE_2023_22515"
                          data-cvss="10"
                          data-epss="0.94326"
-                         data-cisa="false"
+                         data-cisa="true"
                          data-modified="True"
                          data-vendors="atlassian">
                         <div class="cve-header">
@@ -10457,8 +10532,8 @@ Note: If the FMC management interface does not have public internet access, the 
 
                         <div class="cve-body">
                             <div class="cve-description">
-                                Atlassian has been made aware of an issue reported by a handful of customers where external attackers may have exploited a previously unknown vulnerability in publicly accessible Confluence Data Center and Server instances to create unauthorized Confluence administrator accounts and access Confluence instances. 
-
+                                Atlassian has been made aware of an issue reported by a handful of customers where external attackers may have exploited a previously unknown vulnerability in publicly accessible Confluence Data Center and Server instances to create unauthorized Confluence administrator accounts and access Confluence instances. 
+
 Atlassian Cloud sites are not affected by this vulnerability. If your Confluence site is accessed via an atlassian.net domain, it is hosted by Atlassian and is not vulnerable to this issue.
                             </div>
 
@@ -10472,6 +10547,8 @@ Atlassian Cloud sites are not affected by this vulnerability. If your Confluence
                                         <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.943)">📈 EPSS: 0.943</span>
                                     
 
+                                    
+                                        <span class="metric-tag tag-cisa" onclick="toggleStatusFilter('cisa')">🇺🇸 CISA KEV</span>
                                     
 
                                     
@@ -14590,7 +14667,7 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                          data-epss="0.00034"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="all,nvidia">
+                         data-vendors="nvidia,all">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-33238</div>
                             <div class="cve-severity severity-high">High</div>
@@ -14625,9 +14702,9 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all')">all</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all')">all</span>
                                     
                                 </div>
                                 
@@ -14732,7 +14809,7 @@ NOTE: The vendor was contacted several times to verifying fixing process but did
                          data-epss="0.00034"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="all,nvidia">
+                         data-vendors="nvidia,all">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-33254</div>
                             <div class="cve-severity severity-high">High</div>
@@ -14767,9 +14844,9 @@ NOTE: The vendor was contacted several times to verifying fixing process but did
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all')">all</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all')">all</span>
                                     
                                 </div>
                                 
@@ -14872,7 +14949,7 @@ NOTE: The vendor was contacted several times to verifying fixing process but did
                          data-epss="0.00042"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="64 bit,tenable, inc.,linux">
+                         data-vendors="tenable, inc.,64 bit,linux">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-4433</div>
                             <div class="cve-severity severity-low">Low</div>
@@ -14907,9 +14984,9 @@ NOTE: The vendor was contacted several times to verifying fixing process but did
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('64 bit')">64 bit</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('tenable, inc.')">tenable, inc.</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('64 bit')">64 bit</span>
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
                                     
@@ -14945,7 +15022,7 @@ NOTE: The vendor was contacted several times to verifying fixing process but did
                          data-epss="0.00038"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="all,nvidia">
+                         data-vendors="nvidia,all">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24158</div>
                             <div class="cve-severity severity-high">High</div>
@@ -14980,9 +15057,9 @@ NOTE: The vendor was contacted several times to verifying fixing process but did
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all')">all</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all')">all</span>
                                     
                                 </div>
                                 
@@ -15016,7 +15093,7 @@ NOTE: The vendor was contacted several times to verifying fixing process but did
                          data-epss="0.00061"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="all,nvidia">
+                         data-vendors="nvidia,all">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-24141</div>
                             <div class="cve-severity severity-high">High</div>
@@ -15051,9 +15128,9 @@ NOTE: The vendor was contacted several times to verifying fixing process but did
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all')">all</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('all')">all</span>
                                     
                                 </div>
                                 
@@ -22248,7 +22325,7 @@ unauthorized disclosure and modification of certain information.
                     <div class="cve-card filtered-in" id="cve-CVE_2026_24061"
                          data-cvss="9.8"
                          data-epss="0.7562"
-                         data-cisa="false"
+                         data-cisa="true"
                          data-modified="True"
                          data-vendors="gnu">
                         <div class="cve-header">
@@ -22271,6 +22348,8 @@ unauthorized disclosure and modification of certain information.
                                         <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.756)">📈 EPSS: 0.756</span>
                                     
 
+                                    
+                                        <span class="metric-tag tag-cisa" onclick="toggleStatusFilter('cisa')">🇺🇸 CISA KEV</span>
                                     
 
                                     
@@ -22388,7 +22467,7 @@ unauthorized disclosure and modification of certain information.
                          data-epss="0.00028"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="linux,hitachi">
+                         data-vendors="hitachi,linux">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-1166</div>
                             <div class="cve-severity severity-medium">Medium</div>
@@ -22423,9 +22502,9 @@ unauthorized disclosure and modification of certain information.
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('hitachi')">hitachi</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
                                     
                                 </div>
                                 
@@ -22459,7 +22538,7 @@ unauthorized disclosure and modification of certain information.
                          data-epss="0.0004"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="64 bit,linux,hitachi">
+                         data-vendors="hitachi,64 bit,linux">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-2072</div>
                             <div class="cve-severity severity-high">High</div>
@@ -22494,11 +22573,11 @@ unauthorized disclosure and modification of certain information.
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('hitachi')">hitachi</span>
+                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('64 bit')">64 bit</span>
                                     
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
-                                    
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('hitachi')">hitachi</span>
                                     
                                 </div>
                                 
@@ -24711,7 +24790,7 @@ Please refer to security bulletin BS-036, available on the Panorama CSIRT websit
                          data-epss="0.00012"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="gnu,red hat">
+                         data-vendors="red hat,gnu">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-61662</div>
                             <div class="cve-severity severity-high">High</div>
@@ -24746,9 +24825,9 @@ Please refer to security bulletin BS-036, available on the Panorama CSIRT websit
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('gnu')">gnu</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('red hat')">red hat</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('gnu')">gnu</span>
                                     
                                 </div>
                                 
@@ -25063,7 +25142,7 @@ privileges assigned to it in the /etc/exports file at mount time. In particular,
                          data-epss="0.00035"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="linux,nvidia">
+                         data-vendors="nvidia,linux">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-33244</div>
                             <div class="cve-severity severity-critical">Critical</div>
@@ -25098,9 +25177,9 @@ privileges assigned to it in the /etc/exports file at mount time. In particular,
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('nvidia')">nvidia</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('linux')">linux</span>
                                     
                                 </div>
                                 
@@ -25916,7 +25995,7 @@ Avoid direct <code>${{ ... }}</code> interpolation inside <code>run:</code> for 
             <div class="filter-section">
                 <div class="filter-title">🏷️ Filter by Status</div>
                 <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-                    <span class="filter-metric-tag filter-tag-exp" id="filter-modified" onclick="toggleStatusFilter('modified')">🔄 Recently Modified (236)</span>
+                    <span class="filter-metric-tag filter-tag-exp" id="filter-modified" onclick="toggleStatusFilter('modified')">🔄 Recently Modified (237)</span>
                     <span class="filter-metric-tag filter-tag-cvss" id="filter-published" onclick="toggleStatusFilter('published')">🆕 Newly Published (139)</span>
                 </div>
             </div>
@@ -26111,9 +26190,11 @@ Avoid direct <code>${{ ... }}</code> interpolation inside <code>run:</code> for 
                     
                     <li class="filter-item extra-vendor" id="filter-vendor-devrix" onclick="toggleVendorFilter('devrix')" style="display:none;">devrix (1)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-berriai" onclick="toggleVendorFilter('berriai')" style="display:none;">berriai (1)</li>
+                    <li class="filter-item extra-vendor" id="filter-vendor-apple" onclick="toggleVendorFilter('apple')" style="display:none;">apple (1)</li>
                     
                     <li class="filter-item extra-vendor" id="filter-vendor-aquasecurity" onclick="toggleVendorFilter('aquasecurity')" style="display:none;">aquasecurity (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-berriai" onclick="toggleVendorFilter('berriai')" style="display:none;">berriai (1)</li>
                     
                     <li class="filter-item extra-vendor" id="filter-vendor-atlassian" onclick="toggleVendorFilter('atlassian')" style="display:none;">atlassian (1)</li>
                     
@@ -26275,7 +26356,7 @@ Avoid direct <code>${{ ... }}</code> interpolation inside <code>run:</code> for 
                     
                 </ul>
                 
-                <button class="show-more-btn" onclick="toggleMoreVendors()" id="show-more-btn">Show More Vendors (135 more)</button>
+                <button class="show-more-btn" onclick="toggleMoreVendors()" id="show-more-btn">Show More Vendors (136 more)</button>
                 
             </div>
             
@@ -26719,7 +26800,7 @@ Avoid direct <code>${{ ... }}</code> interpolation inside <code>run:</code> for 
                     item.style.display = 'none';
                 });
 
-                showMoreBtn.textContent = 'Show More Vendors (135 more)';
+                showMoreBtn.textContent = 'Show More Vendors (136 more)';
                 moreVendorsShown = false;
             }
         }
@@ -26736,7 +26817,7 @@ Avoid direct <code>${{ ... }}</code> interpolation inside <code>run:</code> for 
             </a>
         </div>
         <small>
-            Daily CVE Report - Generated on 2026-03-26 21:09:29 |
+            Daily CVE Report - Generated on 2026-03-26 13:12:23 |
             <a href="https://github.com/secnotes/dailycve" style="color: #666; text-decoration: none;">GitHub Project</a>
         </small>
     </footer>
