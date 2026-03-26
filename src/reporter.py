@@ -754,8 +754,6 @@ def generate_html_report(cves, output_path='index.html'):
             <div class="filter-section">
                 <div class="filter-title">🏷️ Filter by Status</div>
                 <ul class="filter-list">
-                    <li class="filter-item" id="filter-cisa" onclick="toggleStatusFilter('cisa')">In CISA KEV ({{ cisa_kev_count }})</li>
-                    <li class="filter-item" id="filter-epss" onclick="toggleStatusFilter('epss')">High EPSS (≥0.01) ({{ epss_high_count }})</li>
                     <li class="filter-item" id="filter-modified" onclick="toggleStatusFilter('modified')">Recently Modified ({{ modified_count }})</li>
                     <li class="filter-item" id="filter-published" onclick="toggleStatusFilter('published')">Newly Published ({{ published_count }})</li>
                 </ul>
