@@ -14,17 +14,28 @@ def main():
     collector = CVECollector()
 
     # Collect daily CVEs
-    cves = collector.collect_daily_cves(days=Config.LOOKBACK_DAYS)
+    all_cves = collector.collect_daily_cves(days=Config.LOOKBACK_DAYS)
 
-    # Generate Markdown report first
+    # Get the total count of CVEs processed
+    total_cve_count = getattr(collector, 'total_collected_cves', len(all_cves))
+
+    # Filter high-risk CVEs for HTML report
+    high_risk_cves = [cve for cve in all_cves if (
+        cve.get('cvss_score', 0) > Config.CVSS_THRESHOLD or
+        cve.get('in_cisa_kev', False) or
+        cve.get('epss_score', 0) >= Config.EPSS_THRESHOLD
+    )]
+
+    # Generate Markdown report first (with all CVEs)
     markdown_report_path = f"docs/reports/{datetime.now().year}/daily_cve_{datetime.now().strftime('%Y%m%d')}.md"
-    generate_markdown_report(cves, markdown_report_path)
+    generate_markdown_report(all_cves, markdown_report_path, total_cve_count)
 
-    # Generate HTML report
-    generate_html_report(cves, Config.REPORT_HTML_PATH)
+    # Generate HTML report (with all CVEs for complete coverage)
+    generate_html_report(all_cves, Config.REPORT_HTML_PATH, total_cve_count)
 
     print(f"Daily CVE collection completed!")
-    print(f"Found {len(cves)} high-risk vulnerabilities")
+    print(f"Found {len(high_risk_cves)} high-risk vulnerabilities")
+    print(f"Total CVEs collected: {total_cve_count}")
     print(f"Markdown report saved as {markdown_report_path}")
     print(f"HTML report saved as {Config.REPORT_HTML_PATH}")
 

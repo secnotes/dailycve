@@ -468,6 +468,12 @@ class CVECollector:
         cvelistv5_cves = self.get_cvelistv5_cves_for_date(target_date)
         print(f"Found {len(cvelistv5_cves)} high-risk CVEs from CVEProject/cvelistV5")
 
+        # Store the total number of collected CVEs before filtering
+        self.total_collected_cves = len(cvelistv5_cves)
+
+        # Store all collected CVEs before high-risk filtering (for markdown report)
+        self.all_collected_cves = cvelistv5_cves.copy()
+
         # Combine and deduplicate
         all_cves = {}
 
@@ -483,7 +489,7 @@ class CVECollector:
         print(f"Fetching EPSS scores for {len(cve_ids)} CVEs...")
         self.load_epss_data_batch(cve_ids)
 
-        # Update each CVE with the fetched EPSS score and re-evaluate high-risk status
+        # Update each CVE with the fetched EPSS score
         result = []
         for cve in all_cves.values():
             cve_id = cve['id']
@@ -493,15 +499,7 @@ class CVECollector:
                 # If no EPSS score is found, default to 0
                 cve['epss_score'] = 0
 
-            # Now check if it qualifies as high-risk with complete information
-            is_high_risk = (
-                cve.get('cvss_score', 0) > Config.CVSS_THRESHOLD or
-                cve.get('in_cisa_kev', False) or
-                cve.get('epss_score', 0) >= Config.EPSS_THRESHOLD
-            )
-
-            if is_high_risk:
-                result.append(cve)
+            result.append(cve)
 
         # Sort by the more recent of published_date or last_modified date
         def get_sort_date(cve):
@@ -529,7 +527,15 @@ class CVECollector:
 
         result.sort(key=get_sort_date, reverse=True)
 
-        print(f"Total high-risk CVEs collected: {len(result)}")
+        # Count the high-risk ones separately for reporting
+        high_risk_count = sum(1 for cve in result if (
+            cve.get('cvss_score', 0) > Config.CVSS_THRESHOLD or
+            cve.get('in_cisa_kev', False) or
+            cve.get('epss_score', 0) >= Config.EPSS_THRESHOLD
+        ))
+
+        print(f"Total high-risk CVEs: {high_risk_count}")
+        print(f"Total CVEs collected: {len(result)}")
         return result
 
     def get_cvelistv5_cves_for_date(self, target_date):

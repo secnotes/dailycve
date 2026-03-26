@@ -31,7 +31,7 @@ def convert_markdown_code_blocks(text):
     result = re.sub(pattern, r'<code>\1</code>', text)
     return result
 
-def generate_markdown_report(cves, output_path='docs/reports/YYYY/daily_cve_YYYYMMDD.md'):
+def generate_markdown_report(cves, output_path='docs/reports/YYYY/daily_cve_YYYYMMDD.md', total_cve_count=None):
     """Generate Markdown report with CVE data"""
 
     # Create directory if it doesn't exist
@@ -43,6 +43,12 @@ def generate_markdown_report(cves, output_path='docs/reports/YYYY/daily_cve_YYYY
     epss_high_count = sum(1 for cve in cves if cve.get('epss_score', 0) >= 0.01)
     modified_count = sum(1 for cve in cves if cve.get('entry_type') == 'modified')
     published_count = sum(1 for cve in cves if cve.get('entry_type') == 'published')
+
+    # Add CVSS severity counts
+    critical_count = sum(1 for cve in cves if cve.get('cvss_score', 0) >= 9.0)
+    high_count = sum(1 for cve in cves if 7.0 <= cve.get('cvss_score', 0) < 9.0)
+    medium_count = sum(1 for cve in cves if 4.0 <= cve.get('cvss_score', 0) < 7.0)
+    low_count = sum(1 for cve in cves if 0 < cve.get('cvss_score', 0) < 4.0)
 
     # Collect all unique vendors
     all_vendors = set()
@@ -59,7 +65,7 @@ def generate_markdown_report(cves, output_path='docs/reports/YYYY/daily_cve_YYYY
     # Start generating markdown content
     md_content = f"# Daily CVE Report - {datetime.now().strftime('%Y-%m-%d')}\n\n"
     md_content += f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
-    md_content += f"Total High-Risk Vulnerabilities: {len(cves)}\n\n"
+    md_content += f"Total Vulnerabilities: {total_cve_count if total_cve_count is not None else len(cves)}\n\n"
 
     # Add Top Vendors table
     md_content += "## Top Vendors by Vulnerability Count\n"
@@ -107,7 +113,7 @@ def generate_markdown_report(cves, output_path='docs/reports/YYYY/daily_cve_YYYY
     print(f"Markdown report generated: {output_path}")
 
 
-def generate_html_report(cves, output_path='index.html'):
+def generate_html_report(cves, output_path='index.html', total_cve_count=None):
     """Generate HTML report with CVE data"""
 
     # Define the HTML template as a string
@@ -247,6 +253,62 @@ def generate_html_report(cves, output_path='index.html'):
 
         .extra-vendor {
             background-color: transparent;
+        }
+
+        /* CVSS severity filter styles */
+        .filter-critical {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 4px 8px;
+            margin: 2px 0;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .filter-high {
+            background-color: #fff3e0;
+            color: #e65100;
+            padding: 4px 8px;
+            margin: 2px 0;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .filter-medium {
+            background-color: #fff8e1;
+            color: #f57f17;
+            padding: 4px 8px;
+            margin: 2px 0;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .filter-low {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 4px 8px;
+            margin: 2px 0;
+            border-radius: 4px;
+            display: block;
+        }
+
+        /* Status filter styles */
+        .filter-modified-item {
+            background-color: #e3f2fd;
+            color: #1565c0;
+            padding: 4px 8px;
+            margin: 2px 0;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .filter-published-item {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 4px 8px;
+            margin: 2px 0;
+            border-radius: 4px;
+            display: block;
         }
 
         .summary-box {
@@ -752,10 +814,20 @@ def generate_html_report(cves, output_path='index.html'):
 
         <div class="sidebar">
             <div class="filter-section">
+                <div class="filter-title">🛡️ Filter by CVSS Severity</div>
+                <ul class="filter-list">
+                    <li class="filter-item filter-critical" id="filter-critical" onclick="applySingleFilterBySeverity('critical')">Critical (CVSS ≥ 9.0) ({{ critical_count }})</li>
+                    <li class="filter-item filter-high" id="filter-high" onclick="applySingleFilterBySeverity('high')">High (7.0 ≤ CVSS < 9.0) ({{ high_count }})</li>
+                    <li class="filter-item filter-medium" id="filter-medium" onclick="applySingleFilterBySeverity('medium')">Medium (4.0 ≤ CVSS < 7.0) ({{ medium_count }})</li>
+                    <li class="filter-item filter-low" id="filter-low" onclick="applySingleFilterBySeverity('low')">Low (0 < CVSS < 4.0) ({{ low_count }})</li>
+                </ul>
+            </div>
+
+            <div class="filter-section">
                 <div class="filter-title">🏷️ Filter by Status</div>
                 <ul class="filter-list">
-                    <li class="filter-item" id="filter-modified" onclick="toggleStatusFilter('modified')">Recently Modified ({{ modified_count }})</li>
-                    <li class="filter-item" id="filter-published" onclick="toggleStatusFilter('published')">Newly Published ({{ published_count }})</li>
+                    <li class="filter-item filter-modified-item" id="filter-modified" onclick="toggleStatusFilter('modified')">Recently Modified ({{ modified_count }})</li>
+                    <li class="filter-item filter-published-item" id="filter-published" onclick="toggleStatusFilter('published')">Newly Published ({{ published_count }})</li>
                 </ul>
             </div>
 
@@ -763,10 +835,10 @@ def generate_html_report(cves, output_path='index.html'):
             <div class="filter-section">
                 <div class="filter-title">🏢 Filter by Vendor</div>
                 <ul class="filter-list" id="vendor-filter-list">
-                    {% for vendor in initial_vendors|sort %}
+                    {% for vendor in initial_vendors %}
                     <li class="filter-item" id="filter-vendor-{{ sanitize_vendor_id(vendor) }}" onclick="toggleVendorFilter('{{ vendor }}')" style="display:block;">{{ vendor }} ({{ all_sorted_vendors[vendor] }})</li>
                     {% endfor %}
-                    {% for vendor in all_vendors_list|sort %}
+                    {% for vendor in all_vendors_list %}
                     <li class="filter-item extra-vendor" id="filter-vendor-{{ sanitize_vendor_id(vendor) }}" onclick="toggleVendorFilter('{{ vendor }}')" style="display:none;">{{ vendor }} ({{ all_sorted_vendors[vendor] }})</li>
                     {% endfor %}
                 </ul>
@@ -865,6 +937,16 @@ def generate_html_report(cves, output_path='index.html'):
             applyAllFilters();
         }
 
+        // Apply CVSS severity filter (critical, high, medium, low)
+        function applySingleFilterBySeverity(severity) {
+            window.activeFilters = {
+                status: [`severity-${severity}`],
+                vendors: []
+            };
+            applyAllFilters();
+            updateSelectedFiltersHighlight();
+        }
+
         // Apply EPSS-specific filter
         function applySingleFilterByEPSS(minScore) {
             window.activeFilters = {
@@ -923,6 +1005,34 @@ def generate_html_report(cves, output_path='index.html'):
                                     const minEpss = parseFloat(filter.split('-')[1]);
                                     if ((parseFloat(card.getAttribute('data-epss')) || 0) < minEpss) {
                                         showCard = false;
+                                    }
+                                }
+                                // Handle CVSS severity specific filter
+                                else if (filter.startsWith('severity-')) {
+                                    const severity = filter.split('-')[1];
+                                    const cvssScore = parseFloat(card.getAttribute('data-cvss')) || 0;
+
+                                    switch(severity) {
+                                        case 'critical':
+                                            if (cvssScore < 9.0) {
+                                                showCard = false;
+                                            }
+                                            break;
+                                        case 'high':
+                                            if (cvssScore < 7.0 || cvssScore >= 9.0) {
+                                                showCard = false;
+                                            }
+                                            break;
+                                        case 'medium':
+                                            if (cvssScore < 4.0 || cvssScore >= 7.0) {
+                                                showCard = false;
+                                            }
+                                            break;
+                                        case 'low':
+                                            if (cvssScore >= 4.0 || cvssScore === 0) {
+                                                showCard = false;
+                                            }
+                                            break;
                                     }
                                 }
                                 break;
@@ -1102,6 +1212,18 @@ def generate_html_report(cves, output_path='index.html'):
                         case 'published':
                             elementId = 'filter-published';
                             break;
+                        case 'severity-critical':
+                            elementId = 'filter-critical';
+                            break;
+                        case 'severity-high':
+                            elementId = 'filter-high';
+                            break;
+                        case 'severity-medium':
+                            elementId = 'filter-medium';
+                            break;
+                        case 'severity-low':
+                            elementId = 'filter-low';
+                            break;
                         default:
                             // Skip specific CVSS and EPSS filters as they are not in the sidebar
                             break;
@@ -1203,6 +1325,12 @@ def generate_html_report(cves, output_path='index.html'):
     modified_count = sum(1 for cve in cves if cve.get('entry_type') == 'modified')
     published_count = sum(1 for cve in cves if cve.get('entry_type') == 'published')
 
+    # Add CVSS severity counts
+    critical_count = sum(1 for cve in cves if cve.get('cvss_score', 0) >= 9.0)
+    high_count = sum(1 for cve in cves if 7.0 <= cve.get('cvss_score', 0) < 9.0)
+    medium_count = sum(1 for cve in cves if 4.0 <= cve.get('cvss_score', 0) < 7.0)
+    low_count = sum(1 for cve in cves if 0 < cve.get('cvss_score', 0) < 4.0)
+
     # Collect all unique vendors
     all_vendors = set()
     vendor_counts = {}
@@ -1259,12 +1387,16 @@ def generate_html_report(cves, output_path='index.html'):
     html_content = template.render(
         date=datetime.now().strftime('%Y-%m-%d'),
         generated_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-        cve_count=len(formatted_cves),
+        cve_count=total_cve_count if total_cve_count is not None else len(formatted_cves),
         high_risk_count=high_risk_count,
         cisa_kev_count=cisa_kev_count,
         epss_high_count=epss_high_count,
         modified_count=modified_count,
         published_count=published_count,
+        critical_count=critical_count,
+        high_count=high_count,
+        medium_count=medium_count,
+        low_count=low_count,
         cves=formatted_cves,
         initial_vendors=initial_vendors,
         all_vendors_list=list(all_sorted_vendors.keys()),
