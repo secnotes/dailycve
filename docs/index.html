@@ -246,6 +246,12 @@
             text-decoration: underline;
         }
 
+        .filter-metric-tag.selected {
+            font-weight: bold;
+            background-color: #e3f2fd;
+            text-decoration: underline;
+        }
+
         .filter-tag-exp {
             background-color: #fff3e0;
             color: #f57c00;
@@ -649,6 +655,31 @@
             }
         }
     </style>
+
+    <!-- Toast animation styles -->
+    <style>
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, 20px); }
+            15% { opacity: 1; transform: translate(-50%, 0); }
+            85% { opacity: 1; transform: translate(-50%, 0); }
+            100% { opacity: 0; transform: translate(-50%, 20px); }
+        }
+
+        .filter-count-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            z-index: 10000;
+            animation: fadeInOut 2s ease-in-out;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+    </style>
 </head>
 <body>
     <a href="https://github.com/secnotes/dailycve" class="github-corner" aria-label="View source on GitHub">
@@ -679,7 +710,7 @@
 
             <div class="summary-box">
                 <h2>📊 Summary</h2>
-                <p><strong>Report Generated:</strong> 2026-03-27 15:57:38</p>
+                <p><strong>Report Generated:</strong> 2026-03-27 16:56:07</p>
 
                 <div class="summary-stats">
                     <div class="stat-card" onclick="applySingleFilter('all')">
@@ -3205,7 +3236,7 @@ This allows a standard user within the cluster to send unauthorized commands to 
                          data-epss="0.00025"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="onprem,grafana">
+                         data-vendors="grafana,onprem">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-21725</div>
                             <div class="cve-severity severity-low">Low</div>
@@ -3251,9 +3282,9 @@ This requires several very stringent conditions to be met:
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('onprem')">onprem</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('grafana')">grafana</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('onprem')">onprem</span>
                                     
                                 </div>
                                 
@@ -3287,7 +3318,7 @@ This requires several very stringent conditions to be met:
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="onprem,grafana">
+                         data-vendors="grafana,onprem">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-21724</div>
                             <div class="cve-severity severity-medium">Medium</div>
@@ -3320,9 +3351,9 @@ This requires several very stringent conditions to be met:
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('onprem')">onprem</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('grafana')">grafana</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('onprem')">onprem</span>
                                     
                                 </div>
                                 
@@ -3352,7 +3383,7 @@ This requires several very stringent conditions to be met:
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="onprem,grafana">
+                         data-vendors="grafana,onprem">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-28377</div>
                             <div class="cve-severity severity-high">High</div>
@@ -3387,9 +3418,9 @@ Thanks to william_goodfellow for reporting this vulnerability.
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('onprem')">onprem</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('grafana')">grafana</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('onprem')">onprem</span>
                                     
                                 </div>
                                 
@@ -3488,7 +3519,7 @@ Thanks to william_goodfellow for reporting this vulnerability.
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="onprem,grafana">
+                         data-vendors="grafana,onprem">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-33375</div>
                             <div class="cve-severity severity-medium">Medium</div>
@@ -3521,9 +3552,9 @@ Thanks to william_goodfellow for reporting this vulnerability.
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('onprem')">onprem</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('grafana')">grafana</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('onprem')">onprem</span>
                                     
                                 </div>
                                 
@@ -6803,7 +6834,7 @@ This vulnerability affects TL-WR841N v14 &lt; EN_0.9.1 4.19 Build 260303 Rel.42
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="ruckus wireless,ruckus">
+                         data-vendors="ruckus,ruckus wireless">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2021-4474</div>
                             <div class="cve-severity severity-medium">Medium</div>
@@ -6836,9 +6867,9 @@ This vulnerability affects TL-WR841N v14 &lt; EN_0.9.1 4.19 Build 260303 Rel.42
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('ruckus wireless')">ruckus wireless</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('ruckus')">ruckus</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('ruckus wireless')">ruckus wireless</span>
                                     
                                 </div>
                                 
@@ -10188,7 +10219,7 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                          data-epss="0"
                          data-cisa="false"
                          data-modified="False"
-                         data-vendors="solarwinds,windows">
+                         data-vendors="windows,solarwinds">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2026-28297</div>
                             <div class="cve-severity severity-medium">Medium</div>
@@ -10221,9 +10252,9 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('solarwinds')">solarwinds</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('windows')">windows</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('solarwinds')">solarwinds</span>
                                     
                                 </div>
                                 
@@ -12978,7 +13009,7 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4835"
                          data-cvss="4"
-                         data-epss="0.00031"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="False"
                          data-vendors="code-projects">
@@ -12998,8 +13029,6 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(4)">🛡️ CVSS: 4.0</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -13027,10 +13056,6 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4835" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4835" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -13185,7 +13210,7 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4836"
                          data-cvss="6.5"
-                         data-epss="0.00028"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="False"
                          data-vendors="code-projects">
@@ -13205,8 +13230,6 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(6.5)">🛡️ CVSS: 6.5</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -13234,10 +13257,6 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4836" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4836" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -13668,7 +13687,7 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4825"
                          data-cvss="6.5"
-                         data-epss="0.00028"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="sourcecodester">
@@ -13688,8 +13707,6 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(6.5)">🛡️ CVSS: 6.5</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -13717,10 +13734,6 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4825" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4825" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -14427,7 +14440,7 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4758"
                          data-cvss="8.8"
-                         data-epss="0.00249"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="wpjobportal">
@@ -14447,8 +14460,6 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(8.8)">🛡️ CVSS: 8.8</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.002)">📈 EPSS: 0.002</span>
                                     
 
                                     
@@ -14478,10 +14489,6 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4758" target="_blank" class="link-btn">🔍 NVD Details</a>
                                     </div>
                                     
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4758" target="_blank" class="link-btn">📊 EPSS Score</a>
-                                    </div>
-                                    
                                 </div>
 
                                 <div class="cve-meta">
@@ -14496,7 +14503,7 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4484"
                          data-cvss="9.8"
-                         data-epss="0.00039"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="False"
                          data-vendors="masteriyo">
@@ -14516,8 +14523,6 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(9.8)">🛡️ CVSS: 9.8</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -14545,10 +14550,6 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4484" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4484" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -14634,7 +14635,7 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4335"
                          data-cvss="5.4"
-                         data-epss="0.00036"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="False"
                          data-vendors="shortpixel">
@@ -14654,8 +14655,6 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(5.4)">🛡️ CVSS: 5.4</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -14683,10 +14682,6 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4335" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4335" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -14910,7 +14905,7 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4389"
                          data-cvss="6.4"
-                         data-epss="0.00032"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="False"
                          data-vendors="hupe13">
@@ -14930,8 +14925,6 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(6.4)">🛡️ CVSS: 6.4</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -14959,10 +14952,6 @@ Limit the number of sequential optional groups in route patterns. Avoid passing 
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4389" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4389" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -18829,7 +18818,7 @@ This vulnerability can be triggered using only public GnuTLS APIs and may result
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4824"
                          data-cvss="6"
-                         data-epss="0.0001"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="enter software">
@@ -18849,8 +18838,6 @@ This vulnerability can be triggered using only public GnuTLS APIs and may result
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(6)">🛡️ CVSS: 6.0</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -18878,10 +18865,6 @@ This vulnerability can be triggered using only public GnuTLS APIs and may result
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4824" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4824" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -19960,7 +19943,7 @@ This vulnerability can be triggered using only public GnuTLS APIs and may result
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4823"
                          data-cvss="1"
-                         data-epss="0.0001"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="enter software">
@@ -19980,8 +19963,6 @@ This vulnerability can be triggered using only public GnuTLS APIs and may result
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(1)">🛡️ CVSS: 1.0</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -20009,10 +19990,6 @@ This vulnerability can be triggered using only public GnuTLS APIs and may result
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4823" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4823" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -21022,7 +20999,7 @@ This vulnerability can be triggered using only public GnuTLS APIs and may result
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4831"
                          data-cvss="2.6"
-                         data-epss="0.00063"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="False"
                          data-vendors="kalcaddle">
@@ -21042,8 +21019,6 @@ This vulnerability can be triggered using only public GnuTLS APIs and may result
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(2.6)">🛡️ CVSS: 2.6</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.001)">📈 EPSS: 0.001</span>
                                     
 
                                     
@@ -21071,10 +21046,6 @@ This vulnerability can be triggered using only public GnuTLS APIs and may result
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4831" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4831" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -21499,7 +21470,7 @@ Refer to the &#x27;Security Update for ASUS Router Firmware&#x27; section on the
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4839"
                          data-cvss="7.5"
-                         data-epss="0.0003"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="False"
                          data-vendors="sourcecodester">
@@ -21519,8 +21490,6 @@ Refer to the &#x27;Security Update for ASUS Router Firmware&#x27; section on the
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.5)">🛡️ CVSS: 7.5</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -21548,10 +21517,6 @@ Refer to the &#x27;Security Update for ASUS Router Firmware&#x27; section on the
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4839" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4839" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -22488,7 +22453,7 @@ Refer to the &#x27;Security Update for ASUS Router Firmware&#x27; section on the
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4809"
                          data-cvss="10"
-                         data-epss="0.00393"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="False"
                          data-vendors="plank">
@@ -22508,8 +22473,6 @@ Refer to the &#x27;Security Update for ASUS Router Firmware&#x27; section on the
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(10)">🛡️ CVSS: 10.0</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.004)">📈 EPSS: 0.004</span>
                                     
 
                                     
@@ -22537,10 +22500,6 @@ Refer to the &#x27;Security Update for ASUS Router Firmware&#x27; section on the
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4809" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4809" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -24362,7 +24321,7 @@ Refer to the &#x27;Security Update for ASUS Router Firmware&#x27; section on the
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4626"
                          data-cvss="4"
-                         data-epss="0.00029"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="projectworlds">
@@ -24382,8 +24341,6 @@ Refer to the &#x27;Security Update for ASUS Router Firmware&#x27; section on the
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(4)">🛡️ CVSS: 4.0</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -24413,10 +24370,6 @@ Refer to the &#x27;Security Update for ASUS Router Firmware&#x27; section on the
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4626" target="_blank" class="link-btn">🔍 NVD Details</a>
                                     </div>
                                     
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4626" target="_blank" class="link-btn">📊 EPSS Score</a>
-                                    </div>
-                                    
                                 </div>
 
                                 <div class="cve-meta">
@@ -24431,7 +24384,7 @@ Refer to the &#x27;Security Update for ASUS Router Firmware&#x27; section on the
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4616"
                          data-cvss="3.3"
-                         data-epss="0.0003"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="n/a">
@@ -24451,8 +24404,6 @@ Refer to the &#x27;Security Update for ASUS Router Firmware&#x27; section on the
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(3.3)">🛡️ CVSS: 3.3</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -24480,10 +24431,6 @@ Refer to the &#x27;Security Update for ASUS Router Firmware&#x27; section on the
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4616" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4616" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -25318,7 +25265,7 @@ In affected images, the /etc/passwd file is created during build time with group
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4761"
                          data-cvss="3.3"
-                         data-epss="8e-05"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="codra,windows">
@@ -25343,8 +25290,6 @@ Please refer to security bulletin BS-036, available on the Panorama CSIRT websit
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(3.3)">🛡️ CVSS: 3.3</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -25376,10 +25321,6 @@ Please refer to security bulletin BS-036, available on the Panorama CSIRT websit
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4761" target="_blank" class="link-btn">🔍 NVD Details</a>
                                     </div>
                                     
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4761" target="_blank" class="link-btn">📊 EPSS Score</a>
-                                    </div>
-                                    
                                 </div>
 
                                 <div class="cve-meta">
@@ -25394,7 +25335,7 @@ Please refer to security bulletin BS-036, available on the Panorama CSIRT websit
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4760"
                          data-cvss="7.7"
-                         data-epss="0.0007"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="True"
                          data-vendors="codra,windows">
@@ -25421,8 +25362,6 @@ Please refer to security bulletin BS-035, available on the Panorama CSIRT websit
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.7)">🛡️ CVSS: 7.7</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.001)">📈 EPSS: 0.001</span>
                                     
 
                                     
@@ -25452,10 +25391,6 @@ Please refer to security bulletin BS-035, available on the Panorama CSIRT websit
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4760" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4760" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -27413,7 +27348,7 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4838"
                          data-cvss="7.5"
-                         data-epss="0.0003"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="False"
                          data-vendors="sourcecodester">
@@ -27433,8 +27368,6 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(7.5)">🛡️ CVSS: 7.5</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -27464,10 +27397,6 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4838" target="_blank" class="link-btn">🔍 NVD Details</a>
                                     </div>
                                     
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4838" target="_blank" class="link-btn">📊 EPSS Score</a>
-                                    </div>
-                                    
                                 </div>
 
                                 <div class="cve-meta">
@@ -27480,7 +27409,7 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4833"
                          data-cvss="1.7"
-                         data-epss="0.00013"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="False"
                          data-vendors="orc">
@@ -27500,8 +27429,6 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(1.7)">🛡️ CVSS: 1.7</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -27529,10 +27456,6 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4833" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4833" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -27681,7 +27604,7 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                     
                     <div class="cve-card filtered-in" id="cve-CVE_2026_4830"
                          data-cvss="5.1"
-                         data-epss="0.00038"
+                         data-epss="0"
                          data-cisa="false"
                          data-modified="False"
                          data-vendors="kalcaddle">
@@ -27701,8 +27624,6 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                                 <div class="cve-metrics">
                                     <span class="metric-tag tag-cvss" onclick="applySingleFilterByCVSS(5.1)">🛡️ CVSS: 5.1</span>
 
-                                    
-                                        <span class="metric-tag tag-epss" onclick="applySingleFilterByEPSS(0.000)">📈 EPSS: 0.000</span>
                                     
 
                                     
@@ -27730,10 +27651,6 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                                     </div>
                                     <div class="link-item">
                                         <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4830" target="_blank" class="link-btn">🔍 NVD Details</a>
-                                    </div>
-                                    
-                                    <div class="link-item">
-                                        <a href="https://epss.cyentia.com/?cve=CVE-2026-4830" target="_blank" class="link-btn">📊 EPSS Score</a>
                                     </div>
                                     
                                 </div>
@@ -27979,9 +27896,9 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                     
                     <li class="filter-item extra-vendor" id="filter-vendor-barebox" onclick="toggleVendorFilter('barebox')" style="display:none;">barebox (1)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-ruckus_wireless" onclick="toggleVendorFilter('ruckus wireless')" style="display:none;">ruckus wireless (1)</li>
-                    
                     <li class="filter-item extra-vendor" id="filter-vendor-ruckus" onclick="toggleVendorFilter('ruckus')" style="display:none;">ruckus (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-ruckus_wireless" onclick="toggleVendorFilter('ruckus wireless')" style="display:none;">ruckus wireless (1)</li>
                     
                     <li class="filter-item extra-vendor" id="filter-vendor-craftcms" onclick="toggleVendorFilter('craftcms')" style="display:none;">craftcms (1)</li>
                     
@@ -28192,8 +28109,9 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                 }
             }
 
-            applyAllFilters();
+            const count = applyAllFilters();
             updateSelectedFiltersHighlight();
+            showFilterCount(count);
         }
 
         // Toggle vendor filter (mutually exclusive - only one vendor at a time)
@@ -28207,8 +28125,9 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                 window.activeFilters.vendors = [vendor];
             }
 
-            applyAllFilters();
+            const count = applyAllFilters();
             updateSelectedFiltersHighlight();
+            showFilterCount(count);
         }
 
         // Apply single filter (for summary stats clicks)
@@ -28246,8 +28165,9 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
                 window.activeFilters.severities = [severity];
             }
 
-            applyAllFilters();
+            const count = applyAllFilters();
             updateSelectedFiltersHighlight();
+            showFilterCount(count);
         }
 
         // Apply EPSS-specific filter
@@ -28358,6 +28278,9 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
 
             // Update the display of active filters
             updateActiveFiltersDisplay();
+
+            // Return the count of filtered CVEs
+            return document.querySelectorAll('.cve-card.filtered-in').length;
         }
 
         // Clear all filters
@@ -28378,9 +28301,31 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
             updateSelectedFiltersHighlight();
         }
 
+        // Show filter count toast
+        function showFilterCount(count) {
+            // Remove existing toast if any
+            const existingToast = document.querySelector('.filter-count-toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = 'filter-count-toast';
+            toast.textContent = `${count} CVE${count !== 1 ? 's' : ''} found`;
+            document.body.appendChild(toast);
+
+            // Remove toast after animation completes
+            setTimeout(() => {
+                toast.remove();
+            }, 2000);
+        }
+
         // Update the display of active filters
         function updateActiveFiltersDisplay() {
             const activeFiltersDiv = document.getElementById('active-filters');
+            if (!activeFiltersDiv) return;
+
             let filterText = [];
 
             // Add severity filters
@@ -28432,10 +28377,16 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
 
         // Update highlight for selected filters in sidebar
         function updateSelectedFiltersHighlight() {
-            // Remove all selected classes
+            // Remove all selected classes from CVSS severity filters
             const allFilterItems = document.querySelectorAll('.filter-item');
             allFilterItems.forEach(item => {
                 item.classList.remove('selected');
+            });
+
+            // Remove all selected classes from status filters
+            const allMetricTags = document.querySelectorAll('.filter-metric-tag');
+            allMetricTags.forEach(tag => {
+                tag.classList.remove('selected');
             });
 
             // Add selected class to active severity filters
@@ -28550,7 +28501,7 @@ NOTE: The vendor was contacted early about this disclosure but did not respond i
             </a>
         </div>
         <small>
-            Daily CVE Report - Generated on 2026-03-27 15:57:38 |
+            Daily CVE Report - Generated on 2026-03-27 16:56:07 |
             <a href="https://github.com/secnotes/dailycve" style="color: #666; text-decoration: none;">GitHub Project</a>
         </small>
     </footer>

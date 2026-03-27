@@ -375,6 +375,12 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             text-decoration: underline;
         }
 
+        .filter-metric-tag.selected {
+            font-weight: bold;
+            background-color: #e3f2fd;
+            text-decoration: underline;
+        }
+
         .filter-tag-exp {
             background-color: #fff3e0;
             color: #f57c00;
@@ -778,6 +784,31 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             }
         }
     </style>
+
+    <!-- Toast animation styles -->
+    <style>
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, 20px); }
+            15% { opacity: 1; transform: translate(-50%, 0); }
+            85% { opacity: 1; transform: translate(-50%, 0); }
+            100% { opacity: 0; transform: translate(-50%, 20px); }
+        }
+
+        .filter-count-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            z-index: 10000;
+            animation: fadeInOut 2s ease-in-out;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+    </style>
 </head>
 <body>
     <a href="https://github.com/secnotes/dailycve" class="github-corner" aria-label="View source on GitHub">
@@ -990,8 +1021,9 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
                 }
             }
 
-            applyAllFilters();
+            const count = applyAllFilters();
             updateSelectedFiltersHighlight();
+            showFilterCount(count);
         }
 
         // Toggle vendor filter (mutually exclusive - only one vendor at a time)
@@ -1005,8 +1037,9 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
                 window.activeFilters.vendors = [vendor];
             }
 
-            applyAllFilters();
+            const count = applyAllFilters();
             updateSelectedFiltersHighlight();
+            showFilterCount(count);
         }
 
         // Apply single filter (for summary stats clicks)
@@ -1044,8 +1077,9 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
                 window.activeFilters.severities = [severity];
             }
 
-            applyAllFilters();
+            const count = applyAllFilters();
             updateSelectedFiltersHighlight();
+            showFilterCount(count);
         }
 
         // Apply EPSS-specific filter
@@ -1156,6 +1190,9 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
 
             // Update the display of active filters
             updateActiveFiltersDisplay();
+
+            // Return the count of filtered CVEs
+            return document.querySelectorAll('.cve-card.filtered-in').length;
         }
 
         // Clear all filters
@@ -1176,9 +1213,31 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             updateSelectedFiltersHighlight();
         }
 
+        // Show filter count toast
+        function showFilterCount(count) {
+            // Remove existing toast if any
+            const existingToast = document.querySelector('.filter-count-toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = 'filter-count-toast';
+            toast.textContent = `${count} CVE${count !== 1 ? 's' : ''} found`;
+            document.body.appendChild(toast);
+
+            // Remove toast after animation completes
+            setTimeout(() => {
+                toast.remove();
+            }, 2000);
+        }
+
         // Update the display of active filters
         function updateActiveFiltersDisplay() {
             const activeFiltersDiv = document.getElementById('active-filters');
+            if (!activeFiltersDiv) return;
+
             let filterText = [];
 
             // Add severity filters
@@ -1230,10 +1289,16 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
 
         // Update highlight for selected filters in sidebar
         function updateSelectedFiltersHighlight() {
-            // Remove all selected classes
+            // Remove all selected classes from CVSS severity filters
             const allFilterItems = document.querySelectorAll('.filter-item');
             allFilterItems.forEach(item => {
                 item.classList.remove('selected');
+            });
+
+            // Remove all selected classes from status filters
+            const allMetricTags = document.querySelectorAll('.filter-metric-tag');
+            allMetricTags.forEach(tag => {
+                tag.classList.remove('selected');
             });
 
             // Add selected class to active severity filters
