@@ -275,7 +275,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             margin: 2px 5px 2px 0;
             display: inline-block;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: normal;
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
@@ -293,7 +293,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             margin: 2px 5px 2px 0;
             display: inline-block;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: normal;
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
@@ -311,7 +311,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             margin: 2px 5px 2px 0;
             display: inline-block;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: normal;
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
@@ -329,7 +329,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             margin: 2px 5px 2px 0;
             display: inline-block;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: normal;
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
@@ -372,6 +372,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         .filter-metric-tag:hover {
             transform: translateY(-3px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            text-decoration: underline;
         }
 
         .filter-tag-exp {
@@ -697,6 +698,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             font-weight: bold;
             background-color: #e3f2fd;
             padding: 3px 0;
+            text-decoration: underline;
         }
 
         @media (max-width: 1200px) {
