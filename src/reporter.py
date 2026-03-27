@@ -276,6 +276,12 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             display: inline-block;
             cursor: pointer;
             font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .filter-critical:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
 
         .filter-high {
@@ -288,6 +294,12 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             display: inline-block;
             cursor: pointer;
             font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .filter-high:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
 
         .filter-medium {
@@ -300,6 +312,12 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             display: inline-block;
             cursor: pointer;
             font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .filter-medium:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
 
         .filter-low {
@@ -312,6 +330,12 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             display: inline-block;
             cursor: pointer;
             font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .filter-low:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
 
         /* Status filter styles */
@@ -342,6 +366,12 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             font-weight: 500;
             cursor: pointer;
             margin: 2px 5px 2px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .filter-metric-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
 
         .filter-tag-exp {
@@ -933,44 +963,36 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
 
             // Initialize active filters object
             window.activeFilters = {
-                status: [],
-                vendors: []
+                severities: [],    // CVSS severity filters (critical, high, medium, low)
+                status: [],        // Status filters (cisa, epss, modified, published)
+                vendors: []        // Vendor filters (mutually exclusive)
             };
         });
 
         // Variable to track if more vendors are shown
         let moreVendorsShown = false;
 
-        // Toggle status filter (CISA, EPSS, Modified, Published)
+        // Toggle status filter (mutually exclusive - only one status at a time)
         function toggleStatusFilter(filterType) {
             const index = window.activeFilters.status.indexOf(filterType);
             if (index > -1) {
-                // Remove filter
-                window.activeFilters.status.splice(index, 1);
+                // Remove filter (deselect current status)
+                window.activeFilters.status = [];
             } else {
-                // Add filter
                 // Handle mutually exclusive filters (modified/published)
                 if (filterType === 'modified' || filterType === 'published') {
-                    // Remove the opposite one if it exists
-                    const modIndex = window.activeFilters.status.indexOf('modified');
-                    const pubIndex = window.activeFilters.status.indexOf('published');
-
-                    if (modIndex > -1) {
-                        window.activeFilters.status.splice(modIndex, 1);
-                    }
-                    if (pubIndex > -1) {
-                        window.activeFilters.status.splice(pubIndex, 1);
-                    }
+                    window.activeFilters.status = [filterType];
+                } else {
+                    // Replace with new filter (select only this status)
+                    window.activeFilters.status = [filterType];
                 }
-
-                window.activeFilters.status.push(filterType);
             }
 
             applyAllFilters();
             updateSelectedFiltersHighlight();
         }
 
-        // Toggle vendor filter (mutually exclusive)
+        // Toggle vendor filter (mutually exclusive - only one vendor at a time)
         function toggleVendorFilter(vendor) {
             const index = window.activeFilters.vendors.indexOf(vendor);
             if (index > -1) {
@@ -1009,12 +1031,17 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             applyAllFilters();
         }
 
-        // Apply CVSS severity filter (critical, high, medium, low)
+        // Apply CVSS severity filter (mutually exclusive - only one severity at a time)
         function applySingleFilterBySeverity(severity) {
-            window.activeFilters = {
-                status: [`severity-${severity}`],
-                vendors: []
-            };
+            const index = window.activeFilters.severities.indexOf(severity);
+            if (index > -1) {
+                // Remove severity filter (toggle off)
+                window.activeFilters.severities = [];
+            } else {
+                // Replace with new severity filter (mutually exclusive)
+                window.activeFilters.severities = [severity];
+            }
+
             applyAllFilters();
             updateSelectedFiltersHighlight();
         }
@@ -1035,101 +1062,82 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             allCards.forEach(card => {
                 let showCard = true;
 
-                // Apply status filters
-                if (window.activeFilters.status.length > 0) {
-                    for (let filter of window.activeFilters.status) {
-                        switch(filter) {
-                            case 'cisa':
-                                if (card.getAttribute('data-cisa') !== 'true') {
-                                    showCard = false;
-                                }
-                                break;
-                            case 'epss':
-                                if ((parseFloat(card.getAttribute('data-epss')) || 0) < 0.01) {
-                                    showCard = false;
-                                }
-                                break;
-                            case 'modified':
-                                if (card.getAttribute('data-modified') !== 'True') {
-                                    showCard = false;
-                                }
-                                break;
-                            case 'published':
-                                if (card.getAttribute('data-modified') !== 'False') {
-                                    showCard = false;
-                                }
-                                break;
-                            case 'high-risk':
-                                if ((parseFloat(card.getAttribute('data-cvss')) || 0) <= 7.0) {
-                                    showCard = false;
-                                }
-                                break;
-                            default:
-                                // Handle CVSS specific filter
-                                if (filter.startsWith('cvss-')) {
-                                    const minCvss = parseFloat(filter.split('-')[1]);
-                                    if ((parseFloat(card.getAttribute('data-cvss')) || 0) < minCvss) {
-                                        showCard = false;
-                                    }
-                                }
-                                // Handle EPSS specific filter
-                                else if (filter.startsWith('epss-')) {
-                                    const minEpss = parseFloat(filter.split('-')[1]);
-                                    if ((parseFloat(card.getAttribute('data-epss')) || 0) < minEpss) {
-                                        showCard = false;
-                                    }
-                                }
-                                // Handle CVSS severity specific filter
-                                else if (filter.startsWith('severity-')) {
-                                    const severity = filter.split('-')[1];
-                                    const cvssScore = parseFloat(card.getAttribute('data-cvss')) || 0;
+                // Apply CVSS severity filter (mutually exclusive)
+                if (window.activeFilters.severities.length > 0) {
+                    const cvssScore = parseFloat(card.getAttribute('data-cvss')) || 0;
+                    const severity = window.activeFilters.severities[0];
 
-                                    switch(severity) {
-                                        case 'critical':
-                                            if (cvssScore < 9.0) {
-                                                showCard = false;
-                                            }
-                                            break;
-                                        case 'high':
-                                            if (cvssScore < 7.0 || cvssScore >= 9.0) {
-                                                showCard = false;
-                                            }
-                                            break;
-                                        case 'medium':
-                                            if (cvssScore < 4.0 || cvssScore >= 7.0) {
-                                                showCard = false;
-                                            }
-                                            break;
-                                        case 'low':
-                                            if (cvssScore >= 4.0 || cvssScore === 0) {
-                                                showCard = false;
-                                            }
-                                            break;
-                                    }
-                                }
-                                break;
-                        }
-
-                        // If any filter condition fails, stop checking other filters
-                        if (!showCard) break;
+                    switch(severity) {
+                        case 'critical':
+                            if (cvssScore < 9.0) showCard = false;
+                            break;
+                        case 'high':
+                            if (cvssScore < 7.0 || cvssScore >= 9.0) showCard = false;
+                            break;
+                        case 'medium':
+                            if (cvssScore < 4.0 || cvssScore >= 7.0) showCard = false;
+                            break;
+                        case 'low':
+                            if (cvssScore >= 4.0 || cvssScore === 0) showCard = false;
+                            break;
                     }
                 }
 
-                // If status filters passed, apply vendor filters
+                // Apply status filter (mutually exclusive)
+                if (showCard && window.activeFilters.status.length > 0) {
+                    const filter = window.activeFilters.status[0];
+                    switch(filter) {
+                        case 'cisa':
+                            if (card.getAttribute('data-cisa') !== 'true') {
+                                showCard = false;
+                            }
+                            break;
+                        case 'epss':
+                            if ((parseFloat(card.getAttribute('data-epss')) || 0) < 0.01) {
+                                showCard = false;
+                            }
+                            break;
+                        case 'modified':
+                            if (card.getAttribute('data-modified') !== 'True') {
+                                showCard = false;
+                            }
+                            break;
+                        case 'published':
+                            if (card.getAttribute('data-modified') !== 'False') {
+                                showCard = false;
+                            }
+                            break;
+                        case 'high-risk':
+                            if ((parseFloat(card.getAttribute('data-cvss')) || 0) <= 7.0) {
+                                showCard = false;
+                            }
+                            break;
+                        default:
+                            // Handle CVSS specific filter
+                            if (filter.startsWith('cvss-')) {
+                                const minCvss = parseFloat(filter.split('-')[1]);
+                                if ((parseFloat(card.getAttribute('data-cvss')) || 0) < minCvss) {
+                                    showCard = false;
+                                }
+                            }
+                            // Handle EPSS specific filter
+                            else if (filter.startsWith('epss-')) {
+                                const minEpss = parseFloat(filter.split('-')[1]);
+                                if ((parseFloat(card.getAttribute('data-epss')) || 0) < minEpss) {
+                                    showCard = false;
+                                }
+                            }
+                            break;
+                    }
+                }
+
+                // Apply vendor filter (mutually exclusive)
                 if (showCard && window.activeFilters.vendors.length > 0) {
                     const cardVendorsStr = card.getAttribute('data-vendors') || '';
                     const cardVendors = cardVendorsStr.split(',');
+                    const vendor = window.activeFilters.vendors[0];
 
-                    // Check if any of the active vendor filters match this card
-                    let hasMatchingVendor = false;
-                    for (let vendor of window.activeFilters.vendors) {
-                        if (cardVendors.includes(vendor)) {
-                            hasMatchingVendor = true;
-                            break;
-                        }
-                    }
-
-                    if (!hasMatchingVendor) {
+                    if (!cardVendors.includes(vendor)) {
                         showCard = false;
                     }
                 }
@@ -1151,6 +1159,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         // Clear all filters
         function clearAllFilters() {
             window.activeFilters = {
+                severities: [],
                 status: [],
                 vendors: []
             };
@@ -1170,52 +1179,10 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             const activeFiltersDiv = document.getElementById('active-filters');
             let filterText = [];
 
-            // Add status filters
-            for (let status of window.activeFilters.status) {
-                switch(status) {
-                    case 'cisa':
-                        filterText.push('CISA KEV');
-                        break;
-                    case 'epss':
-                        filterText.push('High EPSS');
-                        break;
-                    case 'modified':
-                        filterText.push('Recently Modified');
-                        break;
-                    case 'published':
-                        filterText.push('Newly Published');
-                        break;
-                    case 'high-risk':
-                        filterText.push('High Risk (CVSS > 7.0)');
-                        break;
-                    default:
-                        if (status.startsWith('cvss-')) {
-                            const minCvss = parseFloat(status.split('-')[1]);
-                            filterText.push(`CVSS ≥ ${minCvss}`);
-                        } else if (status.startsWith('epss-')) {
-                            const minEpss = parseFloat(status.split('-')[1]);
-                            filterText.push(`EPSS ≥ ${minEpss}`);
-                        }
-                        break;
-                }
+            // Add severity filters
+            for (let severity of window.activeFilters.severities) {
+                filterText.push(`Severity: ${severity.charAt(0).toUpperCase() + severity.slice(1)}`);
             }
-
-            // Add vendor filters
-            for (let vendor of window.activeFilters.vendors) {
-                filterText.push(`Vendor: ${vendor}`);
-            }
-
-            if (filterText.length === 0) {
-                activeFiltersDiv.textContent = 'None';
-            } else {
-                activeFiltersDiv.innerHTML = filterText.join(', ');
-            }
-        }
-
-        // Update the display of active filters
-        function updateActiveFiltersDisplay() {
-            const activeFiltersDiv = document.getElementById('active-filters');
-            let filterText = [];
 
             // Add status filters
             for (let status of window.activeFilters.status) {
@@ -1267,6 +1234,17 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
                 item.classList.remove('selected');
             });
 
+            // Add selected class to active severity filters
+            if (window.activeFilters.severities.length > 0) {
+                window.activeFilters.severities.forEach(severity => {
+                    const elementId = 'filter-' + severity;
+                    const element = document.getElementById(elementId);
+                    if (element) {
+                        element.classList.add('selected');
+                    }
+                });
+            }
+
             // Add selected class to active status filters
             if (window.activeFilters.status.length > 0) {
                 window.activeFilters.status.forEach(status => {
@@ -1284,17 +1262,8 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
                         case 'published':
                             elementId = 'filter-published';
                             break;
-                        case 'severity-critical':
-                            elementId = 'filter-critical';
-                            break;
-                        case 'severity-high':
-                            elementId = 'filter-high';
-                            break;
-                        case 'severity-medium':
-                            elementId = 'filter-medium';
-                            break;
-                        case 'severity-low':
-                            elementId = 'filter-low';
+                        case 'high-risk':
+                            elementId = 'filter-high-risk';
                             break;
                         default:
                             // Skip specific CVSS and EPSS filters as they are not in the sidebar
@@ -1310,9 +1279,9 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
                 });
             }
 
-            // Add selected class to active vendor filter
+            // Add selected class to active vendor filter (mutually exclusive)
             if (window.activeFilters.vendors.length > 0) {
-                const vendor = window.activeFilters.vendors[0]; // We only support single vendor filter
+                const vendor = window.activeFilters.vendors[0];
                 // Sanitize vendor name for use in ID - replace any non-alphanumeric characters with underscores
                 const sanitizedVendor = vendor.replace(/[^a-zA-Z0-9]/g, '_');
                 const vendorId = 'filter-vendor-' + sanitizedVendor;
@@ -1323,9 +1292,10 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             }
         }
 
-        // Clear all filters (still available via JavaScript API)
+        // Clear all filters
         function clearAllFilters() {
             window.activeFilters = {
+                severities: [],
                 status: [],
                 vendors: []
             };
