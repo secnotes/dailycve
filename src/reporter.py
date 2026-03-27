@@ -850,11 +850,11 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
                         <div class="stat-number">{{ high_risk_count }}</div>
                         <div>High Risk (CVSS > 7.0)</div>
                     </div>
-                    <div class="stat-card" onclick="toggleStatusFilter('cisa')">
+                    <div class="stat-card" onclick="applySingleFilter('cisa')">
                         <div class="stat-number">{{ cisa_kev_count }}</div>
                         <div>In CISA KEV</div>
                     </div>
-                    <div class="stat-card" onclick="toggleStatusFilter('epss')">
+                    <div class="stat-card" onclick="applySingleFilter('epss')">
                         <div class="stat-number">{{ epss_high_count }}</div>
                         <div>High EPSS (≥0.01)</div>
                     </div>
@@ -1042,18 +1042,28 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             showFilterCount(count);
         }
 
-        // Apply single filter (for summary stats clicks)
+        // Apply single filter (for summary stats clicks - mutually exclusive)
         function applySingleFilter(filterType) {
             if (filterType === 'all') {
                 clearAllFilters();
             } else if (filterType === 'high-risk') {
-                // Apply high risk filter (CVSS > 7.0)
-                window.activeFilters = {
-                    status: ['high-risk'],
-                    vendors: []
-                };
-                applyAllFilters();
+                // Apply high risk filter - keep severity and vendor filters
+                window.activeFilters.status = ['high-risk'];
+                const count = applyAllFilters();
                 updateSelectedFiltersHighlight();
+                showFilterCount(count);
+            } else if (filterType === 'cisa') {
+                // Apply CISA KEV filter - keep severity and vendor filters
+                window.activeFilters.status = ['cisa'];
+                const count = applyAllFilters();
+                updateSelectedFiltersHighlight();
+                showFilterCount(count);
+            } else if (filterType === 'epss') {
+                // Apply High EPSS filter - keep severity and vendor filters
+                window.activeFilters.status = ['epss'];
+                const count = applyAllFilters();
+                updateSelectedFiltersHighlight();
+                showFilterCount(count);
             }
         }
 
