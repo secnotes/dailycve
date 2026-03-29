@@ -363,7 +363,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             padding: 4px 10px;
             border-radius: 15px;
             font-size: 0.85em;
-            font-weight: 500;
+            font-weight: normal;
             cursor: pointer;
             margin: 2px 5px 2px 0;
             transition: transform 0.2s, box-shadow 0.2s;
