@@ -142,15 +142,73 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             --warning-color: #ffa726;
             --light-bg: #f5f5f5;
             --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+            /* Light theme colors */
+            --bg-color: #f0f2f5;
+            --text-color: #333;
+            --card-bg: white;
+            --border-color: #e0e0e0;
+            --input-bg: #f8f9fa;
+            --input-border: #e9ecef;
+            --meta-text: #666;
+            --link-bg: #f0f0f0;
+            --link-hover-bg: #e0e0e0;
+            --vendor-bg: #e9ecef;
+            --vendor-hover-bg: #dee2e6;
+            --scrollbar-track: #f1f1f1;
+            --scrollbar-thumb: #c1c1c1;
+            --scrollbar-hover: #a8a8a8;
+            --code-bg: #f4f4f4;
+            --code-border: #eaeaea;
+            --code-color: #d6336c;
+            --pre-bg: #f8f8f8;
+            --pre-border: #e1e4e8;
+            --summary-gradient-start: #e3f2fd;
+            --summary-gradient-end: #f5f5f5;
+            --header-border: var(--primary-color);
+        }
+
+        /* Dark theme colors */
+        [data-theme="dark"] {
+            --primary-color: #ff6b6b;
+            --secondary-color: #64b5f6;
+            --tertiary-color: #81c784;
+            --warning-color: #ffb74d;
+            --light-bg: #1e1e1e;
+            --card-shadow: 0 4px 8px rgba(255,255,255,0.05);
+
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --border-color: #333;
+            --input-bg: #2d2d2d;
+            --input-border: #444;
+            --meta-text: #aaa;
+            --link-bg: #2d2d2d;
+            --link-hover-bg: #3d3d3d;
+            --vendor-bg: #2d2d2d;
+            --vendor-hover-bg: #3d3d3d;
+            --scrollbar-track: #2d2d2d;
+            --scrollbar-thumb: #555;
+            --scrollbar-hover: #666;
+            --code-bg: #2d2d2d;
+            --code-border: #444;
+            --code-color: #f07178;
+            --pre-bg: #1e1e1e;
+            --pre-border: #333;
+            --summary-gradient-start: #1a237e;
+            --summary-gradient-end: #1e1e1e;
+            --header-border: var(--primary-color);
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #f0f2f5;
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -162,14 +220,15 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         }
 
         .main-content {
-            background-color: white;
+            background-color: var(--card-bg);
             padding: 25px;
             border-radius: 12px;
             box-shadow: var(--card-shadow);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .sidebar {
-            background-color: white;
+            background-color: var(--card-bg);
             padding: 20px;
             border-radius: 12px;
             box-shadow: var(--card-shadow);
@@ -178,6 +237,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             top: 20px;
             max-height: 90vh;  /* 增加最大高度到90vh，提供更多空间 */
             overflow-y: auto;  /* 允许垂直滚动 */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         /* 自定义滚动条样式 */
@@ -186,17 +246,17 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         }
 
         .sidebar::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: var(--scrollbar-track);
             border-radius: 4px;
         }
 
         .sidebar::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
+            background: var(--scrollbar-thumb);
             border-radius: 4px;
         }
 
         .sidebar::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
+            background: var(--scrollbar-hover);
         }
 
         header {
@@ -212,25 +272,72 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             font-size: 2.2em;
         }
 
+        /* Theme toggle button */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 100px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
+            z-index: 100;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-color);
+            transition: fill 0.3s ease;
+        }
+
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        .theme-toggle .moon-icon {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .sun-icon {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .moon-icon {
+            display: none;
+        }
+
         .filter-status {
             margin-bottom: 25px;
         }
 
         .current-filters {
             padding: 10px;
-            background-color: #f8f9fa;
+            background-color: var(--input-bg);
             border-radius: 8px;
-            border: 1px solid #e9ecef;
+            border: 1px solid var(--input-border);
         }
 
         .current-filters strong {
             display: block;
             margin-bottom: 5px;
-            color: #495057;
+            color: var(--text-color);
         }
 
         #active-filters {
-            color: #6c757d;
+            color: var(--meta-text);
             font-size: 0.9em;
         }
 
@@ -241,8 +348,8 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         .filter-title {
             font-weight: bold;
             margin-bottom: 10px;
-            color: #333;
-            border-bottom: 1px solid #eee;
+            color: var(--text-color);
+            border-bottom: 1px solid var(--border-color);
             padding-bottom: 5px;
         }
 
@@ -392,11 +499,12 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         }
 
         .summary-box {
-            background: linear-gradient(135deg, #e3f2fd, #f5f5f5);
+            background: linear-gradient(135deg, var(--summary-gradient-start), var(--summary-gradient-end));
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 25px;
             border-left: 5px solid var(--secondary-color);
+            transition: background 0.3s ease;
         }
 
         .summary-stats {
@@ -407,13 +515,13 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         }
 
         .stat-card {
-            background: white;
+            background: var(--card-bg);
             padding: 15px;
             border-radius: 8px;
             text-align: center;
             box-shadow: var(--card-shadow);
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.2s, background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .stat-card:hover {
@@ -433,11 +541,11 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         }
 
         .cve-card {
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--border-color);
             border-radius: 10px;
             overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
-            background: white;
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s ease, border-color 0.3s ease;
+            background: var(--card-bg);
             display: none; /* Initially hide all cards */
             max-height: 700px; /* 增加卡片最大高度以容纳更多内容 */
             display: flex;
@@ -456,12 +564,13 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         }
 
         .cve-header {
-            background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+            background: linear-gradient(135deg, var(--card-bg), var(--input-bg));
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-shrink: 0; /* 防止头部被压缩 */
+            transition: background 0.3s ease;
         }
 
         .cve-id {
@@ -540,7 +649,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         .cve-vendors {
             margin: 10px 0;
             padding: 10px;
-            background-color: #f8f9fa;
+            background-color: var(--input-bg);
             border-radius: 8px;
             font-size: 0.9em;
         }
@@ -549,14 +658,15 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             display: inline-block;
             padding: 3px 8px;
             margin: 2px;
-            background-color: #e9ecef;
+            background-color: var(--vendor-bg);
             border-radius: 10px;
             font-size: 0.8em;
             cursor: pointer;
+            transition: background-color 0.2s ease;
         }
 
         .cve-vendor-tag:hover {
-            background-color: #dee2e6;
+            background-color: var(--vendor-hover-bg);
         }
 
         .cve-body {
@@ -582,18 +692,18 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
 
         /* Code block styling */
         code {
-            background-color: #f4f4f4;
+            background-color: var(--code-bg);
             padding: 2px 6px;
             border-radius: 3px;
             font-family: 'Courier New', Consolas, Monaco, monospace;
             font-size: 0.9em;
-            color: #d6336c;
-            border: 1px solid #eaeaea;
+            color: var(--code-color);
+            border: 1px solid var(--code-border);
         }
 
         pre {
-            background-color: #f8f8f8;
-            border: 1px solid #e1e4e8;
+            background-color: var(--pre-bg);
+            border: 1px solid var(--pre-border);
             border-radius: 6px;
             padding: 12px;
             overflow: auto;
@@ -620,7 +730,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         .cve-links {
             margin-top: 15px;
             padding-top: 10px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid var(--border-color);
             flex-shrink: 0; /* 防止被压缩 */
         }
 
@@ -633,30 +743,30 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         .link-btn {
             display: inline-block;
             padding: 6px 12px;
-            background-color: #f0f0f0;
-            color: #333;
+            background-color: var(--link-bg);
+            color: var(--text-color);
             text-decoration: none;
             border-radius: 6px;
             font-size: 0.85em;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s ease;
         }
 
         .link-btn:hover {
-            background-color: #e0e0e0;
+            background-color: var(--link-hover-bg);
         }
 
         .cve-meta {
             font-size: 0.85em;
-            color: #666;
+            color: var(--meta-text);
             padding-top: 10px;
-            border-top: 1px dashed #eee;
+            border-top: 1px dashed var(--border-color);
             flex-shrink: 0; /* 防止被压缩 */
         }
 
         .no-cves {
             text-align: center;
             padding: 60px 20px;
-            color: #666;
+            color: var(--meta-text);
             font-size: 1.2em;
         }
 
@@ -702,7 +812,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
 
         .filter-item.selected {
             font-weight: bold;
-            background-color: #e3f2fd;
+            background-color: var(--input-bg);
             padding: 3px 0;
             text-decoration: underline;
         }
@@ -759,7 +869,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             text-align: center;
             margin-top: 50px;
             padding: 40px 20px;
-            color: #666;
+            color: var(--meta-text);
             font-size: 0.85rem;
         }
 
@@ -782,7 +892,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         }
 
         .separator {
-            color: #999;
+            color: var(--meta-text);
         }
 
         .github-link {
@@ -825,6 +935,103 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
                 font-size: 0.75em; /* 稍微缩小字体 */
             }
         }
+
+        /* Dark theme overrides for severity and status tags */
+        [data-theme="dark"] .severity-critical {
+            background-color: #4a1c1c;
+            color: #ff8a80;
+        }
+
+        [data-theme="dark"] .severity-high {
+            background-color: #4a2c00;
+            color: #ffab40;
+        }
+
+        [data-theme="dark"] .severity-medium {
+            background-color: #4a3c00;
+            color: #ffd740;
+        }
+
+        [data-theme="dark"] .severity-low {
+            background-color: #1c4a1c;
+            color: #a5d6a7;
+        }
+
+        [data-theme="dark"] .filter-critical {
+            background-color: #4a1c1c;
+            color: #ff8a80;
+        }
+
+        [data-theme="dark"] .filter-high {
+            background-color: #4a2c00;
+            color: #ffab40;
+        }
+
+        [data-theme="dark"] .filter-medium {
+            background-color: #4a3c00;
+            color: #ffd740;
+        }
+
+        [data-theme="dark"] .filter-low {
+            background-color: #1c4a1c;
+            color: #a5d6a7;
+        }
+
+        [data-theme="dark"] .filter-modified-item {
+            background-color: #1a237e;
+            color: #82b1ff;
+        }
+
+        [data-theme="dark"] .filter-published-item {
+            background-color: #1c4a1c;
+            color: #a5d6a7;
+        }
+
+        [data-theme="dark"] .filter-tag-exp {
+            background-color: #4a2c00;
+            color: #ffab40;
+        }
+
+        [data-theme="dark"] .filter-tag-cvss {
+            background-color: #4a1c1c;
+            color: #ff8a80;
+        }
+
+        [data-theme="dark"] .tag-cvss {
+            background-color: #4a1c1c;
+            color: #ff8a80;
+        }
+
+        [data-theme="dark"] .tag-epss {
+            background-color: #1c4a1c;
+            color: #a5d6a7;
+        }
+
+        [data-theme="dark"] .tag-cisa {
+            background-color: #1a237e;
+            color: #82b1ff;
+        }
+
+        [data-theme="dark"] .tag-exp {
+            background-color: #4a2c00;
+            color: #ffab40;
+        }
+
+        [data-theme="dark"] .show-all-btn {
+            background-color: #2e7d32;
+        }
+
+        [data-theme="dark"] .show-all-btn:hover {
+            background-color: #388e3c;
+        }
+
+        [data-theme="dark"] .show-more-btn {
+            background-color: #1565c0;
+        }
+
+        [data-theme="dark"] .show-more-btn:hover {
+            background-color: #1976d2;
+        }
     </style>
 
     <!-- Toast animation styles -->
@@ -854,13 +1061,29 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
 </head>
 <body>
     <a href="https://github.com/secnotes/dailycve" class="github-corner" aria-label="View source on GitHub">
-        <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#d32f2f; color:#fff; position: fixed; top: 0; border: 0; right: 0; z-index: 1000;" aria-hidden="true">
-            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <svg width="80" height="80" viewBox="0 0 250 250" class="github-corner-svg" aria-hidden="true">
+            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z" class="github-corner-bg"></path>
             <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
             <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
         </svg>
     </a>
     <style>
+        .github-corner-svg {
+            fill: var(--primary-color);
+            color: #fff;
+            position: fixed;
+            top: 0;
+            border: 0;
+            right: 0;
+            z-index: 1000;
+            transition: fill 0.3s ease;
+        }
+
+        [data-theme="dark"] .github-corner-svg {
+            fill: var(--primary-color);
+            color: #121212;
+        }
+
         .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}
         @keyframes octocat-wave{
             0%,100%{transform:rotate(0)}
@@ -875,6 +1098,15 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
     <div class="container">
         <div class="main-content">
             <header>
+                <!-- Theme toggle button -->
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>
+                    </svg>
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0L4.58 18.36c-.39.39-.39 1.03 0 1.41.39.39 1.03.39 1.41 0l1.06-1.06z"/>
+                    </svg>
+                </button>
                 <h1>🔍 Daily CVE Report - {{ date }}</h1>
                 <p>An advanced automated vulnerability monitoring system that sources data from MITRE CVE,<br />enabling quick filtering of high-risk vulnerabilities with intuitive visual reports.</p>
             </header>
@@ -1029,6 +1261,26 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
     </div>
 
     <script>
+        // Initialize theme on page load
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else if (systemPrefersDark) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+
+        // Toggle theme function
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
         // Initialize all CVEs as visible and initialize filter state
         document.addEventListener('DOMContentLoaded', function() {
             const allCards = document.querySelectorAll('.cve-card');
