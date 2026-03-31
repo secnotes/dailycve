@@ -1058,6 +1058,20 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
     </style>
+
+    <!-- Theme initialization - must be in head to prevent flash -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else if (systemPrefersDark) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
 </head>
 <body>
     <a href="https://github.com/secnotes/dailycve" class="github-corner" aria-label="View source on GitHub">
@@ -1261,18 +1275,6 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
     </div>
 
     <script>
-        // Initialize theme on page load
-        (function() {
-            const savedTheme = localStorage.getItem('theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-            } else if (systemPrefersDark) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-        })();
-
         // Toggle theme function
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
