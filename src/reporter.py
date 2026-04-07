@@ -41,6 +41,18 @@ def convert_markdown_code_blocks(text):
 
     return result
 
+def escape_liquid_syntax(text):
+    """Escape Liquid template syntax to prevent Jekyll parsing errors"""
+    if not text:
+        return text
+    # Simple escape using HTML entities to prevent Liquid parsing
+    text = text.replace('{%', '&#123;&#37;')
+    text = text.replace('%}', '&#37;&#125;')
+    text = text.replace('{{', '&#123;&#123;')
+    text = text.replace('}}', '&#125;&#125;')
+    return text
+
+
 def generate_markdown_report(cves, output_path='docs/reports/YYYY/daily_cve_YYYYMMDD.md', total_cve_count=None):
     """Generate Markdown report with CVE data"""
 
@@ -104,7 +116,10 @@ def generate_markdown_report(cves, output_path='docs/reports/YYYY/daily_cve_YYYY
         md_content += f"## {cve['id']}\n\n"
         # Add both CVSS and EPSS scores to the markdown report
         md_content += f"**CVSS Score:** {cve.get('cvss_score', 0):.1f} | **EPSS Score:** {round_epss_score(cve.get('epss_score', 0)):.3f} | **Status:** {status_text} | **Vendors:** {vendor_list}\n\n"
-        md_content += f"{cve.get('description', 'No description available')}\n\n"
+        # Escape Liquid syntax in description to prevent Jekyll parsing errors
+        description = cve.get('description', 'No description available')
+        description = escape_liquid_syntax(description)
+        md_content += f"{description}\n\n"
 
         # Add publication and modification dates
         pub_date = cve.get('published_date', '')[:10] if cve.get('published_date') else 'Unknown'
