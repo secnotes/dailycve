@@ -29,6 +29,36 @@ class Config:
     # AI Enhancement (requires OPENAI_API_KEY in environment)
     ENABLE_AI_ENHANCEMENT = os.getenv('OPENAI_API_KEY') is not None
 
+    # AI Curation settings (supports both AI_API_KEY and OPENAI_API_KEY)
+    AI_CURATION_ENABLED = os.getenv('AI_API_KEY') is not None or os.getenv('OPENAI_API_KEY') is not None
+    AI_CURATED_CACHE_PATH = "docs/ai_curated.json"
+
+    # CVE-specific AI categories
+    AI_CVE_CATEGORIES = [
+        "桌面操作系统",
+        "移动安全",
+        "IoT安全",
+        "云安全",
+        "网络设备",
+        "工业控制",
+        "Web安全",
+        "数据库与中间件",
+        "其他",
+    ]
+
+    # Category icon mapping for HTML display
+    AI_CATEGORY_ICONS = {
+        "桌面操作系统": "💻",
+        "移动安全": "📱",
+        "IoT安全": "📡",
+        "云安全": "☁️",
+        "网络设备": "🌐",
+        "工业控制": "🏭",
+        "Web安全": "🔐",
+        "数据库与中间件": "🗄️",
+        "其他": "📌",
+    }
+
     @staticmethod
     def get_current_year_report_dir():
         """Get the report directory for the current year"""

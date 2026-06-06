@@ -11,7 +11,10 @@ Automated daily CVE monitoring system that collects all vulnerability informatio
   - CVSS score > 7.0 (High/Critical severity)
   - Presence in CISA KEV (Known Exploited Vulnerabilities) List
   - EPSS score ≥ 0.01 (Exploitation probability)
-- **AI Enhancement**: Uses OpenAI to improve vulnerability descriptions for readability (optional)
+- **AI Enhancement**: Uses OpenAI-compatible APIs to intelligently categorize and curate high-risk vulnerabilities (optional)
+  - Filters CVSS ≥ 7.0 vulnerabilities with descriptions for AI analysis
+  - Categorizes into domains: Desktop OS, Mobile, IoT, Cloud, Network, ICS, Web, Database/Middleware
+  - Provides AI-generated recommendation reasons for each curated CVE
 - **Interactive Reports**: Generates rich HTML reports with filtering capabilities including:
   - CVSS severity filters (Critical, High, Medium, Low)
   - Status filters (Recently Modified, Newly Published)
@@ -26,6 +29,7 @@ Automated daily CVE monitoring system that collects all vulnerability informatio
 dailycve/
 ├── src/                           # Source code
 │   ├── __init__.py               # Package initialization
+│   ├── ai_provider.py            # AI provider (OpenAI-compatible APIs)
 │   ├── collector.py              # Main CVE collection logic
 │   ├── reporter.py               # Report generation logic with enhanced UI
 │   └── config.py                 # Configuration settings
@@ -59,7 +63,8 @@ dailycve/
 3. **Configure environment (optional)**:
    ```bash
    cp .env.example .env
-   # Add your OpenAI API key to .env if you want AI-enhanced descriptions
+   # Add your AI API key to .env for AI curation feature
+   # Supports AI_API_KEY or OPENAI_API_KEY (fallback)
    ```
 
 4. **Run locally**:
@@ -88,18 +93,55 @@ You can customize the system behavior by modifying `src/config.py`:
 - Adjust risk thresholds
 - Change report output paths
 - Modify data source URLs
-- Enable/disable AI enhancement
+- Enable/disable AI curation
 
-## 🤖 AI Enhancement
+## 🤖 AI Curation
 
-The system supports AI-enhanced vulnerability descriptions using OpenAI. To enable:
-1. Add your `OPENAI_API_KEY` to the `.env` file
-2. The system will automatically enhance descriptions for better readability
+The system supports AI-powered intelligent curation of high-risk vulnerabilities using OpenAI-compatible APIs. To enable:
+
+1. Add your API key to the `.env` file:
+   ```bash
+   # Option 1: Use AI_API_KEY (recommended, supports multiple providers)
+   AI_API_KEY=your_api_key_here
+   AI_MODEL=gpt-4o-mini
+   AI_BASE_URL=https://api.openai.com/v1
+
+   # Option 2: Use OPENAI_API_KEY (backward compatible)
+   OPENAI_API_KEY=your_openai_key
+   ```
+2. The system will automatically:
+   - Filter CVEs with CVSS ≥ 7.0 and non-empty descriptions
+   - Send them to AI for analysis and categorization
+   - Generate an "AI Curated" view with categorized vulnerabilities and recommendation reasons
+3. Supported providers: OpenAI, DeepSeek, Alibaba (DashScope), Moonshot, Zhipu (GLM), and any OpenAI-compatible API
+
+### AI Categories
+
+Vulnerabilities are categorized into the following domains:
+
+| Category | Description |
+|----------|-------------|
+| 💻 Desktop OS | Windows, macOS, Linux desktop vulnerabilities |
+| 📱 Mobile | Android, iOS, mobile app vulnerabilities |
+| 📡 IoT | Routers, cameras, embedded devices |
+| ☁️ Cloud | AWS, Azure, GCP, cloud services |
+| 🌐 Network | Cisco, Fortinet, network infrastructure |
+| 🏭 ICS | SCADA, industrial control systems |
+| 🔐 Web | Browsers, web frameworks, CMS |
+| 🗄️ Database & Middleware | Oracle, MySQL, Apache, Nginx |
+| 📌 Other | Anything not fitting above categories |
+
+### UI Toggle
+
+When AI curation is enabled, the HTML report displays a toggle button at the top of the sidebar:
+- **📋 All Vulnerabilities**: Default view showing all collected CVEs
+- **🤖 AI Curated**: AI-filtered view with categorized vulnerabilities and recommendation reasons
 
 ## 📈 Output Files
 
 After execution, the system generates:
-- `docs/index.html`: Interactive dashboard-style report with filtering capabilities
+- `docs/index.html`: Interactive dashboard-style report with filtering and AI curation toggle
+- `docs/ai_curated.json`: AI curation results cache (when AI is enabled)
 - `docs/reports/[year]/daily_cve_[date].md`: Markdown archive of daily findings
 
 ## 🏗️ Architecture
@@ -108,15 +150,23 @@ After execution, the system generates:
 - Fetches all CVE information daily from MITRE CVE database
 - Loads CISA KEV and EPSS datasets to supplement MITRE CVE data
 - Filters vulnerabilities based on risk criteria
-- Optionally enhances descriptions using AI
+- AI curation: categorizes high-risk CVEs using AI with batch processing
 
-### 2. Reporter (`src/reporter.py`)
+### 2. AI Provider (`src/ai_provider.py`)
+- Unified interface for OpenAI-compatible APIs (OpenAI, DeepSeek, Alibaba, etc.)
+- Batch processing for large CVE lists
+- Automatic model-to-provider URL inference
+- JSON response parsing with error handling
+
+### 3. Reporter (`src/reporter.py`)
 - Generates HTML reports with advanced filtering UI
 - Creates markdown archives for historical records
-- Formats vulnerability data for readability
-- Implements enhanced code block rendering and vendor filtering
+- AI curated view with category navigation and recommendation reasons
+- View toggle between "All Vulnerabilities" and "AI Curated"
+- Dark/light theme support
 
-### 3. Configuration (`src/config.py`)
+### 4. Configuration (`src/config.py`)
 - Centralized configuration management
 - Risk thresholds and API endpoints
+- AI curation settings and category definitions
 - Output paths and settings

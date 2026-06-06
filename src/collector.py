@@ -449,6 +449,61 @@ class CVECollector:
         # Skip AI enhancement and return original description
         return description or ""
 
+    def ai_curate_cves(self, cves):
+        """Use AI to categorize and recommend important CVEs"""
+        try:
+            from ai_provider import AIProvider
+        except ImportError:
+            print("ai_provider module not found, skipping AI curation")
+            return None
+
+        # Filter CVEs suitable for AI analysis: CVSS >= 7.0 with non-empty description
+        eligible_cves = [
+            cve for cve in cves
+            if cve.get('cvss_score', 0) >= 7.0 and cve.get('description')
+        ]
+
+        if not eligible_cves:
+            print("No eligible CVEs for AI curation (need CVSS >= 7.0 with description)")
+            return None
+
+        print(f"AI curation: analyzing {len(eligible_cves)} eligible CVEs...")
+
+        try:
+            api_key = os.environ.get('AI_API_KEY') or os.environ.get('OPENAI_API_KEY')
+            provider = AIProvider(api_key=api_key)
+            result = provider.analyze_cves(eligible_cves, categories=Config.AI_CVE_CATEGORIES)
+            return result
+        except ValueError as e:
+            print(f"AI curation skipped: {e}")
+            return None
+        except Exception as e:
+            print(f"Error during AI curation: {e}")
+            return None
+
+    def save_ai_curated_cache(self, curated_data, path=None):
+        """Save AI curated results to JSON cache file"""
+        if not curated_data:
+            return
+        path = path or Config.AI_CURATED_CACHE_PATH
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, 'w', encoding='utf-8') as f:
+            json.dump(curated_data, f, ensure_ascii=False, indent=2)
+        print(f"AI curated data cached to {path}")
+
+    def load_ai_curated_cache(self, path=None):
+        """Load AI curated results from JSON cache file"""
+        path = path or Config.AI_CURATED_CACHE_PATH
+        if os.path.exists(path):
+            try:
+                with open(path, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                print(f"Loaded cached AI curation results from {path}")
+                return data
+            except Exception as e:
+                print(f"Error loading AI cache: {e}")
+        return None
+
     def collect_daily_cves(self, days=Config.LOOKBACK_DAYS):
         """Collect CVEs from the new CVEProject/cvelistV5 source"""
         print(f"Collecting CVEs from the last {days} day(s) from CVEProject/cvelistV5...")

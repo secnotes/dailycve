@@ -138,7 +138,119 @@ def generate_markdown_report(cves, output_path='docs/reports/YYYY/daily_cve_YYYY
     print(f"Markdown report generated: {output_path}")
 
 
-def generate_html_report(cves, output_path='index.html', total_cve_count=None):
+def generate_ai_curated_html(ai_curated, cve_lookup):
+    """Generate HTML for AI curated view (returns plain HTML string)"""
+    if not ai_curated:
+        return '<div class="no-ai-data"><p>🤖 AI精选数据暂未生成</p><p>请配置 AI API 密钥以启用AI精选功能</p></div>'
+
+    from config import Config
+
+    category_icons = Config.AI_CATEGORY_ICONS
+    categories_html = []
+
+    categories = ai_curated.get('categories', {})
+    for category_name, curated_cves in categories.items():
+        if not curated_cves:
+            continue
+
+        icon = category_icons.get(category_name, '📌')
+        cves_html = []
+
+        for curated_cve in curated_cves:
+            cve_id = curated_cve.get('id', '')
+            reason = curated_cve.get('reason', '')
+
+            # Look up full CVE data from the lookup dict
+            full_cve = cve_lookup.get(cve_id, {})
+            description = full_cve.get('description', 'No description available')
+            cvss_score = full_cve.get('cvss_score', 0)
+            in_cisa = full_cve.get('in_cisa_kev', False)
+            epss_score = full_cve.get('epss_score', 0)
+            vendors = full_cve.get('vendors', [])
+
+            # Determine severity
+            severity = 'low'
+            severity_class = 'severity-low'
+            if cvss_score >= 9.0:
+                severity = 'Critical'
+                severity_class = 'severity-critical'
+            elif cvss_score >= 7.0:
+                severity = 'High'
+                severity_class = 'severity-high'
+            elif cvss_score >= 4.0:
+                severity = 'Medium'
+                severity_class = 'severity-medium'
+
+            # Truncate description for card display
+            if len(description) > 200:
+                description = description[:200] + '...'
+
+            vendors_str = ', '.join(vendors[:5]) if vendors else 'N/A'
+            if len(vendors) > 5:
+                vendors_str += f' (+{len(vendors)-5})'
+
+            cves_html.append(f'''
+            <div class="ai-cve-card">
+                <div class="ai-cve-header">
+                    <a href="https://nvd.nist.gov/vuln/detail/{cve_id}" target="_blank" class="ai-cve-id">{cve_id}</a>
+                    <span class="cve-severity {severity_class}">{severity} ({cvss_score:.1f})</span>
+                </div>
+                <div class="ai-cve-description">{html.escape(description)}</div>
+                <div class="ai-cve-meta">
+                    <span>🏢 {vendors_str}</span>
+                    {"<span>🇺🇸 CISA KEV</span>" if in_cisa else ""}
+                    {f'<span>📈 EPSS: {epss_score:.4f}</span>' if epss_score > 0 else ""}
+                </div>
+                {f'<div class="ai-cve-reason">💡 推荐理由: {html.escape(reason)}</div>' if reason else ''}
+            </div>''')
+
+        categories_html.append(f'''
+        <div class="ai-category" id="ai-category-{sanitize_vendor_id(category_name)}">
+            <h3 class="ai-category-title">{icon} {category_name} ({len(curated_cves)})</h3>
+            {"".join(cves_html)}
+        </div>''')
+
+    summary = ai_curated.get('summary', '')
+    analysis_date = ai_curated.get('analysis_date', '')
+    total_analyzed = ai_curated.get('total_analyzed', 0)
+
+    result_html = f'''
+    <div class="ai-summary">
+        <h3>🤖 AI智能分析摘要</h3>
+        <div class="ai-summary-text">{html.escape(summary)}</div>
+        <div class="ai-summary-meta">
+            <span>分析日期: {analysis_date}</span>
+            <span>精选漏洞: {sum(len(v) for v in categories.values())}</span>
+            <span>候选漏洞: {total_analyzed}</span>
+        </div>
+    </div>
+    {"".join(categories_html)}'''
+
+    return result_html
+
+
+def generate_ai_category_nav(ai_curated):
+    """Generate category navigation for AI sidebar"""
+    if not ai_curated:
+        return '<li style="color:var(--meta-text)">暂无分类数据</li>'
+
+    from config import Config
+
+    category_icons = Config.AI_CATEGORY_ICONS
+    categories = ai_curated.get('categories', {})
+    nav_items = []
+
+    for category_name, curated_cves in categories.items():
+        if curated_cves:
+            icon = category_icons.get(category_name, '📌')
+            count = len(curated_cves)
+            safe_id = sanitize_vendor_id(category_name)
+            nav_items.append(f'<li onclick="scrollToCategory(\'{safe_id}\')">{icon} {category_name} ({count})</li>')
+
+    return ''.join(nav_items) if nav_items else '<li style="color:var(--meta-text)">暂无分类数据</li>'
+
+
+def generate_html_report(cves, output_path='index.html', total_cve_count=None, ai_curated=None):
     """Generate HTML report with CVE data"""
 
     # Define the HTML template as a string
@@ -919,7 +1031,8 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         .github-icon {
             width: 16px;
             height: 16px;
-            vertical-align: middle;
+            vertical-align: -0.15em;
+            margin-right: 4px;
         }
 
         @media (max-width: 480px) {
@@ -1072,6 +1185,237 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             animation: fadeInOut 2s ease-in-out;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
+
+        /* View toggle buttons */
+        .view-toggle {
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.3s ease;
+        }
+
+        .view-toggle-btn {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 500;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .view-toggle-btn:first-child {
+            border-right: 1px solid var(--border-color);
+        }
+
+        .view-toggle-btn:hover {
+            background-color: var(--vendor-hover-bg);
+        }
+
+        .view-toggle-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* View switching */
+        .original-view {
+            display: block;
+        }
+
+        .original-view.hidden {
+            display: none;
+        }
+
+        .ai-view {
+            display: none;
+        }
+
+        .ai-view.active {
+            display: block;
+        }
+
+        .sidebar-section {
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-section.hidden {
+            display: none;
+        }
+
+        /* AI category section */
+        .ai-category {
+            margin-bottom: 2rem;
+        }
+
+        .ai-category-title {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        [data-theme="dark"] .ai-category-title {
+            border-bottom-color: #7c8edb;
+        }
+
+        /* AI summary block */
+        .ai-summary {
+            padding: 0.5rem 0 1.5rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .ai-summary h3 {
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .ai-summary-text {
+            color: var(--meta-text);
+            line-height: 1.7;
+            padding-left: 1rem;
+            border-left: 3px solid #667eea;
+            margin-bottom: 0.75rem;
+        }
+
+        [data-theme="dark"] .ai-summary-text {
+            border-left-color: #7c8edb;
+        }
+
+        .ai-summary-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--meta-text);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+        }
+
+        /* AI CVE card */
+        .ai-cve-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .ai-cve-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+
+        .ai-cve-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .ai-cve-id {
+            font-weight: bold;
+            font-size: 1.05em;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .ai-cve-id:hover {
+            text-decoration: underline;
+        }
+
+        .ai-cve-description {
+            color: var(--text-color);
+            font-size: 0.92em;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .ai-cve-meta {
+            display: flex;
+            gap: 1rem;
+            color: var(--meta-text);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+        }
+
+        .ai-cve-reason {
+            color: var(--meta-text);
+            font-size: 0.88rem;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px dashed var(--border-color);
+            line-height: 1.5;
+        }
+
+        /* AI category navigation in sidebar */
+        .ai-category-nav {
+            background: var(--input-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .ai-category-nav h4 {
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+        }
+
+        .ai-category-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ai-category-nav li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            color: var(--secondary-color);
+            transition: all 0.2s ease;
+        }
+
+        .ai-category-nav li:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .ai-category-nav li:last-child {
+            border-bottom: none;
+        }
+
+        /* No AI data placeholder */
+        .no-ai-data {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--meta-text);
+            background: var(--input-bg);
+            border-radius: 12px;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        /* AI sidebar stats */
+        .ai-sidebar-stats {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: var(--input-bg);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--meta-text);
+            line-height: 1.8;
+            transition: background-color 0.3s ease;
+        }
     </style>
 
     <!-- Theme initialization - must be in head to prevent flash -->
@@ -1164,6 +1508,8 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
                 </div>
             </div>
 
+            <!-- Original View (All Vulnerabilities) -->
+            <div class="original-view" id="original-view">
             {% if cves %}
                 <div class="cve-grid" id="cve-grid">
                     {% for cve in cves %}
@@ -1248,9 +1594,25 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
                     <p>✅ No high-risk vulnerabilities detected for {{ date }}.</p>
                 </div>
             {% endif %}
+            </div>
+
+            <!-- AI Curated View -->
+            <div class="ai-view" id="ai-view">
+                {{ ai_curated_html|safe }}
+            </div>
         </div>
 
         <div class="sidebar">
+            {% if ai_curated %}
+            <!-- View Toggle Buttons -->
+            <div class="view-toggle">
+                <button class="view-toggle-btn" onclick="switchView('ai')">🤖 AI精选</button>
+                <button class="view-toggle-btn active" onclick="switchView('original')">📋 全部漏洞</button>
+            </div>
+            {% endif %}
+
+            <!-- Original Sidebar (Filters) -->
+            <div class="sidebar-section" id="original-sidebar">
             <div class="filter-section">
                 <div class="filter-title">🛡️ Filter by CVSS Severity</div>
                 <div style="display: flex; flex-wrap: wrap; gap: 5px;">
@@ -1283,6 +1645,25 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
                 {% if all_vendors_list|length > 19 %}
                 <button class="show-more-btn" onclick="toggleMoreVendors()" id="show-more-btn">Show More Vendors ({{ all_vendors_list|length - 19 }} more)</button>
                 {% endif %}
+            </div>
+            {% endif %}
+            </div>
+
+            <!-- AI Sidebar (Category Navigation) -->
+            {% if ai_curated %}
+            <div class="sidebar-section hidden" id="ai-sidebar">
+                <div class="ai-category-nav">
+                    <h4>📋 分类目录</h4>
+                    <ul>
+                        {{ ai_category_nav|safe }}
+                    </ul>
+                </div>
+                <div class="ai-sidebar-stats">
+                    <p>🤖 AI智能分析</p>
+                    <p>分析日期: {{ ai_curated_date }}</p>
+                    <p>精选漏洞: {{ ai_curated_count }}</p>
+                    <p>候选漏洞: {{ ai_total_analyzed }}</p>
+                </div>
             </div>
             {% endif %}
 
@@ -1721,6 +2102,39 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
                 moreVendorsShown = false;
             }
         }
+
+        // Switch between original view and AI curated view
+        function switchView(view) {
+            const originalView = document.getElementById('original-view');
+            const aiView = document.getElementById('ai-view');
+            const originalSidebar = document.getElementById('original-sidebar');
+            const aiSidebar = document.getElementById('ai-sidebar');
+            const buttons = document.querySelectorAll('.view-toggle-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            if (view === 'original') {
+                originalView.classList.remove('hidden');
+                aiView.classList.remove('active');
+                originalSidebar.classList.remove('hidden');
+                if (aiSidebar) aiSidebar.classList.add('hidden');
+                buttons[1].classList.add('active');
+            } else {
+                originalView.classList.add('hidden');
+                aiView.classList.add('active');
+                originalSidebar.classList.add('hidden');
+                if (aiSidebar) aiSidebar.classList.remove('hidden');
+                buttons[0].classList.add('active');
+            }
+        }
+
+        // Scroll to a specific AI category
+        function scrollToCategory(safeId) {
+            const el = document.getElementById('ai-category-' + safeId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
     </script>
 
     <!-- Footer -->
@@ -1816,6 +2230,26 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
             'products': []  # Remove products from UI
         })
 
+    # Build CVE lookup dict for AI curated view (keyed by CVE ID)
+    cve_lookup = {}
+    for cve in cves:
+        cve_lookup[cve['id']] = {
+            'description': cve.get('description', ''),
+            'cvss_score': cve.get('cvss_score', 0),
+            'epss_score': cve.get('epss_score', 0),
+            'in_cisa_kev': cve.get('in_cisa_kev', False),
+            'vendors': cve.get('vendors', []),
+        }
+
+    # Prepare AI curated HTML content
+    ai_curated_html = generate_ai_curated_html(ai_curated, cve_lookup)
+    ai_category_nav = generate_ai_category_nav(ai_curated) if ai_curated else ''
+
+    # AI sidebar metadata
+    ai_curated_date = ai_curated.get('analysis_date', '-') if ai_curated else '-'
+    ai_curated_count = sum(len(v) for v in ai_curated.get('categories', {}).values()) if ai_curated else 0
+    ai_total_analyzed = ai_curated.get('total_analyzed', 0) if ai_curated else 0
+
     # Render the template
     html_content = template.render(
         date=datetime.now().strftime('%Y-%m-%d'),
@@ -1833,7 +2267,13 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None):
         cves=formatted_cves,
         initial_vendors=initial_vendors,
         all_vendors_list=list(all_sorted_vendors.keys()),
-        all_sorted_vendors=all_sorted_vendors
+        all_sorted_vendors=all_sorted_vendors,
+        ai_curated=ai_curated,
+        ai_curated_html=ai_curated_html,
+        ai_category_nav=ai_category_nav,
+        ai_curated_date=ai_curated_date,
+        ai_curated_count=ai_curated_count,
+        ai_total_analyzed=ai_total_analyzed
     )
 
     # Write to file

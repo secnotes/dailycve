@@ -1,0 +1,97 @@
+{
+  "analysis_date": "2026-06-05",
+  "total_analyzed": 161,
+  "categories": {
+    "桌面操作系统": [
+      {
+        "id": "CVE-2026-33999",
+        "reason": "X.Org X服务器底层组件存在整数下溢漏洞，可导致内存安全违规和拒绝服务，影响范围广。"
+      },
+      {
+        "id": "CVE-2025-12694",
+        "reason": "Forcepoint VPN客户端存在本地提权漏洞，低权限用户可直接提权至SYSTEM，危害极大。"
+      }
+    ],
+    "移动安全": [
+      {
+        "id": "CVE-2026-40290",
+        "reason": "OP-TEE可信执行环境中存在UAF竞态条件，可破坏移动设备核心安全隔离机制。"
+      },
+      {
+        "id": "CVE-2026-49185",
+        "reason": "Acer FieldX MDM组件存在CVSS满分漏洞，未验证的ADB消息可直接导致命令注入，完全接管设备。"
+      }
+    ],
+    "IoT安全": [
+      {
+        "id": "CVE-2026-7251",
+        "reason": "生物反应器设备VNC使用硬编码密码，远程攻击者可无需认证获取设备UI完全控制权，危害极大。"
+      },
+      {
+        "id": "CVE-2026-49188",
+        "reason": "Acer设备ai_cmd工具以root权限运行且直接处理socket输入，极易导致未认证root命令执行。"
+      }
+    ],
+    "云安全": [
+      {
+        "id": "CVE-2026-41283",
+        "reason": "OpenStack Mistral API暴露导致任意远程代码执行，可泄露服务凭证，对云基础设施构成致命威胁。"
+      },
+      {
+        "id": "CVE-2026-41860",
+        "reason": "Cloud Foundry BOSH硬编码禁用SSL验证，允许中间人攻击窃取UAA令牌或Director管理凭证。"
+      }
+    ],
+    "网络设备": [
+      {
+        "id": "CVE-2024-27892",
+        "reason": "Arista EOS的OpenConfig gNMI Set请求可绕过拒绝逻辑，导致交换机应用非预期配置，破坏网络稳定性。"
+      },
+      {
+        "id": "CVE-2026-8037",
+        "reason": "Progress LoadMaster ADC产品存在未认证远程命令注入漏洞，攻击者可直接接管负载均衡设备。"
+      }
+    ],
+    "工业控制": [
+      {
+        "id": "CVE-2025-54807",
+        "reason": "加油站设备固件中硬编码了认证令牌签名密钥，攻击者获取后可绕过认证获取系统完全控制权。"
+      },
+      {
+        "id": "CVE-2025-62581",
+        "reason": "台达电子DIAView工控软件存在多个CVSS 9.8高危漏洞，可能被用于攻击工业监控系统。"
+      }
+    ],
+    "Web安全": [
+      {
+        "id": "CVE-2026-43986",
+        "reason": "Tautulli未授权公共路由存在SSRF漏洞，攻击者可利用服务器端图片获取逻辑发起恶意请求，危害极高。"
+      },
+      {
+        "id": "CVE-2026-45247",
+        "reason": "Magento 2缓存插件存在未认证PHP对象注入RCE，已被CISA KEV收录在野利用，需紧急修复。"
+      }
+    ],
+    "数据库与中间件": [
+      {
+        "id": "CVE-2026-28318",
+        "reason": "已被CISA KEV收录的在野利用漏洞，未认证攻击者可通过特制POST请求导致Serv-U服务崩溃，需优先修补。"
+      },
+      {
+        "id": "CVE-2026-47065",
+        "reason": "Apache反序列化过滤机制绕过漏洞，攻击者可利用Proxy类绕过黑名单，导致远程代码执行。"
+      }
+    ],
+    "其他": [
+      {
+        "id": "CVE-2025-71316",
+        "reason": "SQLite sqldiff.exe在处理Unicode到ANSI转换时存在DLL加载漏洞，可导致命令行参数误解和任意代码执行。"
+      },
+      {
+        "id": "CVE-2026-44211",
+        "reason": "Cline自主编码代理存在跨域WebSocket劫持漏洞，严重威胁开发者IDE环境安全。"
+      }
+    ]
+  },
+  "summary": "本批次包含多个高危漏洞，重点关注云安全RCE、工控硬编码密钥及CISA KEV在野利用漏洞。 | 本批次Acer设备爆出多个移动/IoT满分高危漏洞，Progress ADC及Magento KEV漏洞需重点关注。"
+}
