@@ -67,16 +67,16 @@ class AIProvider:
         Initialize AI provider
 
         Args:
-            api_key: API key (defaults to AI_API_KEY or OPENAI_API_KEY env var)
+            api_key: API key (defaults to AI_API_KEY env var)
             model: Model name (defaults to AI_MODEL env var, or 'gpt-4o-mini')
             base_url: API base URL (defaults to AI_BASE_URL env var, or auto-inferred)
         """
-        self.api_key = api_key or os.environ.get('AI_API_KEY') or os.environ.get('OPENAI_API_KEY')
+        self.api_key = api_key or os.environ.get('AI_API_KEY')
         self.model = model or os.environ.get('AI_MODEL') or 'gpt-4o-mini'
         self.base_url = base_url or os.environ.get('AI_BASE_URL')
 
         if not self.api_key:
-            raise ValueError("AI API key is required. Set AI_API_KEY or OPENAI_API_KEY env var.")
+            raise ValueError("AI API key is required. Set AI_API_KEY env var.")
 
         # Auto-infer base_url if not provided
         if not self.base_url:

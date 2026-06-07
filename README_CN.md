@@ -64,7 +64,7 @@ dailycve/
    ```bash
    cp .env.example .env
    # 在.env文件中添加AI API密钥以启用AI精选功能
-   # 支持 AI_API_KEY 或 OPENAI_API_KEY（向后兼容）
+   # 需要配置 AI_API_KEY
    ```
 
 4. **本地运行**:
@@ -101,13 +101,10 @@ dailycve/
 
 1. 在 `.env` 文件中添加API密钥:
    ```bash
-   # 方式一：使用 AI_API_KEY（推荐，支持多家API提供商）
+   # 配置AI API密钥（支持多家API提供商）
    AI_API_KEY=your_api_key_here
    AI_MODEL=gpt-4o-mini
    AI_BASE_URL=https://api.openai.com/v1
-
-   # 方式二：使用 OPENAI_API_KEY（向后兼容）
-   OPENAI_API_KEY=your_openai_key
    ```
 2. 系统将自动执行以下操作:
    - 筛选CVSS ≥ 7.0且描述非空的漏洞

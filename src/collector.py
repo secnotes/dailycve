@@ -7,7 +7,6 @@ import zipfile
 import io
 from datetime import datetime, timedelta
 import html2text
-from openai import OpenAI
 from dotenv import load_dotenv
 from html import unescape
 import re
@@ -21,27 +20,11 @@ class CVECollector:
     def __init__(self):
         self.cisa_kev_list = []
         self.epss_data = {}
-        self.openai_client = None
-
-        # Initialize OpenAI client if API key is available
-        openai_api_key = os.getenv('OPENAI_API_KEY')
-        if openai_api_key:
-            try:
-                self.openai_client = OpenAI(api_key=openai_api_key)
-            except Exception as e:
-                print(f"Warning: Could not initialize OpenAI client: {e}")
-                print("Continuing without AI enhancement...")
-                self.openai_client = None
-        else:
-            self.openai_client = None
 
         # Load CISA KEV data
         self.load_cisa_kev()
         # Load EPSS data
         self.load_epss_data()
-
-        # Enable AI enhancement based on config
-        self.enable_ai = Config.ENABLE_AI_ENHANCEMENT
 
     def load_cisa_kev(self):
         """Load CISA Known Exploited Vulnerabilities list"""
@@ -442,11 +425,7 @@ class CVECollector:
         return cves
 
     def enhance_description_with_ai(self, cve_id, description):
-        """Enhance CVE description using AI for better readability"""
-        if not self.openai_client or not self.enable_ai:
-            return description
-
-        # Skip AI enhancement and return original description
+        """Enhance CVE description using AI for better readability (deprecated, returns original)"""
         return description or ""
 
     def ai_curate_cves(self, cves):
@@ -470,7 +449,7 @@ class CVECollector:
         print(f"AI curation: analyzing {len(eligible_cves)} eligible CVEs...")
 
         try:
-            api_key = os.environ.get('AI_API_KEY') or os.environ.get('OPENAI_API_KEY')
+            api_key = os.environ.get('AI_API_KEY')
             provider = AIProvider(api_key=api_key)
             result = provider.analyze_cves(eligible_cves, categories=Config.AI_CVE_CATEGORIES)
             return result

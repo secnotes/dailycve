@@ -64,7 +64,7 @@ dailycve/
    ```bash
    cp .env.example .env
    # Add your AI API key to .env for AI curation feature
-   # Supports AI_API_KEY or OPENAI_API_KEY (fallback)
+   # Requires AI_API_KEY
    ```
 
 4. **Run locally**:
@@ -101,13 +101,10 @@ The system supports AI-powered intelligent curation of high-risk vulnerabilities
 
 1. Add your API key to the `.env` file:
    ```bash
-   # Option 1: Use AI_API_KEY (recommended, supports multiple providers)
+   # Configure AI API key (supports multiple providers)
    AI_API_KEY=your_api_key_here
    AI_MODEL=gpt-4o-mini
    AI_BASE_URL=https://api.openai.com/v1
-
-   # Option 2: Use OPENAI_API_KEY (backward compatible)
-   OPENAI_API_KEY=your_openai_key
    ```
 2. The system will automatically:
    - Filter CVEs with CVSS ≥ 7.0 and non-empty descriptions

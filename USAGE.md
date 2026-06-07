@@ -71,9 +71,9 @@ source venv/bin/activate
 # Install dependencies
 pip install -r requirements.txt
 
-# Optional: Add OpenAI API key for AI-enhanced descriptions
+# Optional: Add AI API key for AI curation
 cp .env.example .env
-# Edit .env and add OPENAI_API_KEY=your_api_key_here
+# Edit .env and add AI_API_KEY=your_api_key_here
 ```
 
 ## Usage
@@ -87,10 +87,10 @@ source venv/bin/activate
 python src/main.py
 ```
 
-### With AI Enhancement
+### With AI Curation
 ```bash
-# Set OpenAI API key
-export OPENAI_API_KEY=your_api_key_here
+# Set AI API key
+export AI_API_KEY=your_api_key_here
 python src/main.py
 ```
 
@@ -177,8 +177,9 @@ Edit `src/config.py` to customize:
 
 1. Create a GitHub repository
 2. Copy this project to the repository
-3. Optionally add `OPENAI_API_KEY` to repository secrets (Settings → Secrets and variables → Actions)
-4. The workflow will run automatically daily at 00:00 UTC
+3. Optionally add `AI_API_KEY` to repository secrets (Settings → Secrets and variables → Actions)
+4. Add `AI_MODEL` and `AI_BASE_URL` to repository variables (Settings → Secrets and variables → Actions)
+5. The workflow will run automatically daily at 00:00 UTC
 
 ## Dependencies
 

@@ -26,11 +26,8 @@ class Config:
     REPORT_HTML_PATH = "docs/index.html"
     REPORT_DIR = f"docs/reports/{datetime.now().year}"
 
-    # AI Enhancement (requires OPENAI_API_KEY in environment)
-    ENABLE_AI_ENHANCEMENT = os.getenv('OPENAI_API_KEY') is not None
-
-    # AI Curation settings (supports both AI_API_KEY and OPENAI_API_KEY)
-    AI_CURATION_ENABLED = os.getenv('AI_API_KEY') is not None or os.getenv('OPENAI_API_KEY') is not None
+    # AI Curation settings (requires AI_API_KEY in environment)
+    AI_CURATION_ENABLED = os.getenv('AI_API_KEY') is not None
     AI_CURATED_CACHE_PATH = "docs/ai_curated.json"
 
     # CVE-specific AI categories
