@@ -1,229 +1,169 @@
 {
-  "analysis_date": "2026-06-11",
-  "total_analyzed": 237,
+  "analysis_date": "2026-06-12",
+  "total_analyzed": 159,
   "categories": {
     "桌面操作系统": [
       {
+        "id": "CVE-2026-45176",
+        "reason": "CyberArk Endpoint Privilege Manager Agent存在权限控制不当漏洞，本地低权限攻击者可借此实现权限提升。"
+      },
+      {
+        "id": "CVE-2026-10847",
+        "reason": "Check Point Identity Agent for Windows在日志收集过程中存在提权漏洞，可被利用以SYSTEM权限执行任意代码。"
+      },
+      {
         "id": "CVE-2026-2049",
-        "reason": "GIMP存在堆缓冲区溢出漏洞，用户打开恶意文件即可触发远程代码执行，影响范围广。"
-      },
-      {
-        "id": "CVE-2026-46529",
-        "reason": "Linux MATE桌面默认文档查看器存在单击RCE漏洞，用户点击恶意链接即可被控制。"
-      },
-      {
-        "id": "CVE-2026-9045",
-        "reason": "联想企业配件和显示管理器存在本地提权漏洞，本地低权限用户可借此执行高权限代码。"
-      },
-      {
-        "id": "CVE-2026-4408",
-        "reason": "Samba文件服务器和域控存在命令注入漏洞，远程攻击者可通过特制用户名执行任意命令，影响范围广且危害极大。"
-      },
-      {
-        "id": "CVE-2026-50256",
-        "reason": "X.Org X服务器在处理字体时存在栈缓冲区溢出漏洞，本地攻击者可能利用此漏洞提升权限或导致系统崩溃。"
-      },
-      {
-        "id": "CVE-2026-52750",
-        "reason": "Ghidra在处理URL注释时存在命令注入漏洞，攻击者可通过诱导用户点击恶意链接在Windows系统上执行任意代码。"
-      },
-      {
-        "id": "CVE-2026-50259",
-        "reason": "X.Org X Server存在栈缓冲区溢出漏洞，本地低权限攻击者可利用此漏洞在目标系统上实现权限提升。"
-      },
-      {
-        "id": "CVE-2026-47955",
-        "reason": "Adobe Acrobat Reader存在Use After Free漏洞，受害者仅需打开恶意文件即可触发任意代码执行，威胁极大。"
+        "reason": "GIMP在解析HDR文件时存在堆溢出漏洞，用户打开恶意文件即可导致远程代码执行，具有极高的客户端攻击价值。"
       }
     ],
     "移动安全": [
       {
-        "id": "CVE-2026-10727",
-        "reason": "Ivanti EPMM移动设备管理平台存在OS命令注入漏洞，远程认证攻击者可利用该漏洞以root权限执行任意命令。"
+        "id": "CVE-2026-10520",
+        "reason": "Ivanti Sentry存在未授权的OS命令注入漏洞（CVSS满分且已被在野利用），攻击者可实现Root级RCE。"
+      },
+      {
+        "id": "CVE-2026-6973",
+        "reason": "Ivanti EPMM存在输入验证不当漏洞，已被在野利用，远程认证管理员可触发远程代码执行。"
       }
     ],
     "IoT安全": [
       {
+        "id": "CVE-2026-50005",
+        "reason": "Brickcom摄像头存在出厂默认凭据漏洞，允许未经身份验证的远程攻击者直接访问视频流。"
+      },
+      {
+        "id": "CVE-2026-6250",
+        "reason": "TP-Link Tapo C110的ONVIF服务中存在格式化字符串漏洞，可被用于操纵堆栈内存执行恶意代码。"
+      },
+      {
         "id": "CVE-2026-44693",
-        "reason": "Pi-hole核心引擎的HTTP会话管理存在条件竞争漏洞，可导致认证绕过，影响大量家用IoT网络。"
+        "reason": "Pi-hole FTL在HTTP会话管理中存在竞态条件漏洞，可被利用绕过身份验证获取管理员权限。"
       },
       {
-        "id": "CVE-2025-66279",
-        "reason": "QNAP系统存在命令注入漏洞，远程攻击者利用管理员凭证可直接在NAS设备上执行任意命令。"
+        "id": "CVE-2026-22893",
+        "reason": "QNAP NAS设备操作系统中存在高危命令注入漏洞，远程攻击者在获取管理员权限后可执行任意系统命令控制设备。"
       },
       {
-        "id": "CVE-2026-45329",
-        "reason": "乐鑫物联网开发框架(ESP-IDF)部分安全服务包装器未严格验证输入指针，存在潜在的安全风险。"
-      },
-      {
-        "id": "CVE-2026-45328",
-        "reason": "Espressif IoT开发框架存在提权漏洞，允许从非安全系统直接访问TEE受保护的硬件外设，严重威胁设备核心安全。"
-      },
-      {
-        "id": "CVE-2025-66273",
-        "reason": "QNAP NAS操作系统存在命令注入漏洞，远程攻击者在获取管理员权限后可执行任意系统命令，完全控制存储设备。"
-      },
-      {
-        "id": "CVE-2026-29116",
-        "reason": "大华多款产品存在未认证的拒绝服务漏洞，远程攻击者发送特制数据包即可导致设备异常重启，破坏监控系统的可用性。"
+        "id": "CVE-2026-42558",
+        "reason": "Xibo数字标牌系统存在存储型XSS和Iframe沙箱逃逸漏洞链，可被具有DataSet权限的用户利用接管Web CMS或播放端。"
       }
     ],
     "云安全": [
       {
-        "id": "CVE-2026-50566",
-        "reason": "Fission框架租户可利用CRD配置运行特权容器，攻击者可借此完全控制底层K8s集群节点。"
+        "id": "CVE-2026-40964",
+        "reason": "Cloud Foundry的cf-auth-proxy组件存在身份验证绕过漏洞，未认证用户可读取所有应用和平台组件的日志。"
       },
       {
-        "id": "CVE-2026-50545",
-        "reason": "Fission环境CRD缺乏对podSpec的安全验证，允许攻击者配置危险字段获取宿主机权限。"
+        "id": "CVE-2026-46519",
+        "reason": "mcp-server-kubernetes的环境变量访问控制存在绕过漏洞，可导致攻击者执行未授权的集群管理操作。"
       },
       {
-        "id": "CVE-2026-45782",
-        "reason": "Cloud Hypervisor存在UAF漏洞，恶意客户机可能导致宿主机崩溃或实现虚拟机逃逸。"
-      },
-      {
-        "id": "CVE-2026-44963",
-        "reason": "Veeam Backup Server存在RCE漏洞，经过身份验证的域用户可在备份服务器上执行任意代码，由于备份系统权限极高，风险巨大。"
-      },
-      {
-        "id": "CVE-2026-53476",
-        "reason": "assisted-migration-agent存在严重的路径穿越漏洞，同局域网内的未认证攻击者可写入任意文件，进而接管宿主机或虚拟化环境。"
+        "id": "CVE-2026-50563",
+        "reason": "Kubernetes原生框架Fission存在严重漏洞，允许攻击者控制容器执行器逃逸至宿主机Node节点，威胁整个集群安全。"
       },
       {
         "id": "CVE-2026-1784",
-        "reason": "OpenShift Route配置验证不严，允许攻击者注入HAProxy配置，可能导致集群内的流量劫持或未授权访问。"
+        "reason": "Red Hat OpenShift的Route资源存在配置注入漏洞，可被用于操纵HAProxy配置，影响云原生应用路由安全。"
       },
       {
-        "id": "CVE-2026-8795",
-        "reason": "Rapid7 Velociraptor终端监控组件存在YAML注入漏洞，攻击者可通过特制的客户端主机名触发任意代码执行。"
+        "id": "CVE-2026-4764",
+        "reason": "Google Cloud Dialogflow CX存在缺失授权漏洞，允许特定角色的认证用户通过恶意playbook导入实现GCP项目接管。"
       }
     ],
     "网络设备": [
       {
         "id": "CVE-2026-20245",
-        "reason": "已被CISA确认在野利用，思科SD-WAN本地提权漏洞可导致攻击者以root权限执行任意命令。"
+        "reason": "Cisco Catalyst SD-WAN Controller存在命令注入漏洞，已被在野利用，本地攻击者可执行Root级任意命令。"
       },
       {
         "id": "CVE-2026-9151",
-        "reason": "TP-Link多款流行路由器VPN模块存在命令注入漏洞，相邻网络内的认证攻击者可完全控制设备。"
+        "reason": "TP-Link多款路由器VPN模块存在OS命令注入漏洞，认证后的相邻网络攻击者可通过特制配置文件执行任意系统命令。"
       },
       {
-        "id": "CVE-2025-66276",
-        "reason": "QNAP QTS系统存在高危漏洞，可能导致路由器/NAS设备被未授权接管控制。"
-      },
-      {
-        "id": "CVE-2026-8037",
-        "reason": "Progress LoadMaster ADC存在未授权的命令注入漏洞，远程攻击者可直接接管负载均衡器设备，严重威胁网络边界安全。"
-      },
-      {
-        "id": "CVE-2026-25089",
-        "reason": "Fortinet FortiSandbox存在操作系统命令注入漏洞，可能被攻击者利用以绕过安全检测并接管沙箱设备。"
-      },
-      {
-        "id": "CVE-2026-50752",
-        "reason": "Check Point VPN网关的IKEv1实现存在证书验证绕过漏洞，中间人攻击者可劫持基于证书认证的站点到站点VPN连接。"
-      },
-      {
-        "id": "CVE-2026-10520",
-        "reason": "Ivanti Sentry存在严重的OS命令注入漏洞（CVSS满分），未授权的远程攻击者可直接实现Root级别的RCE。"
-      },
-      {
-        "id": "CVE-2026-10523",
-        "reason": "Ivanti Sentry存在身份验证绕过漏洞，远程未认证攻击者可借此创建任意管理员账户并获取设备完全控制权。"
+        "id": "CVE-2026-7852",
+        "reason": "LimRAD NAC存在危险类型文件上传限制不当漏洞，允许远程攻击者执行代码包含，可完全控制网络准入控制设备。"
       }
     ],
     "工业控制": [
       {
-        "id": "CVE-2026-9758",
-        "reason": "S2OPC组件在处理证书信任列表时存在比较不当漏洞，可导致不可信的证书被标记为信任，从而破坏工业通信的身份验证机制。"
+        "id": "CVE-2026-8464",
+        "reason": "Golem OEE MES系统存在未授权路径遍历漏洞，允许同网段攻击者读取服务器操作系统上的任意敏感文件，存在工控配置泄露风险。"
       }
     ],
     "Web安全": [
       {
-        "id": "CVE-2026-45567",
-        "reason": "Roxy-WI负载均衡管理界面存在认证绕过漏洞，未授权用户可直接访问敏感API端点。"
+        "id": "CVE-2026-11839",
+        "reason": "Rotaban存在危险的任意文件上传漏洞，允许未经身份验证的攻击者上传Webshell并控制服务器。"
       },
       {
-        "id": "CVE-2026-50636",
-        "reason": "LimeSurvey的API存在未过滤的SQL注入漏洞，认证攻击者可借此窃取底层数据库数据。"
+        "id": "CVE-2026-42846",
+        "reason": "ClipBucket的Remote Play功能存在操作系统命令注入漏洞，认证用户可通过特制URL执行任意代码。"
       },
       {
-        "id": "CVE-2026-47932",
-        "reason": "Adobe ColdFusion存在路径遍历漏洞，攻击者可绕过安全限制读取或操作服务器上的未授权文件。"
+        "id": "CVE-2026-41699",
+        "reason": "Spring for GraphQL在处理分页查询时存在不安全的反序列化漏洞，可导致远程代码执行。"
       },
       {
-        "id": "CVE-2026-48303",
-        "reason": "Adobe Campaign Classic存在严重的授权不当漏洞，允许未经身份验证的用户远程执行任意代码（CVSS满分），风险极高。"
+        "id": "CVE-2026-10795",
+        "reason": "UpdraftPlus WordPress插件存在身份验证绕过漏洞，未授权攻击者极易利用此缺陷接管网站。"
       },
       {
-        "id": "CVE-2026-45558",
-        "reason": "Roxy-WI管理接口存在严重的命令注入漏洞，攻击者可通过特制的JSON字段在服务器端执行任意系统命令。"
+        "id": "CVE-2026-47928",
+        "reason": "Adobe ColdFusion存在严重的输入验证不当漏洞，无需用户交互即可导致任意代码执行，攻击面广且危害极大。"
       },
       {
-        "id": "CVE-2025-6254",
-        "reason": "WordPress Doctreat Core插件存在权限提升漏洞，未认证攻击者可注册为管理员账户，直接接管整个网站系统。"
+        "id": "CVE-2026-6552",
+        "reason": "GitLab EE存在不当授权漏洞，允许拥有组Owner角色的认证用户接管其他成员的GitLab账户，影响代码资产安全。"
       },
       {
-        "id": "CVE-2026-45744",
-        "reason": "Termix服务器管理平台存在严重的OS命令注入漏洞，攻击者可通过文件路径参数直接注入并执行系统命令。"
-      },
-      {
-        "id": "CVE-2026-40128",
-        "reason": "SAP NetWeaver AS Java存在路径遍历漏洞，未认证攻击者可通过构造恶意HTTP请求处理任意文件，导致服务器被接管。"
+        "id": "CVE-2026-47346",
+        "reason": "TYPO3 CMS中存在文件上传限制绕过漏洞，经组合利用可导致任意SQL语句执行，使后端低权限用户实现权限提升。"
       }
     ],
     "数据库与中间件": [
       {
+        "id": "CVE-2026-49261",
+        "reason": "MariaDB在启用wsrep_notify_cmd时存在命令注入漏洞（CVSS满分），攻击者可在加入节点名称中嵌入恶意系统命令。"
+      },
+      {
+        "id": "CVE-2026-44249",
+        "reason": "Netty框架的IpSubnetFilterRule中存在IPv6掩码错误，可导致绕过IP过滤规则引发未授权访问。"
+      },
+      {
+        "id": "CVE-2026-11774",
+        "reason": "389 Directory Server在SASL I/O层存在整数溢出漏洞，可绕过安全限制导致堆溢出和拒绝服务。"
+      },
+      {
         "id": "CVE-2026-20253",
-        "reason": "Splunk PostgreSQL sidecar端点存在严重漏洞，未认证用户可创建或截断任意文件，风险极高。"
+        "reason": "Splunk Enterprise的PostgreSQL sidecar接口允许未认证用户创建或截断任意文件，极易导致系统核心数据破坏或RCE。"
       },
       {
-        "id": "CVE-2026-28369",
-        "reason": "红帽Undertow服务器处理特定HTTP请求存在解析差异，可被利用发起请求走私攻击。"
-      },
-      {
-        "id": "CVE-2026-9753",
-        "reason": "MongoDB内部聚合管道阶段可被滥用来触发越界内存读取或导致数据库服务崩溃。"
+        "id": "CVE-2026-35273",
+        "reason": "Oracle PeopleSoft PeopleTools存在高危未授权漏洞，未认证攻击者可通过HTTP请求轻易接管PeopleSoft企业级应用。"
       },
       {
         "id": "CVE-2026-41717",
-        "reason": "Spring Data MongoDB存在SpEL表达式注入漏洞，攻击者可通过特制的查询参数在服务器端执行任意代码。"
-      },
-      {
-        "id": "CVE-2026-9742",
-        "reason": "MongoDB在启用OIDC认证时存在安全缺陷，未认证的客户端可通过特制请求导致服务器崩溃，造成拒绝服务。"
-      },
-      {
-        "id": "CVE-2026-8335",
-        "reason": "Aix-DB特定端点缺失身份验证检查，允许未认证用户直接执行任意SELECT SQL查询，导致敏感数据泄露。"
-      },
-      {
-        "id": "CVE-2025-12543",
-        "reason": "Red Hat Undertow HTTP服务器核心未能正确验证Host头，可被攻击者利用绕过安全限制或进行请求走私。"
-      },
-      {
-        "id": "CVE-2026-41855",
-        "reason": "Spring JMS组件存在不安全的反序列化漏洞，在未受信任的环境下可能被利用实例化任意类，导致远程代码执行。"
+        "reason": "Spring Data MongoDB存在SpEL表达式注入漏洞，攻击者可在参数绑定时注入恶意表达式，导致数据库中间件RCE。"
       }
     ],
     "其他": [
       {
-        "id": "CVE-2026-46695",
-        "reason": "Boxlite沙箱服务未限制容器内核功能，恶意代码可重新挂载文件系统实现沙箱逃逸。"
+        "id": "CVE-2026-45171",
+        "reason": "CyberArk Privileged Session Manager存在输入验证不当漏洞，本地低权限认证用户可借此执行任意代码。"
       },
       {
-        "id": "CVE-2026-46703",
-        "reason": "Boxlite沙箱在处理恶意tar条目时存在漏洞，攻击者可借此破坏宿主机环境。"
-      },
-      {
-        "id": "CVE-2026-41729",
-        "reason": "Spring Data REST在处理JSON Patch请求时存在SpEL表达式注入漏洞，可导致远程代码执行。"
+        "id": "CVE-2026-47172",
+        "reason": "Quest Bot的CI/CD流水线存在提权漏洞，攻击者可通过特制的Pull Request劫持高权限部署工作流。"
       },
       {
         "id": "CVE-2026-46517",
-        "reason": "LMDeploy存在硬编码信任远程执行代码的漏洞，可能导致AI模型加载过程中遭受严重的供应链攻击。"
+        "reason": "LMDeploy大模型部署工具包中硬编码了不安全参数，极易引发HuggingFace供应链级别的远程代码执行攻击，影响AI基础设施。"
+      },
+      {
+        "id": "CVE-2026-46695",
+        "reason": "Boxlite沙箱服务存在容器逃逸漏洞，由于未限制容器内核capabilities，恶意代码可重挂载目录并完全控制宿主机。"
       }
     ]
   },
-  "summary": "本批次重点发现云原生组件权限提升、思科在野利用漏洞及多款中间件高危RCE。建议优先修复已被CISA通报的CVE-2026-20245及相关云安全漏洞。 | 本批次重点关注Adobe Campaign满分RCE、Progress ADC未授权命令注入及多款云/虚拟化迁移工具的严重漏洞，需紧急修复。 | 本批次重点包含多个Ivanti网关严重RCE漏洞、中间件请求处理缺陷及桌面端应用内存破坏漏洞。"
+  "summary": "本批次包含多个高危及在野利用漏洞，如Ivanti Sentry RCE、MariaDB RCE及Cisco SD-WAN提权，需立即排查修复。 | 本批次包含多个云原生、Web中间件及IoT设备的高危漏洞，重点关注Splunk、ColdFusion等产品的RCE及K8s逃逸风险。"
 }
