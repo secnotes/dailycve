@@ -1,244 +1,265 @@
 {
-  "analysis_date": "2026-06-17",
-  "total_analyzed": 364,
+  "analysis_date": "2026-06-18",
+  "total_analyzed": 382,
   "categories": {
     "桌面操作系统": [
       {
+        "id": "CVE-2026-50264",
+        "reason": "X.Org X服务器和Xwayland存在越界写入漏洞，本地攻击者可利用此漏洞导致服务崩溃或提升权限。"
+      },
+      {
+        "id": "CVE-2026-55743",
+        "reason": "OpenHuman桌面代理的安全策略白名单存在绕过漏洞，允许执行任意操作系统命令。"
+      },
+      {
+        "id": "CVE-2026-11858",
+        "reason": "Quanos SCHEMA ST4更新服务存在提权漏洞，低权限用户可借此以SYSTEM权限执行任意命令。"
+      },
+      {
+        "id": "CVE-2019-25293",
+        "reason": "BlueStacks服务路径未加引号，本地攻击者可利用此缺陷实现权限提升并执行恶意代码。"
+      },
+      {
         "id": "CVE-2026-48055",
-        "reason": "Streambert桌面应用存在Zip Slip漏洞（CVSS 10.0），解压字幕时未正确验证文件名，可导致系统任意代码执行。"
-      },
-      {
-        "id": "CVE-2026-46529",
-        "reason": "MATE桌面默认文档查看器存在单击RCE漏洞，攻击者可通过诱导用户点击恶意链接轻易执行任意代码。"
-      },
-      {
-        "id": "CVE-2026-40033",
-        "reason": "FreeRDP存在堆溢出漏洞，远程攻击者可利用恶意图形数据实现越界写，实战攻击价值极高。"
-      },
-      {
-        "id": "CVE-2026-22984",
-        "reason": "Linux内核libceph组件存在越界读取漏洞，CVSS评分达9.8，可能导致敏感信息泄露或系统崩溃。"
+        "reason": "Streambert桌面应用在字幕解压时存在Zip Slip漏洞，允许攻击者通过恶意压缩包写入任意可执行文件，实现系统接管。"
       },
       {
         "id": "CVE-2026-47964",
-        "reason": "Adobe DNG SDK存在堆溢出漏洞，需诱导用户打开恶意图像文件即可触发任意代码执行。"
+        "reason": "Adobe DNG SDK存在堆溢出漏洞，成功利用可能导致本地任意代码执行，影响大量图像处理相关软件。"
       },
       {
-        "id": "CVE-2026-5064",
-        "reason": "HP PC产品的One Agent存在权限提升和拒绝服务漏洞，影响终端基础运行环境安全。"
-      },
-      {
-        "id": "CVE-2026-53705",
-        "reason": "GStreamer的WavPack音频解码器存在整数溢出漏洞，处理恶意文件时可导致应用崩溃或潜在的代码执行。"
-      },
-      {
-        "id": "CVE-2026-47965",
-        "reason": "Adobe Acrobat Reader存在越界写入漏洞，攻击者可通过诱导用户打开恶意文件实现任意代码执行。"
-      },
-      {
-        "id": "CVE-2026-50100",
-        "reason": "多款理光和柯尼卡美能达打印机驱动存在本地权限提升漏洞，登录用户可借此提权至系统最高权限。"
+        "id": "CVE-2026-46173",
+        "reason": "Linux内核在处理异常退出任务时存在抢占漏洞，可能被本地攻击者利用引发系统崩溃或提权。"
       }
     ],
     "移动安全": [
       {
-        "id": "CVE-2026-48745",
-        "reason": "Traccar Client移动应用存在深度链接劫持漏洞（CVSS 9.3），可通过单一构造链接静默劫持用户的GPS跟踪数据。"
+        "id": "CVE-2026-0092",
+        "reason": "Android Package Manager存在本地提权漏洞，攻击者可无交互绕过设备锁定控制，极具攻击价值。"
       },
       {
         "id": "CVE-2026-12348",
-        "reason": "Android版Arc Search存在地址栏欺骗漏洞，可用于高质量的钓鱼攻击欺骗用户。"
+        "reason": "Arc Search地址栏欺骗漏洞，攻击者可伪造可信域名进行钓鱼攻击，对用户隐私构成威胁。"
       },
       {
-        "id": "CVE-2026-53408",
-        "reason": "Zoom移动端App在处理自定义URL Scheme时存在授权不当，未授权攻击者可借机提升权限。"
+        "id": "CVE-2026-0081",
+        "reason": "Android系统的NFC功能存在权限绕过漏洞，无需用户交互即可伪造NFC事件实现本地提权，具有极高的攻击价值。"
       },
       {
-        "id": "CVE-2026-53407",
-        "reason": "Zoom移动端应用存在URL Scheme处理授权不当漏洞，未授权攻击者可借此实现权限提升。"
+        "id": "CVE-2026-48745",
+        "reason": "Traccar Client移动端App存在Deep Link劫持漏洞，可通过恶意链接静默重定向GPS跟踪数据，严重泄露用户位置隐私。"
+      },
+      {
+        "id": "CVE-2026-28576",
+        "reason": "Android Contacts Provider存在SQL注入漏洞，无需额外权限或用户交互即可导致本地敏感信息泄露，CVSS评分高达10.0。"
+      },
+      {
+        "id": "CVE-2026-28587",
+        "reason": "Google MmsSmsProvider存在权限检查缺失，攻击者可绕过权限获取用户短信等敏感信息，CVSS评分10.0。"
       }
     ],
-    "IoT安全": [],
+    "IoT安全": [
+      {
+        "id": "CVE-2026-53676",
+        "reason": "ThingsBoard平台存在原型链污染漏洞，拥有租户管理员权限的攻击者可借此实现任意代码执行。"
+      },
+      {
+        "id": "CVE-2026-10641",
+        "reason": "Zephyr蓝牙HFP角色解析器存在越界写入漏洞，可能允许攻击者在建立连接时执行任意代码。"
+      },
+      {
+        "id": "CVE-2026-5667",
+        "reason": "三菱电机空调及无线网卡设备存在硬编码凭证漏洞，攻击者可利用预置后门直接控制空调或网络设备。"
+      }
+    ],
     "云安全": [
       {
-        "id": "CVE-2026-43003",
-        "reason": "OpenStack Ironic Python Agent可能被恶意镜像利用，在chroot环境中执行grub-install导致代码执行，对云基础设施构成高危威胁。"
+        "id": "CVE-2026-12530",
+        "reason": "AWS Bedrock AgentCore Python SDK存在命令注入漏洞，可能导致远程代码执行。"
+      },
+      {
+        "id": "CVE-2026-20266",
+        "reason": "Splunk AI Toolkit存在不安全的shell执行模式，具备admin权限的用户可执行任意系统命令。"
+      },
+      {
+        "id": "CVE-2026-32804",
+        "reason": "Dell PowerFlex Manager存在认证绕过漏洞，拥有相邻网络访问权限的攻击者可获取未授权访问。"
+      },
+      {
+        "id": "CVE-2026-32652",
+        "reason": "Dell AIOps Collector使用了默认凭证，低权限攻击者可利用此漏洞获取文件系统访问权限。"
       },
       {
         "id": "CVE-2026-1784",
-        "reason": "OpenShift Route资源配置中存在HAProxy配置注入缺陷，攻击者可借此破坏或控制集群网络流量。"
+        "reason": "Red Hat OpenShift的HAProxy配置存在注入漏洞，允许授权用户控制路由配置以破坏集群网络流量。"
       },
       {
-        "id": "CVE-2025-71261",
-        "reason": "SUSE Harvester超融合基础设施存在TLS握手绕过漏洞，可被中间人攻击破坏加密安全控制。"
+        "id": "CVE-2026-43003",
+        "reason": "OpenStack Ironic Python Agent在处理恶意镜像时可能执行任意代码，对云基础设施底层节点构成严重威胁。"
       },
       {
-        "id": "CVE-2024-38487",
-        "reason": "Dell api-gateway容器以root权限运行且存在逃逸风险，可能导致宿主机被完全接管。"
-      },
-      {
-        "id": "CVE-2024-24909",
-        "reason": "Dell OpenManage Integration存在远程代码执行漏洞，授权攻击者可利用此漏洞提权并执行任意代码。"
-      },
-      {
-        "id": "CVE-2026-11577",
-        "reason": "Red Hat Keycloak存在访问控制缺陷，受限管理员可绕过权限限制并提权至完整的域管理员。"
-      },
-      {
-        "id": "CVE-2026-54420",
-        "reason": "LiteSpeed cPanel插件存在符号链接处理不当漏洞（已在野利用），攻击者可在共享云主机环境中实现逃逸或提权。"
+        "id": "CVE-2026-12398",
+        "reason": "Red Hat galaxy_ng的API中存在命令注入漏洞，认证攻击者可通过控制git仓库分支名执行任意系统命令。"
       }
     ],
     "网络设备": [
       {
-        "id": "CVE-2026-11409",
-        "reason": "TP-Link TL-WR940N路由器存在认证后的OS命令注入漏洞，攻击者可利用其获取设备的完全控制权。"
+        "id": "CVE-2026-20181",
+        "reason": "Cisco ISE和ISE-PIC存在命令注入漏洞，通过管理员凭据验证的远程攻击者可在底层操作系统执行任意命令。"
       },
       {
-        "id": "CVE-2026-20127",
-        "reason": "思科SD-WAN控制器存在未授权认证绕过漏洞（CVSS 10），且已被CISA确认在野利用，危害极大。"
+        "id": "CVE-2026-42530",
+        "reason": "NGINX HTTP/3 QUIC模块存在拒绝服务漏洞，未经身份验证的远程攻击者可利用特制请求导致服务崩溃。"
       },
       {
-        "id": "CVE-2026-20182",
-        "reason": "思科SD-WAN控制连接握手漏洞（CVSS 10），同样被CISA KEV收录，可被未授权攻击者完全接管网络。"
+        "id": "CVE-2026-54388",
+        "reason": "Tinyproxy在处理多重Content-Length头时存在HTTP请求走私漏洞，可被用于绕过访问控制或攻击后端系统。"
       },
       {
-        "id": "CVE-2026-7273",
-        "reason": "Zyxel GS1900-48HPv2交换机的CGI程序存在基于栈的缓冲区溢出，未经身份验证的攻击者可远程执行OS命令。"
+        "id": "CVE-2026-53876",
+        "reason": "MSI RadiX AX6600路由器存在OS命令注入漏洞，认证后的管理员可利用其执行root级别的任意命令。"
+      },
+      {
+        "id": "CVE-2026-11410",
+        "reason": "TP-Link TL-WR940N路由器存在命令注入漏洞，攻击者可借助管理后台提权并完全控制设备。"
       }
     ],
     "工业控制": [
       {
+        "id": "CVE-2026-2467",
+        "reason": "RTI Connext Professional核心库存在基于堆的缓冲区溢出漏洞，可能允许远程代码执行。"
+      },
+      {
+        "id": "CVE-2026-7300",
+        "reason": "RTI Connext Professional Web集成服务存在缓冲区溢出漏洞，可被攻击者利用引发拒绝服务。"
+      },
+      {
         "id": "CVE-2026-22313",
-        "reason": "Radiflow工控设备存在OS命令注入漏洞，认证后可获取管理员权限直接控制底层工控系统。"
+        "reason": "Radiflow工控设备REST API存在命令注入漏洞，认证后可直接执行系统管理员命令，风险极高。"
+      },
+      {
+        "id": "CVE-2026-12183",
+        "reason": "加油站自动化系统存在认证绕过漏洞，发送任意POST请求即可获取管理员权限，存在被物理破坏的极高风险。"
       },
       {
         "id": "CVE-2026-22312",
-        "reason": "Radiflow REST API使用硬编码常量Token，攻击者可未授权修改系统配置甚至重启工控设备。"
-      },
-      {
-        "id": "CVE-2025-11694",
-        "reason": "罗克韦尔CompactLogix控制器CIP协议缺乏验证，攻击者可利用暴露的ID发起拒绝服务攻击破坏生产。"
-      },
-      {
-        "id": "CVE-2025-13036",
-        "reason": "Rockwell FactoryTalk Historian存在认证绕过漏洞，攻击者可通过持续发送请求获取有效令牌控制工控系统。"
-      },
-      {
-        "id": "CVE-2026-0647",
-        "reason": "Rockwell 1794-AENTR适配器存在不当认证漏洞，未授权攻击者可通过特制HTTP请求直接修改设备密码。"
-      },
-      {
-        "id": "CVE-2026-10829",
-        "reason": "Moxa NPort系列设备在基础设置页面存在栈缓冲区溢出漏洞，可导致攻击者远程执行代码并控制设备。"
+        "reason": "Radiflow工控设备使用硬编码Token认证REST API，未授权攻击者可远程修改系统配置或执行关键命令（如重启）。"
       }
     ],
     "Web安全": [
       {
-        "id": "CVE-2026-48907",
-        "reason": "已被CISA KEV确认在野利用。Joomla JCE编辑器扩展存在严重漏洞，允许未授权用户上传并执行PHP代码，风险极高。"
+        "id": "CVE-2026-48768",
+        "reason": "TypeBot存在未授权的文件上传和URL签名缺陷，允许匿名用户上传恶意文件导致远程代码执行。"
       },
       {
-        "id": "CVE-2026-25470",
-        "reason": "WordPress的ACPT插件存在高危远程代码执行漏洞（CVSS 10.0），允许未经身份验证的攻击者注入恶意代码。"
+        "id": "CVE-2026-52706",
+        "reason": "JetEngine WordPress插件存在未授权的PHP对象注入漏洞，攻击者可借此轻易接管网站。"
+      },
+      {
+        "id": "CVE-2026-49107",
+        "reason": "Thrive Apprentice插件存在未授权的PHP对象注入漏洞，未经身份验证即可执行任意代码。"
+      },
+      {
+        "id": "CVE-2026-55196",
+        "reason": "Hermes WebUI存在身份验证绕过漏洞，未授权攻击者可以注册任意通行密钥接管管理面板。"
+      },
+      {
+        "id": "CVE-2026-25446",
+        "reason": "WishList Member X插件存在任意文件上传漏洞，低权限订阅者可借此获取Web服务器控制权。"
+      },
+      {
+        "id": "CVE-2026-49076",
+        "reason": "JetEngine插件存在未授权SQL注入漏洞，攻击者无需认证即可窃取或篡改后端数据库敏感数据。"
       },
       {
         "id": "CVE-2026-48616",
-        "reason": "Rocket.Chat平台存在访问控制绕过漏洞（CVSS 9.3），导致未授权用户可以随意下载受保护的Livechat文件。"
+        "reason": "Rocket.Chat存在访问控制不当漏洞，可能导致受保护的Livechat文件被未授权下载和访问。"
       },
       {
-        "id": "CVE-2026-49774",
-        "reason": "RD Station存在远程代码执行漏洞（CVSS 9.9），允许攻击者直接注入并执行恶意代码获取服务器权限。"
+        "id": "CVE-2026-11839",
+        "reason": "Rotaban系统存在无限制文件上传漏洞，未授权攻击者可直接上传WebShell控制服务器。"
       },
       {
-        "id": "CVE-2026-39492",
-        "reason": "WP Maps插件存在未授权SQL注入漏洞，攻击者可轻松窃取或篡改后端数据库核心数据。"
+        "id": "CVE-2026-40783",
+        "reason": "Blocksy Companion Pro WordPress插件存在远程代码执行(RCE)漏洞，低权限用户可轻易接管服务器。"
       },
       {
-        "id": "CVE-2026-48777",
-        "reason": "FileBrowser Quantum存在路径穿越漏洞，可被利用绕过安全限制访问或覆盖受信任的文件系统路径。"
+        "id": "CVE-2026-48907",
+        "reason": "Joomla JCE扩展存在未授权PHP代码上传执行漏洞，已被CISA KEV收录证实存在在野利用，极其危险。"
       },
       {
-        "id": "CVE-2026-40772",
-        "reason": "WordPress插件GeekyBot存在未授权任意文件上传漏洞（CVSS 10.0），极易被攻击者利用获取服务器控制权。"
+        "id": "CVE-2026-27395",
+        "reason": "WordPress Support Board插件存在未授权权限提升漏洞（CVSS 9.8），攻击者可轻易获取系统最高控制权。"
       },
       {
-        "id": "CVE-2026-48836",
-        "reason": "WordPress插件Easy Invoice存在未授权远程代码执行漏洞（CVSS 10.0），可直接导致网站被完全接管。"
-      },
-      {
-        "id": "CVE-2026-40750",
-        "reason": "Kids Online Store存在无限制危险文件上传漏洞，允许攻击者直接上传WebShell获取服务器控制权。"
-      },
-      {
-        "id": "CVE-2026-49952",
-        "reason": "Discuz!存在认证绕过漏洞，未授权攻击者可轻易接管数据库备份功能，存在极高的数据破坏风险。"
-      },
-      {
-        "id": "CVE-2026-49781",
-        "reason": "OttoKit WordPress插件存在未授权PHP对象注入漏洞，攻击者可借此实现远程代码执行。"
-      },
-      {
-        "id": "CVE-2026-52703",
-        "reason": "FastDup插件存在未授权路径遍历漏洞，攻击者可绕过安全限制读取甚至覆盖服务器上的任意关键文件。"
-      },
-      {
-        "id": "CVE-2026-40217",
-        "reason": "LiteLLM AI代理存在远程代码执行漏洞，攻击者可通过特定接口直接注入并执行恶意代码。"
+        "id": "CVE-2026-39438",
+        "reason": "WordPress ListingPro插件存在未授权SQL注入漏洞（CVSS 9.3），攻击者可直接绕过认证窃取或篡改后端数据库。"
       }
     ],
     "数据库与中间件": [
       {
-        "id": "CVE-2026-48779",
-        "reason": "广泛使用的Node.js WebSocket库(ws)存在严重的内存耗尽型拒绝服务漏洞，极易被用于瘫痪业务系统。"
+        "id": "CVE-2026-9064",
+        "reason": "Red Hat 389-ds-base LDAP服务器未对请求中的控件数量进行限制，未授权攻击者可发送恶意请求引发拒绝服务。"
       },
       {
-        "id": "CVE-2026-48017",
-        "reason": "DbGate API端点存在命令注入，低权限认证用户可通过注入恶意JS代码实现接管。"
+        "id": "CVE-2026-55200",
+        "reason": "libssh2存在越界写入漏洞，远程攻击者可通过特制的SSH数据包破坏堆内存实现代码执行。"
+      },
+      {
+        "id": "CVE-2026-49268",
+        "reason": "Apache DefaultLdapRealm类在构建DN时存在LDAP注入漏洞，攻击者可操纵查询绕过身份验证。"
+      },
+      {
+        "id": "CVE-2026-47103",
+        "reason": "Python StateMachine库存在远程代码执行漏洞，攻击者可通过构造恶意的SCXML文档触发执行任意代码。"
+      },
+      {
+        "id": "CVE-2025-41115",
+        "reason": "Grafana企业版的SCIM配置存在认证绕过漏洞，可被直接用于接管账户，对云上数据资产构成严重威胁。"
+      },
+      {
+        "id": "CVE-2026-27876",
+        "reason": "Grafana的SQL表达式与插件链式利用可实现远程代码执行，影响面广且利用条件易于满足。"
       },
       {
         "id": "CVE-2026-10649",
-        "reason": "Pacemaker高可用集群中间件存在整数溢出漏洞，未经认证即可发送特制报文导致拒绝服务或代码执行。"
+        "reason": "Red Hat Pacemaker存在整数溢出漏洞，未授权远程攻击者可造成内存破坏引发拒绝服务。"
+      },
+      {
+        "id": "CVE-2026-48853",
+        "reason": "Elixir gRPC存在反序列化漏洞，未经身份验证的攻击者可耗尽资源导致节点崩溃，甚至实现远程代码执行。"
       },
       {
         "id": "CVE-2026-10748",
-        "reason": "Sonatype Nexus仓库管理平台存在命令执行漏洞，允许特定权限用户上传恶意文件触发系统命令执行。"
+        "reason": "Sonatype Nexus Repository存在命令注入漏洞，拥有特定权限的认证用户可上传恶意文件执行任意系统命令。"
       },
       {
-        "id": "CVE-2026-47825",
-        "reason": "Spring Cloud Gateway在特定配置下会转发来自不可信代理的请求头，可能导致安全策略绕过。"
-      },
-      {
-        "id": "CVE-2026-45674",
-        "reason": "Netty框架在处理DNS响应时未验证CNAME记录的来源有效性，可被利用实施DNS欺骗攻击。"
-      },
-      {
-        "id": "CVE-2026-48165",
-        "reason": "MariaDB在处理特定全局系统变量时存在缺陷，高权限用户可利用该漏洞进一步提权或执行系统命令。"
+        "id": "CVE-2026-48017",
+        "reason": "DbGate API端点存在代码注入漏洞，认证用户可通过构造恶意参数执行任意JavaScript代码控制服务器。"
       }
     ],
     "其他": [
       {
-        "id": "CVE-2026-48797",
-        "reason": "用于大模型(LLM)微调的Backpropagate库暴露了无认证的控制平面，攻击者可远程接管模型训练过程并可能窃取数据。"
+        "id": "CVE-2026-53805",
+        "reason": "NVIDIA SIL GEN3C推理API服务器存在不安全的反序列化漏洞，未经身份验证的攻击者可执行任意代码。"
       },
       {
-        "id": "CVE-2026-25874",
-        "reason": "Hugging Face LeRobot存在不安全反序列化漏洞，未经认证的攻击者可通过gRPC通道实现远程代码执行。"
+        "id": "CVE-2025-71323",
+        "reason": "picklescan工具的安全黑名单存在缺陷，攻击者可构造恶意pickle文件绕过检测并实现远程代码执行。"
       },
       {
-        "id": "CVE-2026-53866",
-        "reason": "OpenClaw存在命令白名单绕过漏洞，已认证的操作员可利用特定格式执行未经批准的危险系统命令。"
+        "id": "CVE-2026-3490",
+        "reason": "PickleScan存在黑名单绕过导致的RCE漏洞，在AI/ML模型加载场景下，允许攻击者执行任意系统命令。"
       },
       {
-        "id": "CVE-2026-48124",
-        "reason": "Cursor代码编辑器存在安全绕过，可执行恶意工作区配置的钩子命令导致任意代码执行。"
+        "id": "CVE-2026-53874",
+        "reason": "PickleScan存在不安全反序列化漏洞，攻击者可构造恶意Pickle文件绕过检测实现RCE，严重威胁AI安全。"
       },
       {
-        "id": "CVE-2026-9669",
-        "reason": "Python标准库bz2模块在处理特定恶意压缩数据时存在栈缓冲区越界写入，可导致代码执行。"
+        "id": "CVE-2026-24155",
+        "reason": "NVIDIA NeMo AI框架存在代码注入漏洞，成功利用可能导致代码执行、权限提升和核心数据篡改。"
       }
     ]
   },
-  "summary": "本批次主要涵盖大量Web应用及CMS插件高危漏洞，其中已被在野利用的Joomla扩展漏洞风险最高。此外，云基础设施及桌面应用也存在严重的RCE隐患。 | 本批次共分析100条漏洞，重点关注思科SD-WAN在野利用及多款工控与Web高危漏洞。 | 本批次漏洞主要涵盖大量WordPress高危插件RCE漏洞，以及Rockwell、Zyxel等工控和网络设备的高危漏洞。"
+  "summary": "本批次包含大量高危Web应用漏洞，以及X.Org、Linux内核等系统级缺陷，并涉及云服务、网络设备和工控组件。 | 本批次中WordPress插件高危漏洞泛滥；同时发现多款AI组件及网络设备存在严重RCE或命令注入漏洞。 | 本批次主要涵盖大量WordPress插件高危漏洞、Android本地提权漏洞及Grafana严重越权/RCE漏洞。工控与IoT设备的硬编码凭证问题值得高度重视。"
 }
