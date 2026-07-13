@@ -1,6 +1,11 @@
 # Local configuration and cache files
 .claude/
 
+# Environment files with secrets — keep .env.example (tracked) as the template
+.env
+.env.local
+.env.*.local
+
 # Python cache files
 __pycache__/
 *.py[cod]

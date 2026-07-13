@@ -6,6 +6,7 @@ Adapted from secnews project for CVE analysis.
 """
 
 import os
+import re
 import json
 import logging
 from typing import Optional, Dict, Any, List
@@ -300,35 +301,51 @@ class AIProvider:
         return "\n".join(lines)
 
     def _parse_json_response(self, response: str) -> Dict[str, Any]:
-        """Parse JSON from AI response, handling markdown code blocks"""
+        """Parse JSON from AI response, handling markdown code blocks and thinking-mode blocks."""
         text = response.strip()
+
+        # Strip thinking-mode blocks (e.g. MiniMax-M3 emits ``<think>...</think>`` before the answer).
+        text = re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL)
+
+        # Strip surrounding markdown code fences if present.
         if text.startswith('```json'):
             text = text[7:]
-        if text.startswith('```'):
+        elif text.startswith('```'):
             text = text[3:]
         if text.endswith('```'):
             text = text[:-3]
         text = text.strip()
 
+        # Fast path: pure JSON.
         try:
             return json.loads(text)
-        except json.JSONDecodeError as e:
-            logger.error(f"Failed to parse AI response as JSON: {e}")
-            # Save raw response for debugging
-            script_dir = os.path.dirname(os.path.abspath(__file__))
-            debug_file = os.path.join(script_dir, 'ai_response_debug.txt')
-            with open(debug_file, 'w', encoding='utf-8') as f:
-                f.write(f"JSON Parse Error: {e}\n\n")
-                f.write(f"Raw Response (length={len(text)}):\n")
-                f.write(text)
-            logger.info(f"Raw response saved to {debug_file} for debugging")
-            return {
-                "analysis_date": "",
-                "total_analyzed": 0,
-                "categories": {},
-                "summary": "",
-                "error": str(e),
-            }
+        except json.JSONDecodeError:
+            pass
+
+        # Fallback: locate the first balanced JSON object in the response.
+        match = re.search(r'\{.*\}', text, flags=re.DOTALL)
+        if match:
+            candidate = match.group(0)
+            try:
+                return json.loads(candidate)
+            except json.JSONDecodeError:
+                pass
+
+        # Save raw response for debugging and return empty result.
+        logger.error(f"Failed to parse AI response as JSON")
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        debug_file = os.path.join(script_dir, 'ai_response_debug.txt')
+        with open(debug_file, 'w', encoding='utf-8') as f:
+            f.write(f"Raw Response (length={len(text)}):\n")
+            f.write(text)
+        logger.info(f"Raw response saved to {debug_file} for debugging")
+        return {
+            "analysis_date": "",
+            "total_analyzed": 0,
+            "categories": {},
+            "summary": "",
+            "error": "JSON parse failed",
+        }
 
 
 def get_ai_provider(

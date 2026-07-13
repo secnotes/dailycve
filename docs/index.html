@@ -1230,7 +1230,7 @@
 
             <div class="summary-box">
                 <h2>📊 Summary</h2>
-                <p><strong>Report Generated:</strong> 2026-07-13 04:27:35</p>
+                <p><strong>Report Generated:</strong> 2026-07-13 03:15:35</p>
 
                 <div class="summary-stats">
                     <div class="stat-card" onclick="applySingleFilter('all')">
@@ -8023,7 +8023,7 @@ Impact is denial of service (crash) and memory corruption; the attack vector is 
                          data-epss="0.00407"
                          data-cisa="false"
                          data-modified="True"
-                         data-vendors="red hat,libssh">
+                         data-vendors="libssh,red hat">
                         <div class="cve-header">
                             <div class="cve-id">CVE-2025-5372</div>
                             <div class="cve-severity severity-medium">Medium</div>
@@ -8058,9 +8058,9 @@ Impact is denial of service (crash) and memory corruption; the attack vector is 
                                 <div class="cve-vendors">
                                     <strong>/vendors/:</strong>
                                     
-                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('red hat')">red hat</span>
-                                    
                                     <span class="cve-vendor-tag" onclick="toggleVendorFilter('libssh')">libssh</span>
+                                    
+                                    <span class="cve-vendor-tag" onclick="toggleVendorFilter('red hat')">red hat</span>
                                     
                                 </div>
                                 
@@ -8835,14 +8835,233 @@ Impact is denial of service (crash) and memory corruption; the attack vector is 
                 
     <div class="ai-summary">
         <h3>🤖 AI智能分析摘要</h3>
-        <div class="ai-summary-text">AI分析完成，已筛选重要漏洞并分类</div>
+        <div class="ai-summary-text">本批次高危漏洞集中在网络设备命令注入与云平台硬编码密钥，建议优先修复TRENDnet、Comfast及Flowise相关组件。</div>
         <div class="ai-summary-meta">
             <span>分析日期: 2026-07-13</span>
-            <span>精选漏洞: 0</span>
+            <span>精选漏洞: 15</span>
             <span>候选漏洞: 28</span>
         </div>
     </div>
     
+        <div class="ai-category" id="ai-category-______">
+            <h3 class="ai-category-title">💻 桌面操作系统 (1)</h3>
+            
+            <div class="ai-cve-card">
+                <div class="ai-cve-header">
+                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-10666" target="_blank" class="ai-cve-id">CVE-2026-10666</a>
+                    <span class="cve-severity severity-high">High (8.1)</span>
+                </div>
+                <div class="ai-cve-description">parse_ipv4() in subsys/net/ip/utils.c (reached via net_ipaddr_parse() for strings of the form &quot;a.b.c.d:port&quot;) copies the port substring into a fixed 17-byte stack buffer (char ipaddr[NET_IPV4_ADDR_LEN...</div>
+                <div class="ai-cve-meta">
+                    <span>🏢 zephyrproject</span>
+                    
+                    
+                </div>
+                <div class="ai-cve-reason">💡 推荐理由: Zephyr RTOS IPv4地址解析存在栈缓冲区溢出（固定17字节缓冲），无需认证远程可触发，影响广泛部署的IoT/嵌入式设备底层系统。</div>
+            </div>
+        </div>
+        <div class="ai-category" id="ai-category-IoT__">
+            <h3 class="ai-category-title">📡 IoT安全 (2)</h3>
+            
+            <div class="ai-cve-card">
+                <div class="ai-cve-header">
+                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-15497" target="_blank" class="ai-cve-id">CVE-2026-15497</a>
+                    <span class="cve-severity severity-high">High (7.5)</span>
+                </div>
+                <div class="ai-cve-description">A vulnerability was determined in SonicCloudOrg sonic-agent up to 2.7.2. This affects an unknown function of the file sonic-server-controller/src/main/java/org/cloud/sonic/controller/controller/Exchan...</div>
+                <div class="ai-cve-meta">
+                    <span>🏢 soniccloudorg</span>
+                    
+                    
+                </div>
+                <div class="ai-cve-reason">💡 推荐理由: SonicCloud sonic-agent JWT认证过滤器存在代码注入（CVSS 7.5），影响智能设备管理平台认证链，攻击者可绕过身份验证。</div>
+            </div>
+            <div class="ai-cve-card">
+                <div class="ai-cve-header">
+                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-15498" target="_blank" class="ai-cve-id">CVE-2026-15498</a>
+                    <span class="cve-severity severity-high">High (7.5)</span>
+                </div>
+                <div class="ai-cve-description">A vulnerability was identified in sergomanov SmartHomeAdatum up to cf495353d81b680675eb8d9aa14a318aa45ce12c. This impacts an unknown function of the file users.php of the component Login. Such manipul...</div>
+                <div class="ai-cve-meta">
+                    <span>🏢 sergomanov</span>
+                    
+                    
+                </div>
+                <div class="ai-cve-reason">💡 推荐理由: SmartHomeAdatum智能家居系统登录模块存在SQL注入，可远程未授权访问家庭控制逻辑，影响用户隐私与物理安全。</div>
+            </div>
+        </div>
+        <div class="ai-category" id="ai-category-___">
+            <h3 class="ai-category-title">☁️ 云安全 (3)</h3>
+            
+            <div class="ai-cve-card">
+                <div class="ai-cve-header">
+                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56271" target="_blank" class="ai-cve-id">CVE-2026-56271</a>
+                    <span class="cve-severity severity-critical">Critical (9.8)</span>
+                </div>
+                <div class="ai-cve-description">Flowise before 3.1.0 (affected versions 3.0.13 and earlier) uses weak hardcoded default JWT secrets (&#x27;auth_token&#x27;, &#x27;refresh_token&#x27;) and default audience and issuer values (&#x27;AUDIENCE&#x27;, &#x27;ISSUER&#x27;) in the...</div>
+                <div class="ai-cve-meta">
+                    <span>🏢 flowise</span>
+                    
+                    
+                </div>
+                <div class="ai-cve-reason">💡 推荐理由: Flowise AI平台企业版使用弱硬编码JWT密钥（&#x27;auth_token&#x27;），CVSS 9.8，攻击者可伪造任意用户身份令牌，完全突破认证防线。</div>
+            </div>
+            <div class="ai-cve-card">
+                <div class="ai-cve-header">
+                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56260" target="_blank" class="ai-cve-id">CVE-2026-56260</a>
+                    <span class="cve-severity severity-critical">Critical (9.1)</span>
+                </div>
+                <div class="ai-cve-description">Crawl4AI before 0.8.7 contains an arbitrary file write vulnerability in the Docker API server&#x27;s /screenshot and /pdf endpoints. The output_path parameter accepts arbitrary filesystem paths without val...</div>
+                <div class="ai-cve-meta">
+                    <span>🏢 crawl4ai</span>
+                    
+                    
+                </div>
+                <div class="ai-cve-reason">💡 推荐理由: Crawl4AI Docker API的/screenshot和/pdf端点存在任意文件写入（CVSS 9.1），容器部署环境中可直接覆盖关键系统文件。</div>
+            </div>
+            <div class="ai-cve-card">
+                <div class="ai-cve-header">
+                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56259" target="_blank" class="ai-cve-id">CVE-2026-56259</a>
+                    <span class="cve-severity severity-high">High (8.2)</span>
+                </div>
+                <div class="ai-cve-description">Crawl4AI before 0.8.8 contains credential exfiltration vulnerabilities in the Docker API server that allow attackers to redirect LLM API calls to attacker-controlled endpoints and read arbitrary envir...</div>
+                <div class="ai-cve-meta">
+                    <span>🏢 crawl4ai</span>
+                    
+                    
+                </div>
+                <div class="ai-cve-reason">💡 推荐理由: Crawl4AI无认证端点允许凭据窃取与LLM API重定向（CVSS 8.2），可导致云API密钥泄露及模型供应链投毒。</div>
+            </div>
+        </div>
+        <div class="ai-category" id="ai-category-____">
+            <h3 class="ai-category-title">🌐 网络设备 (4)</h3>
+            
+            <div class="ai-cve-card">
+                <div class="ai-cve-header">
+                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-15511" target="_blank" class="ai-cve-id">CVE-2026-15511</a>
+                    <span class="cve-severity severity-critical">Critical (10.0)</span>
+                </div>
+                <div class="ai-cve-description">A vulnerability was determined in Comfast CF-WR631AX V3 up to 2.7.0.8. Affected by this vulnerability is the function system_wl_upload_pic_file of the file /usr/bin/webmgnt of the component FastCGI Ba...</div>
+                <div class="ai-cve-meta">
+                    <span>🏢 comfast</span>
+                    
+                    
+                </div>
+                <div class="ai-cve-reason">💡 推荐理由: Comfast路由器CVSS满分10.0，FastCGI后端OS命令注入，无需认证远程获取设备完全控制权，属极高危设备漏洞。</div>
+            </div>
+            <div class="ai-cve-card">
+                <div class="ai-cve-header">
+                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-15484" target="_blank" class="ai-cve-id">CVE-2026-15484</a>
+                    <span class="cve-severity severity-critical">Critical (9.0)</span>
+                </div>
+                <div class="ai-cve-description">A vulnerability was detected in TRENDnet TEW-821DAP 1.12B01. The affected element is the function sub_41EC14 of the file /goform/tools_nslookup of the component ssi. The manipulation results in buffer...</div>
+                <div class="ai-cve-meta">
+                    <span>🏢 trendnet</span>
+                    
+                    <span>📈 EPSS: 0.0042</span>
+                </div>
+                <div class="ai-cve-reason">💡 推荐理由: TRENDnet TEW-821DAP无线AP存在SSI缓冲区溢出，CVSS 9.0，攻击者可远程执行任意代码，直接影响企业/家庭网络边界。</div>
+            </div>
+            <div class="ai-cve-card">
+                <div class="ai-cve-header">
+                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-61876" target="_blank" class="ai-cve-id">CVE-2026-61876</a>
+                    <span class="cve-severity severity-high">High (8.8)</span>
+                </div>
+                <div class="ai-cve-description">LuCI versions fail to properly encode DHCPv6 lease hostnames before rendering in status tables, allowing adjacent network attackers to inject HTML markup. Attackers can send a DHCPv6 Client FQDN conta...</div>
+                <div class="ai-cve-meta">
+                    <span>🏢 openwrt</span>
+                    
+                    
+                </div>
+                <div class="ai-cve-reason">💡 推荐理由: OpenWrt LuCI对DHCPv6租约主机名未正确编码，邻接网络攻击者可在管理员查看页面时执行脚本，构成管理员会话劫持风险。</div>
+            </div>
+            <div class="ai-cve-card">
+                <div class="ai-cve-header">
+                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-59260" target="_blank" class="ai-cve-id">CVE-2026-59260</a>
+                    <span class="cve-severity severity-high">High (8.8)</span>
+                </div>
+                <div class="ai-cve-description">OpenWrt luci-app-samba4 read ACL grants file.exec permission on /usr/sbin/smbd, allowing authenticated delegated users to execute the Samba daemon with caller-controlled command-line arguments. Attack...</div>
+                <div class="ai-cve-meta">
+                    <span>🏢 openwrt</span>
+                    
+                    
+                </div>
+                <div class="ai-cve-reason">💡 推荐理由: OpenWrt luci-app-samba4权限配置错误允许普通用户以root权限启动smbd，可通过Samba选项实现任意命令执行，权限提升后果严重。</div>
+            </div>
+        </div>
+        <div class="ai-category" id="ai-category-Web__">
+            <h3 class="ai-category-title">🔐 Web安全 (3)</h3>
+            
+            <div class="ai-cve-card">
+                <div class="ai-cve-header">
+                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-12613" target="_blank" class="ai-cve-id">CVE-2025-12613</a>
+                    <span class="cve-severity severity-high">High (8.8)</span>
+                </div>
+                <div class="ai-cve-description">Versions of the package cloudinary before 2.7.0 are vulnerable to Arbitrary Argument Injection due to improper parsing of parameter values containing an ampersand. An attacker can inject additional, u...</div>
+                <div class="ai-cve-meta">
+                    <span>🏢 n/a</span>
+                    
+                    <span>📈 EPSS: 0.0036</span>
+                </div>
+                <div class="ai-cve-reason">💡 推荐理由: Cloudinary Node.js包存在参数注入漏洞（CVSS 8.8），作为广泛使用的云媒体服务SDK，供应链影响面巨大，可绕过安全策略。</div>
+            </div>
+            <div class="ai-cve-card">
+                <div class="ai-cve-header">
+                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-15514" target="_blank" class="ai-cve-id">CVE-2026-15514</a>
+                    <span class="cve-severity severity-high">High (7.5)</span>
+                </div>
+                <div class="ai-cve-description">A weakness has been identified in Metasoft 美特软件 MetaCRM up to 6.4.0 Beta06. This vulnerability affects the function RPCService.query of the file /customizemt/xkq/rpc.jsp of the component PHPRPC Remote...</div>
+                <div class="ai-cve-meta">
+                    <span>🏢 metasoft 美特软件</span>
+                    
+                    
+                </div>
+                <div class="ai-cve-reason">💡 推荐理由: MetaCRM PHPRPC远程调用接口存在SQL注入（CVSS 7.5），可未授权操纵客户关系管理后台业务数据库。</div>
+            </div>
+            <div class="ai-cve-card">
+                <div class="ai-cve-header">
+                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-15488" target="_blank" class="ai-cve-id">CVE-2026-15488</a>
+                    <span class="cve-severity severity-high">High (7.5)</span>
+                </div>
+                <div class="ai-cve-description">A vulnerability was determined in hcr707305003 shiroiAdmin 1.1/1.3. Affected is the function FileController::upload of the file app/common/controller/FileController.php. Executing a manipulation of th...</div>
+                <div class="ai-cve-meta">
+                    <span>🏢 hcr707305003</span>
+                    
+                    <span>📈 EPSS: 0.0029</span>
+                </div>
+                <div class="ai-cve-reason">💡 推荐理由: shiroiAdmin文件上传接口缺乏类型限制（CVSS 7.5），可上传Webshell获取服务器权限，属于典型后台管理系统致命缺陷。</div>
+            </div>
+        </div>
+        <div class="ai-category" id="ai-category-_______">
+            <h3 class="ai-category-title">🗄️ 数据库与中间件 (2)</h3>
+            
+            <div class="ai-cve-card">
+                <div class="ai-cve-header">
+                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56241" target="_blank" class="ai-cve-id">CVE-2026-56241</a>
+                    <span class="cve-severity severity-high">High (8.3)</span>
+                </div>
+                <div class="ai-cve-description">Capgo before 12.128.2 contains a privilege escalation vulnerability where demoted super_admin users retain access to delete_non_compliant_bundles and count_non_compliant_bundles RPCs due to stale org_...</div>
+                <div class="ai-cve-meta">
+                    <span>🏢 capgo</span>
+                    
+                    
+                </div>
+                <div class="ai-cve-reason">💡 推荐理由: Capgo移动更新平台降权后的超管仍保留两个高危RPC调用权限（CVSS 8.3），构成权限隔离失效下的权限提升路径。</div>
+            </div>
+            <div class="ai-cve-card">
+                <div class="ai-cve-header">
+                    <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56313" target="_blank" class="ai-cve-id">CVE-2026-56313</a>
+                    <span class="cve-severity severity-high">High (8.1)</span>
+                </div>
+                <div class="ai-cve-description">Capgo before 12.128.2 contains a cross-organization account disruption vulnerability in the SSO prelink endpoint that allows enterprise administrators to delete password identities of users in foreign...</div>
+                <div class="ai-cve-meta">
+                    <span>🏢 capgo</span>
+                    
+                    
+                </div>
+                <div class="ai-cve-reason">💡 推荐理由: Capgo SSO prelink端点允许跨组织删除用户密码身份（CVSS 8.1），多租户SaaS环境中可造成跨租户账户接管。</div>
+            </div>
+        </div>
             </div>
         </div>
 
@@ -8967,9 +9186,9 @@ Impact is denial of service (crash) and memory corruption; the attack vector is 
                     
                     <li class="filter-item extra-vendor" id="filter-vendor-aster_telecom" onclick="toggleVendorFilter('aster telecom')" style="display:none;">aster telecom (1)</li>
                     
-                    <li class="filter-item extra-vendor" id="filter-vendor-red_hat" onclick="toggleVendorFilter('red hat')" style="display:none;">red hat (1)</li>
-                    
                     <li class="filter-item extra-vendor" id="filter-vendor-libssh" onclick="toggleVendorFilter('libssh')" style="display:none;">libssh (1)</li>
+                    
+                    <li class="filter-item extra-vendor" id="filter-vendor-red_hat" onclick="toggleVendorFilter('red hat')" style="display:none;">red hat (1)</li>
                     
                     <li class="filter-item extra-vendor" id="filter-vendor-h3c" onclick="toggleVendorFilter('h3c')" style="display:none;">h3c (1)</li>
                     
@@ -8993,13 +9212,13 @@ Impact is denial of service (crash) and memory corruption; the attack vector is 
                 <div class="ai-category-nav">
                     <h4>📋 分类目录</h4>
                     <ul>
-                        <li style="color:var(--meta-text)">暂无分类数据</li>
+                        <li onclick="scrollToCategory('______')">💻 桌面操作系统 (1)</li><li onclick="scrollToCategory('IoT__')">📡 IoT安全 (2)</li><li onclick="scrollToCategory('___')">☁️ 云安全 (3)</li><li onclick="scrollToCategory('____')">🌐 网络设备 (4)</li><li onclick="scrollToCategory('Web__')">🔐 Web安全 (3)</li><li onclick="scrollToCategory('_______')">🗄️ 数据库与中间件 (2)</li>
                     </ul>
                 </div>
                 <div class="ai-sidebar-stats">
                     <p>🤖 AI智能分析</p>
                     <p>分析日期: 2026-07-13</p>
-                    <p>精选漏洞: 0</p>
+                    <p>精选漏洞: 15</p>
                     <p>候选漏洞: 28</p>
                 </div>
             </div>
@@ -9491,7 +9710,7 @@ Impact is denial of service (crash) and memory corruption; the attack vector is 
                 📄 Markdown Report
             </a>
         </p>
-        <p>Generated on 2026-07-13 04:27:35</p>
+        <p>Generated on 2026-07-13 03:15:35</p>
     </div>
 </body>
 </html>
