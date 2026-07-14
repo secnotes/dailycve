@@ -1,82 +1,433 @@
 {
-  "analysis_date": "2026-07-13",
-  "total_analyzed": 28,
+  "analysis_date": "2026-07-14",
+  "total_analyzed": 334,
   "categories": {
     "桌面操作系统": [
       {
-        "id": "CVE-2026-10666",
-        "reason": "Zephyr RTOS IPv4地址解析存在栈缓冲区溢出（固定17字节缓冲），无需认证远程可触发，影响广泛部署的IoT/嵌入式设备底层系统。"
-      }
-    ],
-    "移动安全": [],
-    "IoT安全": [
-      {
-        "id": "CVE-2026-15497",
-        "reason": "SonicCloud sonic-agent JWT认证过滤器存在代码注入（CVSS 7.5），影响智能设备管理平台认证链，攻击者可绕过身份验证。"
+        "id": "CVE-2026-6846",
+        "reason": "Red Hat binutils处理特制XCOFF文件时存在堆缓冲区溢出，本地攻击者可利用实现任意代码执行，影响广泛使用的二进制工具链。"
       },
       {
-        "id": "CVE-2026-15498",
-        "reason": "SmartHomeAdatum智能家居系统登录模块存在SQL注入，可远程未授权访问家庭控制逻辑，影响用户隐私与物理安全。"
+        "id": "CVE-2026-15684",
+        "reason": "Glarysoft Glary Utilities链接跟随漏洞可导致本地权限提升，影响大量Windows桌面用户。"
+      },
+      {
+        "id": "CVE-2026-7162",
+        "reason": "WinFsp整数溢出漏洞，成功利用可获得系统级别权限，影响Windows虚拟文件系统安全。"
+      },
+      {
+        "id": "CVE-2026-52924",
+        "reason": "Linux内核SCTP协议漏洞，CVSS 9.8，可能导致远程拒绝服务或代码执行，影响所有Linux系统"
+      },
+      {
+        "id": "CVE-2026-4631",
+        "reason": "Red Hat Cockpit Web服务未授权SSH选项注入漏洞，CVSS 9.8，攻击者可通过单次HTTP请求实现远程代码执行"
+      },
+      {
+        "id": "CVE-2026-50264",
+        "reason": "X.Org X服务器DRIGetBuffers存在越界堆写入漏洞（CVSS 7.8），本地攻击者可借此进行权限提升或执行任意代码，影响所有Linux桌面环境。"
+      },
+      {
+        "id": "CVE-2026-9492",
+        "reason": "技嘉控制中心MBStorage灯光控制模块IOCTL访问控制缺陷，本地攻击者可发送特定命令获取系统级权限，影响大量使用技嘉主板的用户。"
+      }
+    ],
+    "移动安全": [
+      {
+        "id": "CVE-2026-58500",
+        "reason": "MCP Appium服务端在创建定位器生成器时直接拼接攻击者控制的元素属性，CVSS 8.2分，可被用于自动化移动测试环境的注入攻击。"
+      },
+      {
+        "id": "CVE-2026-22093",
+        "reason": "EVbee Android应用未验证TLS证书，CVSS 9.5，中间人攻击者可完全拦截和篡改应用与服务器通信"
+      }
+    ],
+    "IoT安全": [
+      {
+        "id": "CVE-2026-15680",
+        "reason": "Lorex 2K室内Wi-Fi摄像头存在格式化字符串远程代码执行漏洞，无需认证即可被临近网络攻击者利用，IoT设备安全性堪忧。"
+      },
+      {
+        "id": "CVE-2026-29009",
+        "reason": "U-Boot nfs_readlink_reply()函数存在缓冲区溢出（CVSS 8.2），恶意NFS服务器可触发，影响大量嵌入式及IoT设备引导程序。"
+      },
+      {
+        "id": "CVE-2026-29008",
+        "reason": "U-Boot TCP状态机存在整数下溢（CVSS 7.5），临近网络攻击者发送畸形TCP包即可导致引导器崩溃，影响嵌入式设备启动安全。"
+      },
+      {
+        "id": "CVE-2026-22103",
+        "reason": "EV充电桩NPC接口命令注入漏洞（CVSS 9.3），可远程执行任意命令，攻击门槛极低。"
+      },
+      {
+        "id": "CVE-2026-22097",
+        "reason": "充电桩固件更新无签名验证（CVSS 9.3），攻击者可上传任意文件实现远程代码执行。"
+      },
+      {
+        "id": "CVE-2026-22096",
+        "reason": "充电桩Web服务端口8090无认证访问（CVSS 9.3），导致敏感信息泄露及未授权文件上传。"
+      },
+      {
+        "id": "CVE-2026-10666",
+        "reason": "Zephyr TCP/IP协议栈parse_ipv4()缓冲区溢出（CVSS 8.1），影响大量IoT设备。"
+      },
+      {
+        "id": "CVE-2026-61875",
+        "reason": "OpenWrt luci-app-upnp存储型XSS漏洞（CVSS 8.8），可由未认证LAN客户端注入JS。"
+      },
+      {
+        "id": "CVE-2026-60121",
+        "reason": "Vitec Flamingo管理平台未授权OS命令注入，CVSS 9.8，利用双评估缺陷实现远程代码执行"
+      },
+      {
+        "id": "CVE-2026-61498",
+        "reason": "Vitec Flamingo管理平台gen_graphs.php端点未授权命令注入，CVSS 9.8，攻击者通过HTTP GET参数即可执行任意命令"
+      },
+      {
+        "id": "CVE-2026-22095",
+        "reason": "EVbee IoT设备网络诊断端点命令注入，CVSS 9.3，可远程执行系统命令"
+      },
+      {
+        "id": "CVE-2026-15548",
+        "reason": "Shibby Tomato路由器固件httpd组件DNS列表渲染存在栈缓冲区溢出（CVSS 9.0），可远程利用，影响广泛部署的家庭及小型企业路由器。"
       }
     ],
     "云安全": [
       {
+        "id": "CVE-2026-59801",
+        "reason": "9Router v0.4.41以下版本存在未认证API访问漏洞（CVSS 9.8），远程攻击者无需凭证即可操控AI提供商管理接口，云服务风险极高。"
+      },
+      {
+        "id": "CVE-2026-59151",
+        "reason": "Prowler云安全平台SAML认证流程信任攻击者可控的email域（CVSS 9.6），可实现跨租户账户劫持，威胁多租户云SaaS安全。"
+      },
+      {
+        "id": "CVE-2026-55884",
+        "reason": "Tilt HUD HTTP服务器在绑定非环回地址时缺少认证中间件（CVSS 9.2），未授权网络访问者可触发任意操作，影响Kubernetes开发环境。"
+      },
+      {
+        "id": "CVE-2026-62327",
+        "reason": "9Router未认证接口可一次性获取所有AI提供商的明文API密钥（CVSS 9.1），敏感凭证大规模泄露。"
+      },
+      {
+        "id": "CVE-2026-62185",
+        "reason": "Argo CD Helm Chart默认未安装网络策略，允许任意Pod访问repo-server等核心API，组合攻击可导致集群完全失陷。"
+      },
+      {
+        "id": "CVE-2026-61447",
+        "reason": "PraisonAI未沙箱化执行LLM生成Python代码导致RCE（CVSS 10），提示注入可直接导致环境变量与数据完全泄露。"
+      },
+      {
         "id": "CVE-2026-56271",
-        "reason": "Flowise AI平台企业版使用弱硬编码JWT密钥（'auth_token'），CVSS 9.8，攻击者可伪造任意用户身份令牌，完全突破认证防线。"
+        "reason": "Flowise企业版使用弱默认JWT密钥与默认audience/issuer（CVSS 9.8），可实现认证绕过与权限提升。"
       },
       {
         "id": "CVE-2026-56260",
-        "reason": "Crawl4AI Docker API的/screenshot和/pdf端点存在任意文件写入（CVSS 9.1），容器部署环境中可直接覆盖关键系统文件。"
+        "reason": "Crawl4AI Docker API服务器/screenshot与/pdf端点任意文件写入（CVSS 9.1），可写入任意路径触发容器逃逸。"
       },
       {
-        "id": "CVE-2026-56259",
-        "reason": "Crawl4AI无认证端点允许凭据窃取与LLM API重定向（CVSS 8.2），可导致云API密钥泄露及模型供应链投毒。"
+        "id": "CVE-2026-4740",
+        "reason": "Red Hat ACM/OCM客户端证书续期验证缺陷（CVSS 8.2），可由被管理集群管理员伪造证书提升权限。"
+      },
+      {
+        "id": "CVE-2026-55852",
+        "reason": "Frappe框架TarSlip RCE（CVSS 8.6），包导入tar成员检查不充分，可通过恶意tar包实现远程代码执行。"
+      },
+      {
+        "id": "CVE-2025-41115",
+        "reason": "Grafana SCIM配置漏洞CVSS满分10分，可绕过用户身份验证实施未授权操作"
+      },
+      {
+        "id": "CVE-2026-42208",
+        "reason": "LiteLLM SQL注入漏洞，已被CISA KEV收录，EPSS高达0.8661，存在活跃在野利用"
+      },
+      {
+        "id": "CVE-2026-14934",
+        "reason": "Google Cloud BigQuery/Dataform/Colab Enterprise缺少授权，CVSS 9.4，可实现跨租户权限提升"
+      },
+      {
+        "id": "CVE-2026-27876",
+        "reason": "Grafana SQL表达式+插件链式攻击导致RCE，CVSS 9.1，影响所有Grafana用户"
+      },
+      {
+        "id": "CVE-2026-49980",
+        "reason": "rclone rcd接口未授权访问，CVSS 9.8，可远程控制云存储同步行为"
+      },
+      {
+        "id": "CVE-2026-15584",
+        "reason": "OpenShift incluster-checks工具在共享默认命名空间创建特权调试Pod并挂载宿主机文件系统，拥有edit角色的普通用户可exec进入获取节点root权限。"
+      },
+      {
+        "id": "CVE-2026-5497",
+        "reason": "vLLM视频处理模块load_base64方法无限制拆分帧导致OOM漏洞，攻击者可通过恶意video/jpeg数据URL对AI推理服务发起拒绝服务攻击。"
       }
     ],
     "网络设备": [
       {
-        "id": "CVE-2026-15511",
-        "reason": "Comfast路由器CVSS满分10.0，FastCGI后端OS命令注入，无需认证远程获取设备完全控制权，属极高危设备漏洞。"
+        "id": "CVE-2026-15480",
+        "reason": "Trendnet TEW-635BRM路由器Web服务存在栈缓冲区溢出（CVSS 9.0），远程可利用且EXP已公开，路由器面临大规模劫持风险。"
+      },
+      {
+        "id": "CVE-2026-15543",
+        "reason": "Tenda CH22路由器CertListInfo接口缓冲区溢出漏洞（CVSS 9.0），远程可利用且利用代码已公开，家用路由器高危。"
       },
       {
         "id": "CVE-2026-15484",
-        "reason": "TRENDnet TEW-821DAP无线AP存在SSI缓冲区溢出，CVSS 9.0，攻击者可远程执行任意代码，直接影响企业/家庭网络边界。"
+        "reason": "TRENDnet TEW-821DAP无线AP存在缓冲区溢出（CVSS 9.0），远程可触发，影响企业无线网络设备安全。"
       },
       {
-        "id": "CVE-2026-61876",
-        "reason": "OpenWrt LuCI对DHCPv6租约主机名未正确编码，邻接网络攻击者可在管理员查看页面时执行脚本，构成管理员会话劫持风险。"
+        "id": "CVE-2025-15608",
+        "reason": "TP-Link AX53/AX55路由器探测处理逻辑存在栈缓冲区溢出（CVSS 7.7），严重条件下可实现远程代码执行。"
+      },
+      {
+        "id": "CVE-2026-62184",
+        "reason": "OpenWRT luci-app-banip日志解析漏洞可被远程未认证攻击者注入任意IP地址，影响防火墙封禁行为。"
+      },
+      {
+        "id": "CVE-2026-15481",
+        "reason": "Trendnet TEW-635BRM路由器命令注入漏洞（CVSS 9.0），远程可利用，可完全控制设备。"
       },
       {
         "id": "CVE-2026-59260",
-        "reason": "OpenWrt luci-app-samba4权限配置错误允许普通用户以root权限启动smbd，可通过Samba选项实现任意命令执行，权限提升后果严重。"
+        "reason": "OpenWrt luci-app-samba4 ACL缺陷允许调用smbd并传递任意参数（CVSS 8.8），可触发以root权限执行恶意命令。"
+      },
+      {
+        "id": "CVE-2026-42055",
+        "reason": "F5 NGINX HTTP/2代理模块存在严重漏洞（CVSS 9.2），在特定proxy_http_version/grpc_pass配置下可被攻击者利用，影响全球大量生产环境部署。"
+      },
+      {
+        "id": "CVE-2023-54365",
+        "reason": "Traefik代理继承Go标准库HTTP/2 Rapid Reset漏洞（CVE-2023-44487），远程攻击者可快速创建和取消流实施大规模拒绝服务攻击。"
       }
     ],
-    "工业控制": [],
+    "工业控制": [
+      {
+        "id": "CVE-2026-4769",
+        "reason": "WAGO System I/O Field启动阶段未认证诊断功能暴露（CVSS 9.8），可在关键窗口期内未授权访问工控系统。"
+      },
+      {
+        "id": "CVE-2026-14480",
+        "reason": "OpenPLC Runtime v3认证任意文件写入漏洞（CVSS 8.7），可写入恶意程序实现PLC持久化控制。"
+      }
+    ],
     "Web安全": [
       {
-        "id": "CVE-2025-12613",
-        "reason": "Cloudinary Node.js包存在参数注入漏洞（CVSS 8.8），作为广泛使用的云媒体服务SDK，供应链影响面巨大，可绕过安全策略。"
+        "id": "CVE-2026-61500",
+        "reason": "Rejetto HFS 3.0.0-3.2.0使用非加密Math.random()生成会话签名密钥（CVSS 9.8），远程攻击者可重建PRNG伪造管理员会话，经典高危Web文件服务器漏洞。"
       },
       {
-        "id": "CVE-2026-15514",
-        "reason": "MetaCRM PHPRPC远程调用接口存在SQL注入（CVSS 7.5），可未授权操纵客户关系管理后台业务数据库。"
+        "id": "CVE-2026-6875",
+        "reason": "ServiceNow AI平台存在未认证远程代码执行漏洞（CVSS 9.5），影响全球大量企业使用的SaaS服务，威胁面极大。"
       },
       {
-        "id": "CVE-2026-15488",
-        "reason": "shiroiAdmin文件上传接口缺乏类型限制（CVSS 7.5），可上传Webshell获取服务器权限，属于典型后台管理系统致命缺陷。"
+        "id": "CVE-2026-58409",
+        "reason": "ChurchCRM管理员可通过上传含PHP Webshell的恶意插件压缩包实现RCE（CVSS 9.1），需管理员权限但影响广泛部署的教会管理系统。"
+      },
+      {
+        "id": "CVE-2026-49972",
+        "reason": "Laravel-Mediable文件上传未正确校验双扩展名（CVSS 8.8），未认证攻击者可上传shell.php.jpg实现RCE，影响大量PHP应用。"
+      },
+      {
+        "id": "CVE-2026-14262",
+        "reason": "WordPress Simple JWT Login插件存在认证绕过至权限提升漏洞（CVSS 8.8），可被未认证攻击者直接获取管理员权限。"
+      },
+      {
+        "id": "CVE-2026-57856",
+        "reason": "Cockpit CMS Bucket API路径穿越漏洞（CVSS 8.8）允许访问文件系统任意位置，CVSS 8.8，威胁自托管CMS用户数据安全。"
+      },
+      {
+        "id": "CVE-2026-52747",
+        "reason": "ModSecurity WAF多部分请求解析器静默移除换行符（CVSS 8.6），可绕过WAF规则实现攻击载荷注入，威胁整体WAF防护体系。"
+      },
+      {
+        "id": "CVE-2026-48363",
+        "reason": "Adobe ColdFusion存在未受控搜索路径元素漏洞（CVSS 8.2），可导致当前用户上下文下任意代码执行，影响企业级应用服务器。"
+      },
+      {
+        "id": "CVE-2026-55789",
+        "reason": "Logto自托管SAML IdP将用户配置文件属性字符串拼接到SAML响应（CVSS 8.5），可导致SAML响应注入与签名绕过。"
+      },
+      {
+        "id": "CVE-2026-57719",
+        "reason": "Aimogen Pro插件未授权恶意文件上传（CVSS 10），可一键RCE，影响广泛WordPress站点。"
+      },
+      {
+        "id": "CVE-2026-57827",
+        "reason": "Joomla RSFiles扩展未认证任意文件上传RCE（CVSS 10），无需任何凭证即可完全接管服务器。"
+      },
+      {
+        "id": "CVE-2026-57710",
+        "reason": "WoowBot Pro Max插件恶意文件上传漏洞（CVSS 9.9），可上传WebShell实现远程代码执行。"
+      },
+      {
+        "id": "CVE-2026-57702",
+        "reason": "Amelia预订插件盲注SQL注入（CVSS 9.3），可绕过认证提取完整数据库内容。"
+      },
+      {
+        "id": "CVE-2026-57770",
+        "reason": "Grand Photography主题对象反序列化漏洞（CVSS 9.8），可触发对象注入实现RCE。"
+      },
+      {
+        "id": "CVE-2026-57389",
+        "reason": "Groundhogg插件路径遍历漏洞（CVSS 8.6），可读取服务器任意敏感文件。"
+      },
+      {
+        "id": "CVE-2026-57811",
+        "reason": "Realtyna WordPress插件代码注入漏洞CVSS满分10分，可远程代码包含"
+      },
+      {
+        "id": "CVE-2026-57401",
+        "reason": "SureDash WordPress插件路径遍历漏洞，CVSS 9.9，可读取敏感文件"
+      },
+      {
+        "id": "CVE-2026-12761",
+        "reason": "WordPress miniOrange社交登录插件认证绕过，CVSS 9.8，可导致账户接管"
+      },
+      {
+        "id": "CVE-2026-14453",
+        "reason": "Centreon开源工单模块Smarty模板注入导致RCE，CVSS 9.6，影响运维监控平台"
+      },
+      {
+        "id": "CVE-2026-12257",
+        "reason": "Mura CMS ColdFusion端点未验证method参数，CVSS 9.3，可远程代码执行"
+      },
+      {
+        "id": "CVE-2026-57738",
+        "reason": "WordPress主题反序列化对象注入漏洞，CVSS 9.8，可导致代码执行"
+      },
+      {
+        "id": "CVE-2026-57724",
+        "reason": "Themeum Kirki插件反序列化漏洞，CVSS 9.8，可导致对象注入"
+      },
+      {
+        "id": "CVE-2026-57744",
+        "reason": "RT-Theme 18扩展反序列化漏洞，CVSS 9.8，可导致对象注入"
+      },
+      {
+        "id": "CVE-2026-57714",
+        "reason": "LatePoint WordPress插件SQL注入，CVSS 9.3，可未授权访问数据库"
+      },
+      {
+        "id": "CVE-2026-57726",
+        "reason": "Themeum Kirki插件SQL注入，CVSS 9.3，可盲注数据库"
+      },
+      {
+        "id": "CVE-2026-6847",
+        "reason": "ThemisNETPanel关键文件上传功能未鉴权，CVSS 9.3，可上传PHP实现RCE"
+      },
+      {
+        "id": "CVE-2026-22029",
+        "reason": "React Router SPA开放重定向漏洞，CVSS 8.0，影响广泛使用的React路由库"
+      },
+      {
+        "id": "CVE-2026-23745",
+        "reason": "node-tar库（≤7.5.2）未充分清理硬链接和符号链接路径，可绕过解压根目录限制导致任意文件覆盖（CVSS 8.2），影响Node.js生态。"
+      },
+      {
+        "id": "CVE-2026-57830",
+        "reason": "Joomla Helix Ultimate扩展存在未认证任意文件删除漏洞（CVSS 8.8），远程未授权攻击者可删除关键文件导致网站瘫痪。"
+      },
+      {
+        "id": "CVE-2026-57815",
+        "reason": "WordPress Forminator插件存在路径遍历漏洞（CVSS 7.5），影响使用该流行表单插件的大量WordPress站点安全。"
       }
     ],
     "数据库与中间件": [
       {
-        "id": "CVE-2026-56241",
-        "reason": "Capgo移动更新平台降权后的超管仍保留两个高危RPC调用权限（CVSS 8.3），构成权限隔离失效下的权限提升路径。"
+        "id": "CVE-2026-57220",
+        "reason": "RabbitMQ Stream监听器在认证阶段不强制帧大小限制（CVSS 7.5），未认证远程客户端可声明超大帧导致资源耗尽。"
       },
       {
-        "id": "CVE-2026-56313",
-        "reason": "Capgo SSO prelink端点允许跨组织删除用户密码身份（CVSS 8.1），多租户SaaS环境中可造成跨租户账户接管。"
+        "id": "CVE-2026-56303",
+        "reason": "Capgo PostgreSQL函数find_apikey_by_value被标记为SECURITY DEFINER且anon角色可执行（CVSS 7.5），未认证攻击者可获取敏感API密钥。"
+      },
+      {
+        "id": "CVE-2026-57212",
+        "reason": "RabbitMQ管理API在with_decode路径上接受超大JSON体（CVSS 7.1），可能导致拒绝服务，影响消息中间件稳定性。"
+      },
+      {
+        "id": "CVE-2026-57217",
+        "reason": "RabbitMQ Topic授权在Khepri元数据存储失败时可被绕过（CVSS 7.0），可写入受限主题与绑定。"
+      },
+      {
+        "id": "CVE-2026-55213",
+        "reason": "h2o HTTP/3 QPACK堆栈缓冲区分配可达约800KB（CVSS 7.5），可触发栈溢出导致服务器崩溃或代码执行。"
+      },
+      {
+        "id": "CVE-2026-49261",
+        "reason": "MariaDB SST wsrep_notify_cmd配置下命令注入CVSS满分10分，节点名可注入shell命令实现RCE"
+      },
+      {
+        "id": "CVE-2026-48163",
+        "reason": "MariaDB SST过程参数注入漏洞，CVSS 8.0，影响多个版本分支"
+      },
+      {
+        "id": "CVE-2026-48165",
+        "reason": "MariaDB高权限用户通过wsrep_sst系列全局变量实现SST注入，CVSS 8.0"
+      },
+      {
+        "id": "CVE-2026-44168",
+        "reason": "MariaDB SST捐赠节点参数插值漏洞，CVSS 8.0，影响10.6至12.3多个版本"
+      },
+      {
+        "id": "CVE-2026-33186",
+        "reason": "gRPC-Go服务器对HTTP/2 :path伪头校验不严导致授权绕过（CVSS 9.1），攻击者可绕过路由规则访问未授权gRPC方法，威胁微服务架构。"
+      },
+      {
+        "id": "CVE-2026-42154",
+        "reason": "Prometheus远程读取接口未验证snappy解压声明长度，未认证攻击者可通过小请求触发大内存分配的拒绝服务攻击。"
+      },
+      {
+        "id": "CVE-2026-34986",
+        "reason": "go-jose库（<4.1.4/<3.0.5）解密特定JWE对象时存在panic漏洞（CVSS 7.5），可被攻击者利用造成依赖该库的服务中断。"
       }
     ],
-    "其他": []
+    "其他": [
+      {
+        "id": "CVE-2026-62200",
+        "reason": "OpenClaw Git ext传输的host exec环境过滤缺陷（CVSS 8.8），低权限调用者可利用配置路径执行或持久化越权操作。"
+      },
+      {
+        "id": "CVE-2026-62194",
+        "reason": "OpenClaw插件安装命令存在权限提升漏洞（CVSS 8.8），低权限用户可通过输入路径配置实现提权，影响AI Agent平台安全。"
+      },
+      {
+        "id": "CVE-2026-55771",
+        "reason": "CedarJava EntityIdentifier.equals()分支反转（CVSS 8.8），可能导致错误的授权决策，影响Java应用的细粒度访问控制。"
+      },
+      {
+        "id": "CVE-2026-57156",
+        "reason": "FreeRDP 32位构建存在整数溢出（CVSS 8.6），恶意RDP服务器可在客户端触发内存破坏，影响远程桌面客户端安全。"
+      },
+      {
+        "id": "CVE-2026-57850",
+        "reason": "RustDesk服务端不强制会话授权连接范围（CVSS 8.3），受限会话类型（如文件传输）可发送完整远程控制消息实现提权。"
+      },
+      {
+        "id": "CVE-2026-22778",
+        "reason": "vLLM多模态端点内存地址泄漏，CVSS 9.8，可降低ASLR防护并实现代码执行"
+      },
+      {
+        "id": "CVE-2026-1709",
+        "reason": "Keylime注册中心未强制TLS客户端认证，CVSS 9.4，可绕过认证执行管理操作"
+      },
+      {
+        "id": "CVE-2025-41118",
+        "reason": "Grafana Pyroscope配置腾讯云COS时密钥明文存储，CVSS 9.1，攻击者可提取secret_key"
+      },
+      {
+        "id": "CVE-2026-44432",
+        "reason": "urllib3 Brotli解码范围错误，CVSS 8.9，可导致内存消耗与数据处理异常"
+      },
+      {
+        "id": "CVE-2026-45700",
+        "reason": "FreeRDP平面位图解码器存在越界堆写入漏洞（CVSS 7.7），处理恶意RDP平面位图流时可能导致远程代码执行。"
+      },
+      {
+        "id": "CVE-2026-62143",
+        "reason": "MISP威胁情报平台html_to_markdown模块存在SSRF防护绕过漏洞（CVSS 8.3），可访问loopback及私有IP等受限内网资源。"
+      }
+    ]
   },
-  "summary": "本批次高危漏洞集中在网络设备命令注入与云平台硬编码密钥，建议优先修复TRENDnet、Comfast及Flowise相关组件。"
+  "summary": "本批次涵盖多项高危漏洞，集中在Web应用、AI/Agent平台及网络设备领域。 | 本批次以IoT充电桩、企业AI平台及WordPress插件严重漏洞为主，多项CVSS达9.8+。 | 本批次含多枚CVSS 9.0+高危漏洞，涵盖Linux内核、Grafana、MariaDB、LiteLLM及大量WordPress插件，重点关注KEV收录的LiteLLM漏洞。"
 }
