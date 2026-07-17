@@ -10,6 +10,14 @@ def main():
     os.makedirs('docs/reports', exist_ok=True)
     os.makedirs(Config.get_current_year_report_dir(), exist_ok=True)
 
+    # Surface proxy configuration so the operator can confirm what's in effect.
+    # requests / httpx read these env vars natively; this is purely diagnostic.
+    for proxy_var in ('HTTPS_PROXY', 'HTTP_PROXY', 'https_proxy', 'http_proxy'):
+        proxy_value = os.environ.get(proxy_var)
+        if proxy_value:
+            print(f"🔌 Using proxy ({proxy_var}): {proxy_value}")
+            break
+
     # Initialize collector
     collector = CVECollector()
 

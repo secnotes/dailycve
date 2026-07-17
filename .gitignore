@@ -36,3 +36,6 @@ docs/_build/
 *.temp
 .DS_Store
 Thumbs.db
+
+# AI parser debug dump (written by src/ai_provider.py on JSON parse failure)
+src/ai_response_debug.txt

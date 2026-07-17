@@ -3,17 +3,8 @@ from datetime import datetime
 
 # Configuration for CVE Daily
 class Config:
-    # Data sources
-    NVD_BASE_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0"
-
-    # CISA KEV URL
+    # CISA KEV feed
     CISA_KEV_URL = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
-
-    # EPSS data URL (will use date formatting)
-    EPSS_BASE_URL = "https://epss.cyentia.com/"
-
-    # GitHub advisories feed
-    GITHUB_ADVISORIES_URL = "https://github.com/advisories.atom"
 
     # Thresholds for high-risk classification
     CVSS_THRESHOLD = 7.0  # Consider vulnerabilities with CVSS score higher than this as high-risk

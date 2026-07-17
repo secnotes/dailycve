@@ -1,15 +1,10 @@
 import os
 import json
 import requests
-import xml.etree.ElementTree as ET
-import pandas as pd
 import zipfile
 import io
 from datetime import datetime, timedelta
-import html2text
 from dotenv import load_dotenv
-from html import unescape
-import re
 
 # Load environment variables
 load_dotenv()
@@ -23,8 +18,6 @@ class CVECollector:
 
         # Load CISA KEV data
         self.load_cisa_kev()
-        # Load EPSS data
-        self.load_epss_data()
 
     def load_cisa_kev(self):
         """Load CISA Known Exploited Vulnerabilities list"""
@@ -127,307 +120,6 @@ class CVECollector:
         except Exception as e:
             print(f"Error loading EPSS data: {str(e).encode('ascii', 'ignore').decode('ascii')}")
 
-    def load_epss_data(self):
-        """Load EPSS scores from public source - kept for compatibility"""
-        # This method is now deprecated since we're fetching EPSS data on-demand for specific CVEs
-        # Keeping it for backward compatibility but it does nothing now
-        pass
-
-    def get_cvelistv5_cves(self, days=1):
-        """Fetch CVEs from CVEProject/cvelistV5"""
-        cves = []
-        try:
-            # Calculate the date for which we need to download the delta
-            target_date = datetime.now() - timedelta(days=days)
-            date_str = target_date.strftime("%Y-%m-%d")
-
-            print(f"Attempting to download CVEs for date: {date_str}")
-
-            # Construct the URL for the delta ZIP file
-            zip_url = f"https://github.com/CVEProject/cvelistV5/releases/download/cve_{date_str}_at_end_of_day/{date_str}_delta_CVEs_at_end_of_day.zip"
-
-            print(f"Downloading from: {zip_url}")
-
-            # Try downloading directly
-            try:
-                response = requests.get(zip_url, timeout=60)
-            except:
-                print("Download failed.")
-                return []
-
-            if response.status_code == 200:
-                print(f"Successfully downloaded the ZIP file for {date_str}")
-
-                # Extract the ZIP file in memory (skip saving to disk)
-                with zipfile.ZipFile(io.BytesIO(response.content)) as zip_file:
-                    print(f"Extracting {len(zip_file.namelist())} files from the ZIP...")
-
-                    for file_info in zip_file.filelist:
-                        if file_info.filename.endswith('.json'):
-                            # Read the JSON file
-                            with zip_file.open(file_info.filename) as json_file:
-                                try:
-                                    cve_data = json.loads(json_file.read().decode('utf-8'))
-
-                                    # Process the CVE data according to the v5 schema
-                                    cve_id = cve_data.get('cveMetadata', {}).get('cveId', '')
-                                    if cve_id:
-                                        # Extract description
-                                        description = ""
-                                        descriptions = cve_data.get('containers', {}).get('cna', {}).get('descriptions', [])
-                                        for desc in descriptions:
-                                            if desc.get('lang') == 'en':
-                                                description = desc.get('value', '')
-                                                break
-
-                                        # Decode HTML entities to convert &#x27; back to ' and other entities
-                                        import html
-                                        description = html.unescape(description)
-
-                                        # Extract CVSS metrics
-                                        cvss_score = 0
-                                        metrics = cve_data.get('containers', {}).get('cna', {}).get('metrics', [])
-                                        for metric_group in metrics:
-                                            # Check for CVSS v4.x
-                                            if 'cvssV4_0' in metric_group:
-                                                cvss_data = metric_group['cvssV4_0']
-                                                cvss_score = cvss_data.get('baseScore', 0)
-                                            # Check for CVSS v3.x
-                                            elif 'cvssV3_1' in metric_group:
-                                                cvss_data = metric_group['cvssV3_1']
-                                                cvss_score = cvss_data.get('baseScore', 0)
-                                            elif 'cvssV3_0' in metric_group:
-                                                cvss_data = metric_group['cvssV3_0']
-                                                cvss_score = cvss_data.get('baseScore', 0)
-                                            # Check for CVSS v2
-                                            elif 'cvssV2_0' in metric_group:
-                                                cvss_data = metric_group['cvssV2_0']
-                                                cvss_score = cvss_data.get('baseScore', 0)
-
-                                        # Extract vendor and product information from affected
-                                        vendors = set()
-                                        products = set()
-
-                                        affected_list = cve_data.get('containers', {}).get('cna', {}).get('affected', [])
-                                        for affected in affected_list:
-                                            vendor = affected.get('vendor', '')
-                                            product = affected.get('product', '')
-
-                                            if vendor and vendor.lower() not in ['-', '*', '']:
-                                                vendors.add(vendor.lower())
-                                            if product and product.lower() not in ['-', '*', '']:
-                                                products.add(product.lower())
-
-                                            # Also check for platforms, modules, etc.
-                                            platforms = affected.get('platforms', [])
-                                            for platform in platforms:
-                                                if platform and platform.lower() not in ['-', '*', '']:
-                                                    vendors.add(platform.lower())
-
-                                            # Process versions to extract more vendor/product info
-                                            versions = affected.get('versions', [])
-                                            for version in versions:
-                                                if 'changes' in version:
-                                                    for change in version['changes']:
-                                                        value = change.get('value', '')
-                                                        if value and value.lower() not in ['-', '*', '']:
-                                                            vendors.add(value.lower())
-
-                                        # Extract publication date
-                                        published_date = cve_data.get('cveMetadata', {}).get('datePublished', '')
-                                        last_modified = cve_data.get('cveMetadata', {}).get('dateUpdated', '')
-
-                                        # Determine entry type based on dates
-                                        target_date_str = target_date.strftime("%Y-%m-%d")
-                                        entry_type = 'published'  # Default assumption
-
-                                        # If published date matches target date, it's newly published
-                                        if published_date and published_date.startswith(target_date_str):
-                                            entry_type = 'published'
-                                        # If published earlier but modified on target date, it's modified
-                                        elif (published_date and not published_date.startswith(target_date_str) and
-                                              last_modified and last_modified.startswith(target_date_str)):
-                                            entry_type = 'modified'
-                                        # If no published date but has modification on target date, consider as modified
-                                        elif (not published_date and last_modified and
-                                              last_modified.startswith(target_date_str)):
-                                            entry_type = 'modified'
-                                        # Otherwise, treat as published if it has data for the target date
-                                        else:
-                                            entry_type = 'published'
-
-                                        # Check if it's high risk (based only on available data at collection time)
-                                        # Full evaluation with EPSS happens after batch EPSS retrieval
-                                        is_high_risk_initial = (
-                                            cvss_score > Config.CVSS_THRESHOLD or
-                                            cve_id in self.cisa_kev_list
-                                        )
-
-                                        # Include in results if it's high risk based on current data
-                                        # or if it has CVSS score > 0 (we might later find high EPSS)
-                                        include_in_results = is_high_risk_initial or cvss_score > 0
-
-                                        if include_in_results:
-                                            # Enhance description with AI if available, otherwise use original description
-                                            enhanced_description = self.enhance_description_with_ai(cve_id, description)
-                                            cves.append({
-                                                'id': cve_id,
-                                                'description': enhanced_description,
-                                                'cvss_score': cvss_score,
-                                                'epss_score': 0,  # Will be updated later
-                                                'in_cisa_kev': cve_id in self.cisa_kev_list,
-                                                'vendors': list(vendors),
-                                                'products': list(products),  # Keep products for processing but we'll not use them in the UI
-                                                'published_date': published_date,
-                                                'last_modified': last_modified,
-                                                'entry_type': entry_type
-                                            })
-
-                                except json.JSONDecodeError:
-                                    print(f"Could not decode JSON for file: {file_info.filename}")
-                                    continue
-                                except Exception as e:
-                                    print(f"Error processing {file_info.filename}: {str(e)}")
-                                    continue
-
-                print(f"Processed {len(cves)} high-risk CVEs from {date_str} delta")
-            else:
-                print(f"Failed to download CVEs for {date_str}. Status code: {response.status_code}")
-
-                # If the requested date is in the future, try the previous day
-                if target_date > datetime.now().replace(hour=0, minute=0, second=0, microsecond=0):
-                    print("Requested date is in the future. Trying with one day earlier...")
-                    yesterday_target = target_date - timedelta(days=1)
-                    yesterday_date_str = yesterday_target.strftime("%Y-%m-%d")
-
-                    yesterday_zip_url = f"https://github.com/CVEProject/cvelistV5/releases/download/cve_{yesterday_date_str}_at_end_of_day/{yesterday_date_str}_delta_CVEs_at_end_of_day.zip"
-
-                    print(f"Trying alternative URL: {yesterday_zip_url}")
-                    try:
-                        response = requests.get(yesterday_zip_url, timeout=60)
-                    except:
-                        print("Alternative download failed.")
-                        return []
-
-                    if response.status_code == 200:
-                        print(f"Successfully downloaded the ZIP file for {yesterday_date_str}")
-
-                        # Extract the ZIP file in memory (skip saving to disk)
-                        with zipfile.ZipFile(io.BytesIO(response.content)) as zip_file:
-                            print(f"Extracting {len(zip_file.namelist())} files from the ZIP...")
-
-                            for file_info in zip_file.filelist:
-                                if file_info.filename.endswith('.json'):
-                                    # Read the JSON file
-                                    with zip_file.open(file_info.filename) as json_file:
-                                        try:
-                                            cve_data = json.loads(json_file.read().decode('utf-8'))
-
-                                            # Process the CVE data according to the v5 schema
-                                            cve_id = cve_data.get('cveMetadata', {}).get('cveId', '')
-                                            if cve_id:
-                                                # Extract description
-                                                description = ""
-                                                descriptions = cve_data.get('containers', {}).get('cna', {}).get('descriptions', [])
-                                                for desc in descriptions:
-                                                    if desc.get('lang') == 'en':
-                                                        description = desc.get('value', '')
-                                                        break
-
-                                                # Extract CVSS metrics
-                                                cvss_score = 0
-                                                metrics = cve_data.get('containers', {}).get('cna', {}).get('metrics', [])
-                                                for metric_group in metrics:
-                                                    # Check for CVSS v4.x
-                                                    if 'cvssV4_0' in metric_group:
-                                                        cvss_data = metric_group['cvssV4_0']
-                                                        cvss_score = cvss_data.get('baseScore', 0)
-                                                    # Check for CVSS v3.x
-                                                    elif 'cvssV3_1' in metric_group:
-                                                        cvss_data = metric_group['cvssV3_1']
-                                                        cvss_score = cvss_data.get('baseScore', 0)
-                                                    elif 'cvssV3_0' in metric_group:
-                                                        cvss_data = metric_group['cvssV3_0']
-                                                        cvss_score = cvss_data.get('baseScore', 0)
-                                                    # Check for CVSS v2
-                                                    elif 'cvssV2_0' in metric_group:
-                                                        cvss_data = metric_group['cvssV2_0']
-                                                        cvss_score = cvss_data.get('baseScore', 0)
-
-                                                # Extract vendor and product information from affected
-                                                vendors = set()
-                                                products = set()
-
-                                                affected_list = cve_data.get('containers', {}).get('cna', {}).get('affected', [])
-                                                for affected in affected_list:
-                                                    vendor = affected.get('vendor', '')
-                                                    product = affected.get('product', '')
-
-                                                    if vendor and vendor.lower() not in ['-', '*', '']:
-                                                        vendors.add(vendor.lower())
-                                                    if product and product.lower() not in ['-', '*', '']:
-                                                        products.add(product.lower())
-
-                                                    # Also check for platforms, modules, etc.
-                                                    platforms = affected.get('platforms', [])
-                                                    for platform in platforms:
-                                                        if platform and platform.lower() not in ['-', '*', '']:
-                                                            vendors.add(platform.lower())
-
-                                                    # Process versions to extract more vendor/product info
-                                                    versions = affected.get('versions', [])
-                                                    for version in versions:
-                                                        if 'changes' in version:
-                                                            for change in version['changes']:
-                                                                value = change.get('value', '')
-                                                                if value and value.lower() not in ['-', '*', '']:
-                                                                    vendors.add(value.lower())
-
-                                                # Extract publication date
-                                                published_date = cve_data.get('cveMetadata', {}).get('datePublished', '')
-                                                last_modified = cve_data.get('cveMetadata', {}).get('dateUpdated', '')
-
-                                                # Check if it's high risk
-                                                is_high_risk = (
-                                                    cvss_score > Config.CVSS_THRESHOLD or
-                                                    cve_id in self.cisa_kev_list or
-                                                    (cve_id in self.epss_data and self.epss_data[cve_id] >= Config.EPSS_THRESHOLD)
-                                                )
-
-                                                if is_high_risk:
-                                                    cves.append({
-                                                        'id': cve_id,
-                                                        'description': description,
-                                                        'cvss_score': cvss_score,
-                                                        'epss_score': self.epss_data.get(cve_id, 0),
-                                                        'in_cisa_kev': cve_id in self.cisa_kev_list,
-                                                        'vendors': list(vendors),
-                                                        'products': list(products),  # Keep products for processing but we'll not use them in the UI
-                                                        'published_date': published_date,
-                                                        'last_modified': last_modified,
-                                                        'entry_type': 'published'
-                                                    })
-
-                                        except json.JSONDecodeError:
-                                            print(f"Could not decode JSON for file: {file_info.filename}")
-                                            continue
-                                        except Exception as e:
-                                            print(f"Error processing {file_info.filename}: {str(e)}")
-                                            continue
-
-                        print(f"Processed {len(cves)} high-risk CVEs from {yesterday_date_str} delta")
-
-        except Exception as e:
-            print(f"Error fetching CVEs from CVEProject/cvelistV5: {e}")
-            # Fallback to original implementation if the new source fails
-            print("Using fallback mechanism...")
-
-        return cves
-
-    def enhance_description_with_ai(self, cve_id, description):
-        """Enhance CVE description using AI for better readability (deprecated, returns original)"""
-        return description or ""
-
     def ai_curate_cves(self, cves):
         """Use AI to categorize and recommend important CVEs"""
         try:
@@ -514,8 +206,6 @@ class CVECollector:
         for cve in cvelistv5_cves:
             cve_id = cve['id']
             if cve_id not in all_cves:
-                # Enhance description with AI
-                cve['description'] = self.enhance_description_with_ai(cve_id, cve['description'])
                 all_cves[cve_id] = cve
 
         # Now that we have all CVEs, fetch their EPSS scores in batches
@@ -705,11 +395,9 @@ class CVECollector:
                                         include_in_results = is_high_risk_initial or cvss_score > 0
 
                                         if include_in_results:
-                                            # Enhance description with AI if available, otherwise use original description
-                                            enhanced_description = self.enhance_description_with_ai(cve_id, description)
                                             cves.append({
                                                 'id': cve_id,
-                                                'description': enhanced_description,
+                                                'description': description,
                                                 'cvss_score': cvss_score,
                                                 'epss_score': 0,  # Will be updated later
                                                 'in_cisa_kev': cve_id in self.cisa_kev_list,

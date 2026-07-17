@@ -117,7 +117,7 @@ def generate_markdown_report(cves, output_path='docs/reports/YYYY/daily_cve_YYYY
         # Add both CVSS and EPSS scores to the markdown report
         md_content += f"**CVSS Score:** {cve.get('cvss_score', 0):.1f} | **EPSS Score:** {round_epss_score(cve.get('epss_score', 0)):.3f} | **Status:** {status_text} | **Vendors:** {vendor_list}\n\n"
         # Escape Liquid syntax in description to prevent Jekyll parsing errors
-        description = cve.get('description', 'No description available')
+        description = cve.get('description', '') or '（无英文描述）'
         description = escape_liquid_syntax(description)
         md_content += f"{description}\n\n"
 
@@ -2186,7 +2186,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None, a
             all_vendors.add(vendor)
             vendor_counts[vendor] = vendor_counts.get(vendor, 0) + 1
 
-    # Sort vendors by count and limit to top 19
+    # Sort vendors by count and limit to top 15 in the sidebar
     sorted_vendors = sorted(vendor_counts.items(), key=lambda x: x[1], reverse=True)
     top_vendors = dict(sorted_vendors[:15])  # Top 15 vendors
     all_sorted_vendors = dict(sorted_vendors)  # All vendors sorted by count
