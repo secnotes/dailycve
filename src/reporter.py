@@ -1,4 +1,5 @@
 import os
+import hashlib
 from datetime import datetime
 from jinja2 import Template
 import html
@@ -6,10 +7,22 @@ import re
 from decimal import Decimal, ROUND_HALF_UP
 import markdown
 
-def sanitize_vendor_id(vendor):
-    """Sanitize vendor names to create safe IDs for HTML elements"""
-    # Replace non-alphanumeric characters with underscores
-    return re.sub(r'[^a-zA-Z0-9]', '_', vendor)
+def sanitize_vendor_id(name):
+    """Sanitize names to create safe IDs for HTML elements.
+
+    The legacy replacement `[^a-zA-Z0-9] -> _` is kept for ASCII names
+    so the JS regex in this same file (vendor-filter selection) still
+    matches the same id. When the name contains no ASCII letters/digits
+    — e.g. the CJK CVE category names like 工业控制 / 网络设备 — fall
+    back to a short sha1 prefix so distinct names no longer collapse
+    onto the same all-underscore id (which made 移动安全 / 云安全 /
+    网络设备 / 工业控制 all share '____' and scrollToCategory could
+    only reach the first DOM occurrence).
+    """
+    sanitized = re.sub(r'[^a-zA-Z0-9]', '_', name).strip('_')
+    if sanitized:
+        return sanitized
+    return hashlib.sha1(name.encode('utf-8')).hexdigest()[:10]  # 40 bits
 
 def round_epss_score(score):
     """Round EPSS score to 3 decimal places with proper rounding"""
