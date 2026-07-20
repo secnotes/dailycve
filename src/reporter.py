@@ -5,7 +5,6 @@ from jinja2 import Template
 import html
 import re
 from decimal import Decimal, ROUND_HALF_UP
-import markdown
 
 def sanitize_vendor_id(name):
     """Sanitize names to create safe IDs for HTML elements.
