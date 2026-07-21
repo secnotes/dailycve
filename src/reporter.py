@@ -160,6 +160,11 @@ def generate_ai_curated_html(ai_curated, cve_lookup):
     category_icons = Config.AI_CATEGORY_ICONS
     categories_html = []
 
+    # Model name shown as a badge next to the heading.
+    # Prefer the model recorded in the curated cache; fall back to the env var
+    # (so reports regenerated from an older cache still display the right model).
+    model_name = ai_curated.get('model') or os.environ.get('AI_MODEL') or 'gpt-4o-mini'
+
     categories = ai_curated.get('categories', {})
     for category_name, curated_cves in categories.items():
         if not curated_cves:
@@ -228,7 +233,7 @@ def generate_ai_curated_html(ai_curated, cve_lookup):
 
     result_html = f'''
     <div class="ai-summary">
-        <h3>🤖 AI智能分析摘要</h3>
+        <h3>🤖 AI智能分析摘要 <span class="model-badge" title="本批次 AI 精选所用模型">{html.escape(model_name)}</span></h3>
         <div class="ai-summary-text">{html.escape(summary)}</div>
         <div class="ai-summary-meta">
             <span>分析日期: {analysis_date}</span>
@@ -351,7 +356,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None, a
         }
 
         .container {
-            max-width: 1600px;
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 300px;
@@ -1292,6 +1297,20 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None, a
             font-weight: 600;
         }
 
+        .model-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            font-size: 0.7rem;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-weight: 500;
+            margin-left: 10px;
+            vertical-align: middle;
+            letter-spacing: 0.3px;
+            box-shadow: 0 1px 3px rgba(102, 126, 234, 0.3);
+        }
+
         .ai-summary-text {
             color: var(--meta-text);
             line-height: 1.7;
@@ -1425,7 +1444,6 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None, a
             border-radius: 8px;
             font-size: 0.85rem;
             color: var(--meta-text);
-            line-height: 1.8;
             transition: background-color 0.3s ease;
         }
     </style>
@@ -1675,6 +1693,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None, a
                     <p>分析日期: {{ ai_curated_date }}</p>
                     <p>精选漏洞: {{ ai_curated_count }}</p>
                     <p>候选漏洞: {{ ai_total_analyzed }}</p>
+                    <p>模型来源: {{ ai_model_name }}</p>
                 </div>
             </div>
             {% endif %}
@@ -2261,6 +2280,7 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None, a
     ai_curated_date = ai_curated.get('analysis_date', '-') if ai_curated else '-'
     ai_curated_count = sum(len(v) for v in ai_curated.get('categories', {}).values()) if ai_curated else 0
     ai_total_analyzed = ai_curated.get('total_analyzed', 0) if ai_curated else 0
+    ai_model_name = (ai_curated.get('model') if ai_curated else None) or os.environ.get('AI_MODEL') or 'gpt-4o-mini'
 
     # Render the template
     html_content = template.render(
@@ -2285,7 +2305,8 @@ def generate_html_report(cves, output_path='index.html', total_cve_count=None, a
         ai_category_nav=ai_category_nav,
         ai_curated_date=ai_curated_date,
         ai_curated_count=ai_curated_count,
-        ai_total_analyzed=ai_total_analyzed
+        ai_total_analyzed=ai_total_analyzed,
+        ai_model_name=ai_model_name
     )
 
     # Write to file

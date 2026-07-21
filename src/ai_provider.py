@@ -245,6 +245,7 @@ class AIProvider:
         merged = {
             "analysis_date": datetime.now().strftime('%Y-%m-%d'),
             "total_analyzed": len(original_cves),
+            "model": self.model,
             "categories": {},
             "summary": "",
         }
